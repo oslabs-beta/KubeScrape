@@ -1,0 +1,26 @@
+{
+  "name": "Electron-App",
+  "version": "1.0.0",
+  "description": "Simple electron app",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntgv93/Electron-App.git"
+  },
+  "keywords": [],
+  "author": "Vince Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntgv93/Electron-App/issues"
+  },
+  "homepage": "https://github.com/ntgv93/Electron-App#readme",
+  "dependencies": {
+    "electron": "^15.2.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^17.0.2"
+  }
+}
