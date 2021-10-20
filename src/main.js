@@ -12,17 +12,12 @@ let mainWindow;
 // Keep a reference for dev mode
 let dev = false;
 
-// Broken:
-// if (process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath)) {
-//   dev = true
-// }
-
 if (process.env.NODE_ENV !== undefined && process.env.NODE_ENV === 'development') {
   dev = true;
 };
 
 // Temporary fix broken high-dpi scale factor on Windows (125% scaling)
-// info: https://github.com/electron/electron/issues/9691
+// info: https://github.com/electron/electron/issues/9560
 if (process.platform === 'win32') {
   app.commandLine.appendSwitch('high-dpi-support', 'true');
   app.commandLine.appendSwitch('force-device-scale-factor', '1');
@@ -44,21 +39,13 @@ function createWindow() {
   let indexPath;
 
   if (dev && process.argv.indexOf('--noDevServer') === -1) {
-    indexPath = url.format({
-      protocol: 'http:',
-      host: 'localhost:8080',
-      pathname: 'index.html',
-      slashes: true
-    })
+    indexPath = new URL('http://localhost:8080/index.html');
   } else {
-    indexPath = url.format({
-      protocol: 'file:',
-      pathname: path.join(__dirname, 'dist', 'index.html'),
-      slashes: true
-    })
+    indexPath = new URL('file:' + path.join(__dirname, 'dist/index.html'));
   }
 
-  mainWindow.loadURL(indexPath);
+  mainWindow.loadURL(indexPath.href);
+    // mainWindow.loadFile(indexPath);
 
   // Don't show until we are ready and loaded
   mainWindow.once('ready-to-show', () => {
