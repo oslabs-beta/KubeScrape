@@ -1,4 +1,13 @@
-// a place to combine reducers
+/**
+ * ************************************
+ *
+ * @module  index.js
+ * @author team KuberG8
+ * @date
+ * @description A place to combine reducers
+ *
+ * ************************************
+ */
 
 import { combineReducers } from 'redux';
 

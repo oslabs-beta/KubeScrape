@@ -1,3 +1,14 @@
+/**
+ * ************************************
+ *
+ * @module main.js
+ * @author team KuberG8
+ * @date
+ * @description Entry Point to Electron App
+ *
+ * ************************************
+ */
+
 'use strict'
 
 // Import parts of electron to use

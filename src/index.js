@@ -1,3 +1,14 @@
+/**
+ * ************************************
+ *
+ * @module  index.js
+ * @author team KuberG8
+ * @date
+ * @description React App Entry Point
+ *
+ * ************************************
+ */
+
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';

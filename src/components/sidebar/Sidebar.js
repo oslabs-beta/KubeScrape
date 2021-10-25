@@ -1,7 +1,7 @@
 /**
  * ************************************
  *
- * @module  Sidebar.js
+ * @module Sidebar.js
  * @author team KuberG8
  * @date
  * @description React Component to display Sidebar nav items

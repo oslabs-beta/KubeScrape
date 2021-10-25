@@ -1,3 +1,15 @@
+
+/**
+ * ************************************
+ *
+ * @module App.js
+ * @author team KuberG8
+ * @date
+ * @description Main component for the React app
+ * 
+ * ************************************
+ */
+
 import React from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import { Switch, Route } from 'react-router-dom';

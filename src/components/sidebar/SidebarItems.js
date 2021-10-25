@@ -1,7 +1,7 @@
 /**
  * ************************************
  *
- * @module  SidebarItems.js
+ * @module SidebarItems.js
  * @author team KuberG8
  * @date
  * @description an Array containing sidebar item icons and paths 
