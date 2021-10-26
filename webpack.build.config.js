@@ -11,13 +11,13 @@ module.exports = {
 
     // specifies rules to transpile frontend code
     rules: [
+
       {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader'
-        ],
+        // condition to match files using regex
+        test: /\.s?css$/,
+        // loaders to use
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        // An array of path or directories that have the files to be transformed by the loader
         include: defaultInclude
       },
       {

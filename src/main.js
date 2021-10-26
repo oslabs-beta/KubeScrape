@@ -1,3 +1,14 @@
+/**
+ * ************************************
+ *
+ * @module main.js
+ * @author team KuberG8
+ * @date
+ * @description Entry Point to Electron App
+ *
+ * ************************************
+ */
+
 'use strict'
 
 // Import parts of electron to use
@@ -35,15 +46,15 @@ function createWindow() {
     }
   })
 
-  // and load the index.html of the app.
   let indexPath;
 
+  // and load the index.html of the app.
   if (dev && process.argv.indexOf('--noDevServer') === -1) {
     indexPath = new URL('http://localhost:8080/index.html');
   } else {
-    indexPath = new URL('file:' + path.join(__dirname, 'dist/index.html'));
+    indexPath = new URL('file:' + path.join(__dirname, '../dist/index.html'));
   }
-
+  
   mainWindow.loadURL(indexPath.href);
     // mainWindow.loadFile(indexPath);
 
