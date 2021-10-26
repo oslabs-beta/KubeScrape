@@ -13,8 +13,9 @@
 import React from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import { Switch, Route } from 'react-router-dom';
-import NodeOverview from './components/NodeOverview/NodeOverview';
 import regeneratorRuntime from "regenerator-runtime";
+
+import { NodeOverview } from './components/NodeOverview/NodeOverview';
 
 const App = () => {
 
@@ -22,11 +23,13 @@ const App = () => {
     <div className='main'>
 
       <Sidebar/ >
-      <NodeOverview />
+      
       
       <Switch>
         <Route path='/' exact>
+        <NodeOverview />
           home
+          
         </Route>
         <Route path='/node' exact>
           node

@@ -15,7 +15,9 @@ import { combineReducers } from 'redux';
 import nodeReducer from './nodeReducer';
 
 // combine reducers
-export const reducers = combineReducers({
-  node: nodeReducer
+const reducers = combineReducers({
+  node: nodeReducer,
 });
+
+export default reducers;
 

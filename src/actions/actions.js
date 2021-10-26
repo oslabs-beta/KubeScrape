@@ -1,21 +1,30 @@
 import * as actionTypes from '../constants/actionTypes';
+import regeneratorRuntime from "regenerator-runtime";
 
-/*actions, which make calls to the Prometheus server*/
 
-export default fetchNodeNames = async() => {
-  const data = await fetch('http://localhost:9090/api/v1/query?query=kube_node_info', {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(res => res.json());
-  console.log(data);
-  const result = data.data.result;
-  const nodeNames = data.data.result[0].metric.node;
-  // const nodeNames = result.map(result => {
-  //   return result.metric.node;
-  // })
-  return nodeNames;
-}
+/* actions that are dispatched to the reducer */
+
+export const getNodeNames = (nodeNames) => ({
+  type: actionTypes.GET_NODE_NAMES,
+  payload: nodeNames
+});
+
+export const getCpuUsage = (nodeCpuUsage) => ({
+  type: actionTypes.GET_CPU_USAGE,
+  payload: nodeCpuUsage
+});
+
+export const getMemoryUsage = (nodeMemoryUsage) => ({
+  type: actionTypes.GET_MEMORY_USAGE,
+  payload: nodeMemoryUsage
+});
+
+export const getPodTotal = (nodePodTotal) => ({
+  type: actionTypes.GET_TOTAL_PODS,
+  payload: nodePodTotal
+});
+
+export const getPodCapacity = (nodePodCapacity) => ({
+  type: actionTypes.GET_POD_CAPACITY,
+  payload: nodePodCapacity
+});
