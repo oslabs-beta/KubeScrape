@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module  NodeOverview
+ * @description component that renders basic information about a node
+ *
+ * ************************************
+ */
+
+
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
@@ -6,7 +16,7 @@ import { Doughnut } from 'react-chartjs-2';
 import * as actions from '../../actions/actions';
 
 //fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
-import * as nodePromql from '../../utils/node-promql-requests';
+import * as nodePromql from '../../utils/node-promql-util';
 
 //create a functional component
 export const NodeOverview = () => {
@@ -21,18 +31,17 @@ export const NodeOverview = () => {
 
   //the useEffect hook lets you perform side effects in function components. It tells React that we need to do something after render (like componentDidMount)
   //in these cases, useEffect is used to fetch data from the Prometheus server and using the results to update state
-  //TODO: Combine into single useEffect function
   useEffect(async () => {
-  const nodeNamesList = await nodePromql.fetchNodeNamesList();
-  const nodeCpuUsagePercentage = await nodePromql.fetchCpuUsage();
-  const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage();
-  const nodePodTotal = await nodePromql.fetchPodTotal();
-  const nodePodCapacity = await nodePromql.fetchPodCapacity();
-  dispatch(actions.getNodeNames(nodeNamesList))
-  dispatch(actions.getCpuUsage(nodeCpuUsagePercentage))
-  dispatch(actions.getMemoryUsage(nodeMemoryUsagePercentage));
-  dispatch(actions.getPodTotal(nodePodTotal));
-  dispatch(actions.getPodCapacity(nodePodCapacity));
+    const nodeNamesList = await nodePromql.fetchNodeNamesList();
+    const nodeCpuUsagePercentage = await nodePromql.fetchCpuUsage();
+    const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage();
+    const nodePodTotal = await nodePromql.fetchPodTotal();
+    const nodePodCapacity = await nodePromql.fetchPodCapacity();
+    dispatch(actions.getNodeNames(nodeNamesList))
+    dispatch(actions.getCpuUsage(nodeCpuUsagePercentage))
+    dispatch(actions.getMemoryUsage(nodeMemoryUsagePercentage));
+    dispatch(actions.getPodTotal(nodePodTotal));
+    dispatch(actions.getPodCapacity(nodePodCapacity));
   }, []);
 
   return (

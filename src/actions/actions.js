@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module  actions.js
+ * @description actions
+ *
+ * ************************************
+ */
+
+
 import * as actionTypes from '../constants/actionTypes';
 import regeneratorRuntime from "regenerator-runtime";
 

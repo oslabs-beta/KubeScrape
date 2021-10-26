@@ -1,3 +1,12 @@
+/**
+ * ************************************
+ *
+ * @module  nodeReducer
+ * @description reducer for node data
+ *
+ * ************************************
+ */
+
 import * as types from '../constants/actionTypes';
 
 const initialState = {

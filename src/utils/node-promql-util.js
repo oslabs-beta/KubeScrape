@@ -1,4 +1,12 @@
-//TODO: Write fetch requests to run at interval of x seconds, and pass updating result into useEffect
+/**
+ * ************************************
+ *
+ * @module  node-promql-requests
+ * @description contains functions that fetch and return data from the Prometheus server
+ *
+ * ************************************
+ */
+
 
 //return a node names as an array of strings
 export const fetchNodeNamesList = async () => {
