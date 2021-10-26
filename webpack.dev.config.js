@@ -13,9 +13,9 @@ module.exports = {
     rules: [
       {
         // condition to match files using regex
-        test: /\.css$/,
+        test: /\.s?css$/,
         // loaders to use
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'postcss-loader' }],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
         // An array of path or directories that have the files to be transformed by the loader
         include: defaultInclude
       },
