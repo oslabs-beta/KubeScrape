@@ -12,10 +12,10 @@
 import { combineReducers } from 'redux';
 
 // import all reducers here
+import nodeReducer from './nodeReducer';
 
 // combine reducers
-const reducers = combineReducers({
-
+export const reducers = combineReducers({
+  node: nodeReducer
 });
 
-export default reducers;

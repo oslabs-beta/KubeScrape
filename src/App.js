@@ -13,12 +13,16 @@
 import React from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import { Switch, Route } from 'react-router-dom';
+import NodeOverview from './components/NodeOverview/NodeOverview';
+import regeneratorRuntime from "regenerator-runtime";
+
 const App = () => {
 
   return(
     <div className='main'>
 
       <Sidebar/ >
+      <NodeOverview />
       
       <Switch>
         <Route path='/' exact>

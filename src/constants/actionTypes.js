@@ -11,4 +11,4 @@
 
 
 // export const GET_ALL_PODS = 'GET_ALL_PODS';
-export const GET_NODE_NAME = 'GET_NODE_NAME';
+export const GET_NODE_NAMES = 'GET_NODE_NAMES';

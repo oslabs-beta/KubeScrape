@@ -1,11 +1,8 @@
 import * as actionTypes from '../constants/actionTypes';
 
-export const getNodeNames = nodeNames => ({
-  type: actionTypes.GET_NODE_NAME,
-  payload: nodeNames
-});
+/*actions, which make calls to the Prometheus server*/
 
-export const getNodeName = async() => {
+export default fetchNodeNames = async() => {
   const data = await fetch('http://localhost:9090/api/v1/query?query=kube_node_info', {
     method: 'GET',
     headers: {
@@ -14,9 +11,11 @@ export const getNodeName = async() => {
     }
   })
   .then(res => res.json());
+  console.log(data);
   const result = data.data.result;
-  const nodeNames = result.map(result => {
-    return result.metric.node;
-  })
+  const nodeNames = data.data.result[0].metric.node;
+  // const nodeNames = result.map(result => {
+  //   return result.metric.node;
+  // })
   return nodeNames;
 }
