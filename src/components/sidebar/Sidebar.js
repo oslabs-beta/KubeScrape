@@ -89,8 +89,8 @@ const Sidebar = () => {
   };
 
   const menuItems = SidebarItems.map((item) => 
-    <Link to={item.path} style={{ color: 'inherit', 'text-decoration': 'none'}}>
-      <ListItem button key={item.title}>
+    <Link key={item.title} to={item.path} style={{ color: 'inherit', textDecoration: 'none'}}>
+      <ListItem button >
           <ListItemIcon>
             {item.icon}
           </ListItemIcon>
