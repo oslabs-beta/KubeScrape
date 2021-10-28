@@ -16,6 +16,7 @@ import { Switch, Route } from 'react-router-dom';
 import regeneratorRuntime from "regenerator-runtime";
 
 import { NodeOverview } from './components/NodeOverview/NodeOverview';
+import {Deployments} from './components/Deployments/deployments'
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
         </Route>
         <Route path='/node' exact>
           node
+          <Deployments />
         </Route>
       </Switch>
       
