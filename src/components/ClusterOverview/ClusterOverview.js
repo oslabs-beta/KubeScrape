@@ -17,7 +17,7 @@
  import * as clusterPromql from '../../utils/cluster-promql-util';
 
  //create a functional component
- export const ClusterOverview = () => {
+const ClusterOverview = () => {
   
   //initialize state that is rendered only in this component
   const [clusterCpuUsage, setClusterCpuUsage] = useState(0);
@@ -93,3 +93,5 @@
     </div>
   )
  }
+
+export default ClusterOverview;
