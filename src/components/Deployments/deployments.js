@@ -34,6 +34,7 @@ const getDeploymentData = async () => {
   // console.log('condition: ' + dataArr[0].metric['condition']);
 
   dataArr = dataArr.map((el) => {
+    
     return (
       <Box
         key={el.metric.instance}
