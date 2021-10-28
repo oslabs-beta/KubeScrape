@@ -26,27 +26,23 @@ const getDeploymentData = async () => {
       },
     }
   ).then((res) => res.json());
-  console.log({ dataObj });
+  // console.log({ dataObj });
 
   let dataArr = dataObj.data.result;
-  console.log(dataArr);
-  // console.log('name: ' + dataArr[0].metric.deployment);
-  // console.log('condition: ' + dataArr[0].metric['condition']);
 
   dataArr = dataArr.map((el) => {
 
-    var s = new Date(el.metric.value*1000).toLocaleDateString("en-US")
-    var s = new Date(el.metric.value*1000).toLocaleTimeString("en-US")
+    //convert unix time from api result into Date & time format
+    var formatDate = new Date(el.value[1] * 1000).toLocaleDateString('en-US');
+    var formatTime = new Date(el.value[1] * 1000).toLocaleTimeString('en-US');
 
     return (
       <Box
         key={el.metric.instance}
         sx={{
-          bgcolor: 'primary.main',
-          // color: 'white',
-          // borderColor: 'black',
-          p: 1,
-          m: 1,
+          border: '1px solid black',
+          p: .3,
+          m: .3,
           borderRadius: 1,
           // textAlign: 'center',
           fontSize: '1rem',
@@ -57,10 +53,10 @@ const getDeploymentData = async () => {
         <li>Instance: {el.metric.instance}</li>
         <li>Namespace: {el.metric.namespace}</li>
         <li>Condition: {el.metric.condition}</li>
+        <li>Created On: {formatDate} {formatTime}</li>
       </Box>
     );
   });
-  console.log(dataArr);
 
   return dataArr;
 };
@@ -71,7 +67,6 @@ const Deployments = () => {
   useEffect(async () => {
     const deploymentData = await getDeploymentData();
     setDeployment(deploymentData);
-    //console.log({deploymentDivs})
   }, []);
 
   console.log({ deploymentData });
@@ -81,8 +76,8 @@ const Deployments = () => {
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
-          p: 1,
-          m: 1,
+          p: .3,
+          m: .3,
           maxWidth: 500,
         }}
       >
