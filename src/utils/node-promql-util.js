@@ -48,7 +48,6 @@ export const fetchMemoryUsage = async() => {
     }
   }).then(res => res.json())
   const memoryUsage = data.data.result[0].value[1];
-  console.log(memoryUsage)
   return memoryUsage;
 }
 

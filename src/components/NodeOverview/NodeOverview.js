@@ -100,7 +100,7 @@ const NodeOverview = () => {
               arcPadding={0}
               percent={nodeMemoryUsage} 
               textColor={"#FFF"}
-              needleColor="#FFF" 
+              needleColor="#FFF"
             />
           </Box>
           <Box sx={{
@@ -110,13 +110,21 @@ const NodeOverview = () => {
             }}
           >           
           <h2>Pods Running</h2>
-            <Doughnut id="doughnut-2"
+            <Doughnut id="doughnut"
               data={{
                 labels: ['Number of Running Pods', 'Remaining Pod Capacity'],
                 datasets: [{
                   data: [nodeTotalPods, nodePodCapacity - nodeTotalPods],
-                  backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
+                  backgroundColor: ['#F8E9A1', '#29648A'],
+                  borderColor: ['#AAABB8', '#AAABB8']
                 }]
+              }}
+              options = {{
+                legend: {
+                  labels: {
+                    fontColor: "#FFF"
+                  }
+                }
               }}
             />
           </Box>
