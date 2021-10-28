@@ -1,3 +1,12 @@
+/**
+ * ************************************
+ *
+ * @module NodeDetails.js
+ * @description Component to render details of each individual K8s Node
+ * 
+ * ************************************
+ */
+
 import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';

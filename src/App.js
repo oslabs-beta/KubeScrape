@@ -1,10 +1,7 @@
-
 /**
  * ************************************
  *
  * @module App.js
- * @author team KuberG8
- * @date
  * @description Main component for the React app
  * 
  * ************************************
