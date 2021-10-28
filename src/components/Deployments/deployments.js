@@ -29,9 +29,9 @@ const getDeploymentData = async () => {
   console.log({ dataObj });
 
   let dataArr = dataObj.data.result;
-
-  console.log('name: ' + dataArr[0].metric.deployment);
-  console.log('condition: ' + dataArr[0].metric['condition']);
+    console.log(dataArr)
+  // console.log('name: ' + dataArr[0].metric.deployment);
+  // console.log('condition: ' + dataArr[0].metric['condition']);
 
   dataArr = dataArr.map((el) => {
     return (
