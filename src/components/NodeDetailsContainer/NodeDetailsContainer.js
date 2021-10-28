@@ -19,7 +19,7 @@ import InputLabel from '@mui/material/InputLabel';
 
 const primaryColor = '#25274D';
 
-const NodeDetails = () => {
+const NodeDetailsContainer = () => {
   
   const [nodeName, setNode] = useState('');
   
@@ -62,4 +62,4 @@ const NodeDetails = () => {
   )
 }
 
-export default NodeDetails;
+export default NodeDetailsContainer;

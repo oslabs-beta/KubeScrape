@@ -35,7 +35,9 @@ const getDeploymentData = async () => {
 
   dataArr = dataArr.map((el) => {
 
-    
+    var s = new Date(el.metric.value*1000).toLocaleDateString("en-US")
+    var s = new Date(el.metric.value*1000).toLocaleTimeString("en-US")
+
     return (
       <Box
         key={el.metric.instance}
@@ -51,7 +53,7 @@ const getDeploymentData = async () => {
           fontWeight: '700',
         }}
       >
-        <h3> {el.metric.deployment} </h3>
+        <h2> {el.metric.deployment} </h2>
         <li>Instance: {el.metric.instance}</li>
         <li>Namespace: {el.metric.namespace}</li>
         <li>Condition: {el.metric.condition}</li>
