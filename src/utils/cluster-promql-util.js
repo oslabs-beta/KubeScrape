@@ -17,8 +17,7 @@ export const fetchClusterCpuUsage = async () => {
     }
   })
   .then(res => res.json());
-  const clusterCpuUsage= data.data.result[0].value[1];
-  console.log(clusterCpuUsage)
+  const clusterCpuUsage= parseInt(data.data.result[0].value[1]);
   return clusterCpuUsage;  
 }
 
@@ -31,7 +30,7 @@ export const fetchClusterMemoryUsage = async() => {
       'Content-Type': 'application/json'
     }
   }).then(res => res.json())
-  const clusterMemoryUsage = data.data.result[0].value[1];
+  const clusterMemoryUsage = parseInt(data.data.result[0].value[1]);
   return clusterMemoryUsage;
 }
 

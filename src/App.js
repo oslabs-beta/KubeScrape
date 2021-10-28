@@ -3,7 +3,7 @@
  *
  * @module App.js
  * @description Main component for the React app
- * 
+ *
  * ************************************
  */
 
@@ -19,24 +19,25 @@ const App = () => {
   const history = useHistory();
 
   // render ClusterView component during initial React App render
-  useEffect( () => {
+  useEffect(() => {
     history.push('/');
   }, []);
 
-  return(
+  return (
     <div className='main'>
-      <Sidebar/ >
+      <Sidebar />
 
       <Switch>
         <Route path='/' exact>
           <ClusterViewContainer />
         </Route>
+
         <Route path='/node' exact>
           <NodeDetailsContainer />
         </Route>
       </Switch>
     </div>
   );
-}
+};
 
 export default App;

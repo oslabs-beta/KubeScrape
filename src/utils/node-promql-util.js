@@ -47,8 +47,7 @@ export const fetchMemoryUsage = async() => {
       'Content-Type': 'application/json'
     }
   }).then(res => res.json())
-  const memoryUsage = data.data.result[0].value[1];
-  console.log(memoryUsage)
+  const memoryUsage = parseInt(data.data.result[0].value[1]);
   return memoryUsage;
 }
 
