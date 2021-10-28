@@ -7,16 +7,20 @@
  * ************************************
  */
 
-
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
 import { Doughnut } from 'react-chartjs-2';
-
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import * as actions from '../../actions/actions';
 
 //fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
 import * as nodePromql from '../../utils/node-promql-util';
+
+const primaryColor = '#25274D';
 
 //create a functional component
 export const NodeOverview = () => {
@@ -45,31 +49,44 @@ export const NodeOverview = () => {
   }, []);
 
   return (
-    <div className="node-info-div">
-      <h2>{nodeNames}</h2>
-      <div className="chart-div">
-        <h2>CPU Usage (percent of total)</h2>
-        <GaugeChart id="gauge-chart" 
-          nrOfLevels={30} 
-          colors={["#FF5F6D", "#FFC371"]} 
-          arcWidth={0.3} 
-          percent={nodeCpuUsage / 100} 
-          textColor={"#000"}
-        />
-      </div>
-      <h2>Memory Usage (percent of total)</h2>
-      <Doughnut id="doughnut"
-        data={{
-          labels: ['Memory in Use', 'Available Memory'],
-          datasets: [{
-            data: [nodeMemoryUsage, 100 - nodeMemoryUsage],
-            backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
-          }]
-        }}
-      />
-      <h2>Current number of pods: {nodeTotalPods}</h2>
-      <h2>Total pod capacity: {nodePodCapacity}</h2>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="inherit" sx={{
+        backgroundColor: primaryColor,
+        width: '100%',
+        marginBottom: '20px'
+      }}>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Cluster View
+          </Typography>
+        </Toolbar>
+      </AppBar>
 
-    </div>
+      <div className="node-info-div">
+        <h2>{nodeNames}</h2>
+        <div className="chart-div">
+          <h2>CPU Usage (percent of total)</h2>
+          <GaugeChart id="gauge-chart" 
+            nrOfLevels={30} 
+            colors={["#FF5F6D", "#FFC371"]} 
+            arcWidth={0.3} 
+            percent={nodeCpuUsage / 100} 
+            textColor={"#000"}
+          />
+        </div>
+        <h2>Memory Usage (percent of total)</h2>
+        <Doughnut id="doughnut"
+          data={{
+            labels: ['Memory in Use', 'Available Memory'],
+            datasets: [{
+              data: [nodeMemoryUsage, 100 - nodeMemoryUsage],
+              backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
+            }]
+          }}
+        />
+        <h2>Current number of pods: {nodeTotalPods}</h2>
+        <h2>Total pod capacity: {nodePodCapacity}</h2>
+      </div>
+    </Box>
   )
 }
