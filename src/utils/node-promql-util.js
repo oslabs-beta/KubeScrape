@@ -26,7 +26,7 @@ export const fetchNodeNamesList = async () => {
 
 //return node CPU usage as a number
 export const fetchCpuUsage = async() => {
-  const data = await fetch('http://localhost:30000/api/v1/query?query=100 * (1 - sum by (instance)(increase(node_cpu_seconds_total{mode="idle"}[5m])) / sum by (instance)(increase(node_cpu_seconds_total[5m])))', {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=(1 - sum by (instance)(increase(node_cpu_seconds_total{mode="idle"}[5m])) / sum by (instance)(increase(node_cpu_seconds_total[5m])))*100', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -40,7 +40,7 @@ export const fetchCpuUsage = async() => {
 
 //return node memory usage as a number
 export const fetchMemoryUsage = async() => {
-  const data = await fetch('http://localhost:30000/api/v1/query?query=((sum(node_memory_MemTotal_bytes)%20-%20sum(node_memory_MemFree_bytes)%20-%20sum(node_memory_Buffers_bytes)%20-%20sum(node_memory_Cached_bytes))%20/%20sum(node_memory_MemTotal_bytes))%20*%20100', {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=((sum(node_memory_MemTotal_bytes)-sum(node_memory_MemFree_bytes)-sum(node_memory_Buffers_bytes)-sum(node_memory_Cached_bytes))/sum(node_memory_MemTotal_bytes))', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',

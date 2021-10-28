@@ -7,9 +7,50 @@
  * ************************************
  */
 
+//return the cpu usage percentage at the cluster level
+export const fetchClusterCpuUsage = async () => {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=sum(rate(container_cpu_usage_seconds_total{id="/"}[5m]))/sum(machine_cpu_cores)*100', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(res => res.json());
+  const clusterCpuUsage= Math.round(data.data.result[0].value[1]);
+  console.log(clusterCpuUsage)
+  return clusterCpuUsage;  
+}
 
-//return the total number of deployments created in the node
-export const fetchDeploymentTotal = async () => {
+//return the memory usage percentage at the cluster level
+export const fetchClusterMemoryUsage = async() => {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=((sum(node_memory_MemTotal_bytes)-sum(node_memory_MemFree_bytes)-sum(node_memory_Buffers_bytes)-sum(node_memory_Cached_bytes))/sum(node_memory_MemTotal_bytes))', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+  const clusterMemoryUsage = data.data.result[0].value[1];
+  return clusterMemoryUsage;
+}
+
+//return the total number of nodes created in the cluster
+export const fetchTotalNodes = async () => {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=count(kube_node_created)', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(res => res.json());
+  const totalNodes = data.data.result[0].value[1];
+  return totalNodes;  
+}
+
+//return the total number of deployments created in the cluster
+export const fetchTotalDeployments = async () => {
   const data = await fetch('http://localhost:30000/api/v1/query?query=count(kube_deployment_created)', {
     method: 'GET',
     headers: {
@@ -18,7 +59,35 @@ export const fetchDeploymentTotal = async () => {
     }
   })
   .then(res => res.json());
-  const deploymentTotal = data.data.result[0].value[1];
-  console.log(deploymentTotal)
-  return deploymentTotal;  
+  const totalDeployments = data.data.result[0].value[1];
+  return totalDeployments;  
+}
+
+
+//return the total number of pods created in the cluster
+export const fetchTotalPods = async () => {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=count(kube_pod_created)', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(res => res.json());
+  const totalPods = data.data.result[0].value[1];
+  return totalPods;  
+}
+
+//return the total number of services in the cluster
+export const fetchTotalServices = async () => {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=count(kube_service_created)', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(res => res.json());
+  const totalServices = data.data.result[0].value[1];
+  return totalServices;  
 }

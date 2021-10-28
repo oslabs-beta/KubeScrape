@@ -79,7 +79,7 @@ export const NodeOverview = () => {
             nrOfLevels={30} 
             colors={["#FF5F6D", "#FFC371"]} 
             arcWidth={0.3} 
-            percent={nodeMemoryUsage / 100} 
+            percent={nodeMemoryUsage} 
             textColor={"#000"}
           />
         </Box>

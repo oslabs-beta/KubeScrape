@@ -16,6 +16,7 @@ import { Switch, Route } from 'react-router-dom';
 import regeneratorRuntime from "regenerator-runtime";
 
 import { NodeOverview } from './components/NodeOverview/NodeOverview';
+import { ClusterOverview } from './components/ClusterOverview/ClusterOverview';
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
       
       <Switch>
         <Route path='/' exact>
+        <ClusterOverview />
         <NodeOverview />
           home
           
