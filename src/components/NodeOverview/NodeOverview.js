@@ -1,12 +1,13 @@
 /**
  * ************************************
  *
- * @module  NodeOverview
+ * @module  NodeOverview.js
  * @description component that renders basic information about a node
  *
  * ************************************
  */
 
+<<<<<<< HEAD
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,6 +17,12 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
 
+=======
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import GaugeChart from 'react-gauge-chart';
+import { Doughnut } from 'react-chartjs-2';
+>>>>>>> dev
 import * as actions from '../../actions/actions';
 
 //fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
@@ -56,6 +63,7 @@ export const NodeOverview = () => {
 
   return (
     <div className="node-info-div">
+<<<<<<< HEAD
       <Box 
           sx={{
             display: "flex",
@@ -108,6 +116,31 @@ export const NodeOverview = () => {
         </Box>
       </Box>
 
+=======
+      <h2>{nodeNames}</h2>
+      <div className="chart-div">
+        <h2>CPU Usage (percent of total)</h2>
+        <GaugeChart id="gauge-chart" 
+          nrOfLevels={30} 
+          colors={["#FF5F6D", "#FFC371"]} 
+          arcWidth={0.3} 
+          percent={nodeCpuUsage / 100} 
+          textColor={"#000"}
+        />
+      </div>
+      <h2>Memory Usage (percent of total)</h2>
+      <Doughnut id="doughnut"
+        data={{
+          labels: ['Memory in Use', 'Available Memory'],
+          datasets: [{
+            data: [nodeMemoryUsage, 100 - nodeMemoryUsage],
+            backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
+          }]
+        }}
+      />
+      <h2>Current number of pods: {nodeTotalPods}</h2>
+      <h2>Total pod capacity: {nodePodCapacity}</h2>
+>>>>>>> dev
     </div>
   )
 }
