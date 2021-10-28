@@ -12,13 +12,8 @@ import Sidebar from './components/sidebar/Sidebar';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import regeneratorRuntime from 'regenerator-runtime';
 
-<<<<<<< HEAD
-import { NodeOverview } from './components/NodeOverview/NodeOverview';
-import { ClusterOverview } from './components/ClusterOverview/ClusterOverview';
-=======
 import ClusterView from './components/ClusterView/ClusterView';
 import NodeDetails from './components/NodeDetails/NodeDetails';
->>>>>>> dev
 
 const App = () => {
   const history = useHistory();
@@ -34,14 +29,7 @@ const App = () => {
 
       <Switch>
         <Route path='/' exact>
-<<<<<<< HEAD
-        <ClusterOverview />
-        <NodeOverview />
-          home
-          
-=======
           <ClusterView />
->>>>>>> dev
         </Route>
         <Route path='/node' exact>
           <NodeDetails />
