@@ -14,6 +14,7 @@ import regeneratorRuntime from 'regenerator-runtime';
 
 import ClusterView from './components/ClusterView/ClusterView';
 import NodeDetails from './components/NodeDetails/NodeDetails';
+import Deployments from './components/Deployments/deployments'
 
 const App = () => {
   const history = useHistory();
@@ -31,9 +32,10 @@ const App = () => {
         <Route path='/' exact>
           <ClusterView />
         </Route>
-        
+
         <Route path='/node' exact>
           <NodeDetails />
+          <Deployments />
         </Route>
       </Switch>
     </div>

@@ -29,11 +29,12 @@ const getDeploymentData = async () => {
   console.log({ dataObj });
 
   let dataArr = dataObj.data.result;
-    console.log(dataArr)
+  console.log(dataArr);
   // console.log('name: ' + dataArr[0].metric.deployment);
   // console.log('condition: ' + dataArr[0].metric['condition']);
 
   dataArr = dataArr.map((el) => {
+
     
     return (
       <Box
@@ -51,9 +52,9 @@ const getDeploymentData = async () => {
         }}
       >
         <h3> {el.metric.deployment} </h3>
-        <p>Instance: {el.metric.instance}</p>
-        <p>Namespace: {el.metric.namespace}</p>
-        <p>Condition: {el.metric.condition}</p>
+        <li>Instance: {el.metric.instance}</li>
+        <li>Namespace: {el.metric.namespace}</li>
+        <li>Condition: {el.metric.condition}</li>
       </Box>
     );
   });
@@ -62,7 +63,7 @@ const getDeploymentData = async () => {
   return dataArr;
 };
 
-export const Deployments = () => {
+const Deployments = () => {
   const [deploymentData, setDeployment] = useState([]);
 
   useEffect(async () => {
@@ -89,3 +90,5 @@ export const Deployments = () => {
     </div>
   );
 };
+
+export default Deployments;
