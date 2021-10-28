@@ -14,7 +14,7 @@ import Box from '@mui/material/Box';
 //Fetch the deployment information from kube_state_metrics and return data as an array of objects
 //TODO: identify query to obtain "condition of deployment" kube_deployment_status_condition * on (deployment) group_left(instance) kube_deployment_created
 const getDeploymentData = async () => {
-  console.log('In deployment API get function');
+  // console.log('In deployment API get function');
 
   const dataObj = await fetch(
     'http://localhost:30000/api/v1/query?query=kube_deployment_created',
@@ -38,15 +38,15 @@ const getDeploymentData = async () => {
 
     return (
       <Box
-        key={el.metric.instance}
+        key={el.metric.deployment}
         sx={{
-          border: '1px solid black',
+          border: '2px solid black',
           p: .3,
           m: .3,
           borderRadius: 1,
           // textAlign: 'center',
-          fontSize: '1rem',
-          fontWeight: '700',
+          fontSize: '0.75rem',
+          maxWidth: 225
         }}
       >
         <h2> {el.metric.deployment} </h2>
@@ -69,19 +69,22 @@ const Deployments = () => {
     setDeployment(deploymentData);
   }, []);
 
-  console.log({ deploymentData });
+  // console.log({ deploymentData });
   return (
-    <div className='deployment-div' style={{ width: '700%' }}>
+    <div className='deployment-div' style={{ width: '100%' }}>
+      <h1 style={{ textAlign: 'center' }}>Deployments</h1>
       <Box
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
+          justifyContent: 'center',
+          border: '1px solid black',
+
           p: .3,
           m: .3,
-          maxWidth: 500,
+          maxWidth: '100%',
         }}
       >
-        <h1>Deployments</h1>
         {deploymentData}
       </Box>
     </div>

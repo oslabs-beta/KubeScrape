@@ -35,7 +35,6 @@ const App = () => {
 
         <Route path='/node' exact>
           <NodeDetailsContainer />
-          <Deployments />
         </Route>
       </Switch>
     </div>

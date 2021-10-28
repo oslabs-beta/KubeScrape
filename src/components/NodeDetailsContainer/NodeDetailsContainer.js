@@ -16,6 +16,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import Deployments from '../Deployments/deployments';
 
 const primaryColor = '#25274D';
 
@@ -58,6 +59,8 @@ const NodeDetailsContainer = () => {
       </AppBar>
 
       {nodeName}
+      <Deployments />
+
     </Box>
   )
 }
