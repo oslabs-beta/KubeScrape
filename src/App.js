@@ -7,22 +7,29 @@
  * ************************************
  */
 
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import regeneratorRuntime from "regenerator-runtime";
 
-import { NodeOverview } from './components/NodeOverview/NodeOverview';
+import ClusterView from './components/ClusterView/ClusterView';
 import NodeDetails from './components/NodeDetails/NodeDetails';
 
 const App = () => {
+  const history = useHistory();
+
+  // render ClusterView component during initial React App render
+  useEffect( () => {
+    history.push('/');
+  }, []);
+
   return(
     <div className='main'>
       <Sidebar/ >
 
       <Switch>
         <Route path='/' exact>
-          <NodeOverview />
+          <ClusterView />
         </Route>
         <Route path='/node' exact>
           <NodeDetails />
