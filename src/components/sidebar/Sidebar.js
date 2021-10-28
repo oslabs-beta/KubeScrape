@@ -7,7 +7,7 @@
  * ************************************
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SidebarItems } from './SidebarItems';
 import { styled } from "@mui/material/styles";
@@ -22,7 +22,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
-const drawerWidth = 240;
+const drawerWidth = 180;
+const primaryColor = '#25274D';
 
 // Mixins provide additional rules that can be injected directly into styles
 // theme here is just MUI's default theme
@@ -31,7 +32,9 @@ const openedMixin = (theme) => ({
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen
-  })
+  }),
+  backgroundColor: primaryColor,
+  overflowX:'hidden'
 });
 
 const closedMixin = (theme) => ({
@@ -39,7 +42,9 @@ const closedMixin = (theme) => ({
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
-  })
+  }),
+  backgroundColor: primaryColor,
+  overflowX:'hidden'
 });
 
 // styled() takes in a component to be wrapped and outputs a component that wraps it which has specified styles
@@ -64,14 +69,19 @@ const Drawer = styled(MuiDrawer, {
   // specifies how white space should be 
   whiteSpace: "nowrap",
   boxSizing: "border-box",
-
-  // if open is true, then overwrite the Paper component of Drawer with output openedMixing(theme)
+  // if open is true, then 
+  // overwite Drawer's component styling on the entire web with output openedMixing(theme)
+  // and overwrite the Paper component side Drawer with output openedMixing(theme)
   ...(open && {
+    ...openedMixin(theme),
     "& .MuiDrawer-paper": openedMixin(theme)
   }),
 
-  // if open is false, overwrite the Paper component of Drawer with output of closedMixin(theme)
+  // if open is false, then
+  // overwite Drawer's component styling on the entire web with output closedMixin(theme)
+  // and overwrite the Paper component side Drawer with output closedMixin(theme)
   ...(!open && {
+    ...closedMixin(theme),
     "& .MuiDrawer-paper": closedMixin(theme)
   })
 }));
@@ -89,9 +99,9 @@ const Sidebar = () => {
   };
 
   const menuItems = SidebarItems.map((item) => 
-    <Link key={item.title} to={item.path} style={{ color: 'inherit', textDecoration: 'none'}}>
+    <Link key={item.title} to={item.path} style={{ color: 'white', textDecoration: 'none'}}>
       <ListItem button >
-          <ListItemIcon>
+          <ListItemIcon style={{ color: 'white' }}>
             {item.icon}
           </ListItemIcon>
           <ListItemText primary={item.title} />
@@ -101,9 +111,9 @@ const Sidebar = () => {
 
   return (
     <Box>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open} sx={{backgroundColor: primaryColor}}>
         <DrawerHeader>
-          <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+          <IconButton sx={{color: 'white'}} onClick={open ? handleDrawerClose : handleDrawerOpen}>
             {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
