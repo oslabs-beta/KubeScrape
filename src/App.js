@@ -14,7 +14,6 @@ import regeneratorRuntime from 'regenerator-runtime';
 
 import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewContainer';
 import NodeDetailsContainer from './components/NodeDetailsContainer/NodeDetailsContainer';
-import Deployments from './components/Deployments/deployments';
 
 const App = () => {
   const history = useHistory();

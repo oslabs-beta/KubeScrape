@@ -40,7 +40,7 @@ const getDeploymentData = async () => {
       <Box
         key={el.metric.deployment}
         sx={{
-          border: '2px solid black',
+          border: '1px solid black',
           p: .3,
           m: .3,
           borderRadius: 1,
@@ -61,7 +61,7 @@ const getDeploymentData = async () => {
   return dataArr;
 };
 
-const Deployments = () => {
+const DeploymentContainer = () => {
   const [deploymentData, setDeployment] = useState([]);
 
   useEffect(async () => {
@@ -91,4 +91,4 @@ const Deployments = () => {
   );
 };
 
-export default Deployments;
+export default DeploymentContainer;
