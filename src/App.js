@@ -3,7 +3,7 @@
  *
  * @module App.js
  * @description Main component for the React app
- * 
+ *
  * ************************************
  */
 
@@ -14,29 +14,32 @@ import regeneratorRuntime from 'regenerator-runtime';
 
 import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewContainer';
 import NodeDetailsContainer from './components/NodeDetailsContainer/NodeDetailsContainer';
+import Deployments from './components/Deployments/deployments';
 
 const App = () => {
   const history = useHistory();
 
   // render ClusterView component during initial React App render
-  useEffect( () => {
+  useEffect(() => {
     history.push('/');
   }, []);
 
-  return(
+  return (
     <div className='main'>
-      <Sidebar/ >
+      <Sidebar />
 
       <Switch>
         <Route path='/' exact>
           <ClusterViewContainer />
         </Route>
+
         <Route path='/node' exact>
           <NodeDetailsContainer />
+          <Deployments />
         </Route>
       </Switch>
     </div>
   );
-}
+};
 
 export default App;
