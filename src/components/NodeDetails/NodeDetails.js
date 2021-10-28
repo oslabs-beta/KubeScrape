@@ -31,13 +31,13 @@ const NodeDetails = () => {
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="inherit" sx={{
+      <AppBar position='relative' sx={{
         backgroundColor: primaryColor,
         width: '100%',
         marginBottom: '20px'
       }}>
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Node Details
           </Typography>
 
