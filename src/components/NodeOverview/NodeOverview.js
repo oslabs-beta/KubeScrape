@@ -56,10 +56,13 @@ export const NodeOverview = () => {
 
   return (
     <div className="node-info-div">
-      <Container 
+      <Box 
           sx={{
             display: "flex",
-            flexDirection: "column"
+            flexWrap: "wrap",
+            p: 1,
+            m: 1,
+            width: '100%'
           }}
       >
         <h2>Node Name: {nodeNames}</h2>
@@ -103,7 +106,7 @@ export const NodeOverview = () => {
           <h2>Total Network Errors</h2>
           <span>{nodeNetworkErrors}</span> <p>errors while transmitting or receiving</p>
         </Box>
-      </Container>
+      </Box>
 
     </div>
   )

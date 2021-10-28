@@ -45,9 +45,11 @@
 
   return(
     <div className="cluster-info-div">
-      <Container
+      <Box
         sx={{
           display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'row'
         }}
       > 
         <Box sx={{border: '1px solid red'}}>
@@ -87,7 +89,7 @@
           <span>{clusterTotalServices}</span>
         </Box>
         
-      </Container>
+      </Box>
     </div>
   )
  }

@@ -34,7 +34,7 @@ export const fetchCpuUsage = async() => {
     }
   })
   .then(res => res.json())
-  const cpuUsage = Math.round(data.data.result[0].value[1]);
+  const cpuUsage = data.data.result[0].value[1];
   return cpuUsage;
 }
 
