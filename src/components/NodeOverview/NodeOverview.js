@@ -1,18 +1,16 @@
 /**
  * ************************************
  *
- * @module  NodeOverview
+ * @module  NodeOverview.js
  * @description component that renders basic information about a node
  *
  * ************************************
  */
 
-
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
 import { Doughnut } from 'react-chartjs-2';
-
 import * as actions from '../../actions/actions';
 
 //fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
@@ -69,7 +67,6 @@ export const NodeOverview = () => {
       />
       <h2>Current number of pods: {nodeTotalPods}</h2>
       <h2>Total pod capacity: {nodePodCapacity}</h2>
-
     </div>
   )
 }
