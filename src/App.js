@@ -10,7 +10,7 @@
 import React, { useEffect } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import { Switch, Route, useHistory } from 'react-router-dom';
-import regeneratorRuntime from "regenerator-runtime";
+import regeneratorRuntime from 'regenerator-runtime';
 
 import ClusterView from './components/ClusterView/ClusterView';
 import NodeDetails from './components/NodeDetails/NodeDetails';
