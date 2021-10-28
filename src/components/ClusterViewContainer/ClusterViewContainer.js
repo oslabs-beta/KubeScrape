@@ -12,11 +12,12 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { NodeOverview } from '../NodeOverview/NodeOverview';
+import NodeOverview from '../NodeOverview/NodeOverview';
+import ClusterOverview from '../ClusterOverview/ClusterOverview';
 
 const primaryColor = '#25274D';
 
-const ClusterView = () => {
+const ClusterViewContainer = () => {
 
   return(
     <Box sx={{ flexGrow: 1 }}>
@@ -32,10 +33,12 @@ const ClusterView = () => {
         </Toolbar>
       </AppBar>
       
+      <ClusterOverview />
       <NodeOverview />
+      
 
     </Box>  
   );
 }
 
-export default ClusterView;
+export default ClusterViewContainer;

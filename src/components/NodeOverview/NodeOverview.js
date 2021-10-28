@@ -55,60 +55,93 @@ const NodeOverview = () => {
   }, []);
 
   return (
-    <div className="node-info-div">
-      <Box 
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            p: 1,
-            m: 1,
-            width: '100%'
-          }}
-      >
-        <h2>Node Name: {nodeNames}</h2>
-        <Box sx={{border: '1px solid red'}}>
-          <h2>CPU Usage (percent of total)</h2>
-          <GaugeChart id="gauge-chart" 
-            nrOfLevels={30} 
-            colors={["#FF5F6D", "#FFC371"]} 
-            arcWidth={0.3} 
-            percent={nodeCpuUsage / 100} 
-            textColor={"#000"}
-          />
-        </Box>
-        <Box sx={{border: '1px solid red'}}>
-          <h2>Memory Usage (percent of allocatable memory)</h2>
-          <GaugeChart id="gauge-chart" 
-            nrOfLevels={30} 
-            colors={["#FF5F6D", "#FFC371"]} 
-            arcWidth={0.3} 
-            percent={nodeMemoryUsage} 
-            textColor={"#000"}
-          />
-        </Box>
-        <Box sx={{border: '1px solid red'}}>
-          <h2>Pods Running</h2>
-          <Doughnut id="doughnut-2"
-            data={{
-              labels: ['Number of Running Pods', 'Remaining Pod Capacity'],
-              datasets: [{
-                data: [nodeTotalPods, nodePodCapacity - nodeTotalPods],
-                backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
-              }]
+    <Container>
+      <h2>Node Name: {nodeNames}</h2>
+      <div className="flex-container">
+        <Box 
+            sx={{
+              border: '1px solid black',
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              p: 1,
+              m: 1,
+              width: '90%'
             }}
-          />
-        </Box>
-        <Box sx={{border: '1px solid red'}}>
+        >
+          <Box sx={{
+            border: '1px solid black',
+            minWidth: 300,
+            maxWidth: '45%',
+            }}
+          >
+            <h2>CPU Usage (percent of total)</h2>
+            <GaugeChart id="gauge-chart" 
+              nrOfLevels={3} 
+              colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
+              arcWidth={0.3} 
+              arcPadding={0}
+              percent={nodeCpuUsage / 100} 
+              textColor={"#FFF"}
+              needleColor="#FFF" 
+            />
+          </Box>
+          <Box sx={{
+            border: '1px solid black',
+            minWidth: 300,
+            maxWidth: '45%'
+            }}
+          >          
+          <h2>Memory Usage (percent of allocatable memory)</h2>
+            <GaugeChart id="gauge-chart" 
+              nrOfLevels={3} 
+              colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
+              arcWidth={0.3}
+              arcPadding={0}
+              percent={nodeMemoryUsage} 
+              textColor={"#FFF"}
+              needleColor="#FFF" 
+            />
+          </Box>
+          <Box sx={{
+            border: '1px solid black',
+            minWidth: 300,
+            maxWidth: '45%'
+            }}
+          >           
+          <h2>Pods Running</h2>
+            <Doughnut id="doughnut-2"
+              data={{
+                labels: ['Number of Running Pods', 'Remaining Pod Capacity'],
+                datasets: [{
+                  data: [nodeTotalPods, nodePodCapacity - nodeTotalPods],
+                  backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)']
+                }]
+              }}
+            />
+          </Box>
+          <Box sx={{
+            border: '1px solid black',
+            minWidth: 300,
+            maxWidth: '45%'
+            }}
+          >            
           <h2>Current Network Utilization</h2>
-          <span>{nodeNetworkUtilization}</span> <p>kilobytes per second</p>
-        </Box>
-        <Box sx={{border: '1px solid red'}}>
+            <span>{nodeNetworkUtilization}</span> <p>kilobytes per second</p>
+          </Box>
+          <Box sx={{
+            border: '1px solid black',
+            minWidth: 300,
+            maxWidth: '45%',
+            textAlign: 'center'
+            }}
+          >            
           <h2>Total Network Errors</h2>
-          <span>{nodeNetworkErrors}</span> <p>errors while transmitting or receiving</p>
+            <span>{nodeNetworkErrors}</span> <p>errors while transmitting or receiving</p>
+          </Box>
         </Box>
-      </Box>
-
-    </div>
+      </div>
+    </Container>
   )
 }
 

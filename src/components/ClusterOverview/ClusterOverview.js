@@ -9,6 +9,7 @@
 
 
  import React, { useState, useEffect } from 'react';
+ import { useSelector } from 'react-redux';
  import GaugeChart from 'react-gauge-chart';
  import { Doughnut } from 'react-chartjs-2';
  import Container from '@mui/material/Container';
@@ -20,6 +21,7 @@
 const ClusterOverview = () => {
   
   //initialize state that is rendered only in this component
+  const { nodeNames } = useSelector(state => state.node);
   const [clusterCpuUsage, setClusterCpuUsage] = useState(0);
   const [clusterMemoryUsage, setClusterMemoryUsage] = useState(0);
   const [clusterTotalNodes, setClusterTotalNodes] = useState(0);
@@ -44,53 +46,98 @@ const ClusterOverview = () => {
   }, []);
 
   return(
-    <div className="cluster-info-div">
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'row'
-        }}
+    <Container>
+    <h2>Cluster Name: {nodeNames}</h2>
+    <div className="object-info-div">
+      <Box 
+          sx={{
+            border: '1px solid black',
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: 'center',
+            p: 1,
+            m: 1,
+            width: '90%'
+          }}
       > 
-        <Box sx={{border: '1px solid red'}}>
-          <h2>CPU Usage (percent of total)</h2>
+        <Box sx={{
+          border: '1px solid black',
+          minWidth: 300,
+          maxWidth: '45%'
+          }}
+        >          
+        <h2>CPU Usage (percent of total)</h2>
           <GaugeChart id="gauge-chart" 
-            nrOfLevels={30} 
-            colors={["#FF5F6D", "#FFC371"]} 
+            nrOfLevels={3} 
+            colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
             arcWidth={0.3} 
+            arcPadding={0}
             percent={clusterCpuUsage / 100} 
-            textColor={"#000"}
+            textColor={"#FFF"}
+            needleColor="#FFF"           
           />
         </Box>
-        <Box sx={{border: '1px solid red'}}>
-          <h2>Memory Usage (percent of allocatable memory)</h2>
+        <Box sx={{
+          border: '1px solid black',
+          minWidth: 300,
+          maxWidth: '45%'
+          }}
+        >          
+        <h2>Memory Usage (percent of allocatable memory)</h2>
           <GaugeChart id="gauge-chart" 
-            nrOfLevels={30} 
-            colors={["#FF5F6D", "#FFC371"]} 
+            nrOfLevels={3} 
+            colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
             arcWidth={0.3} 
+            arcPadding={0}
             percent={clusterMemoryUsage} 
-            textColor={"#000"}
+            textColor={"#FFF"}
+            needleColor="#FFF"           
           />
         </Box>
-        <Box sx={{border: '1px solid red'}}>
-          <h2>Total Nodes in Cluster</h2>
+        <Box sx={{
+          border: '1px solid black',
+          minWidth: 300,
+          maxWidth: '45%',
+          textAlign: 'center'
+          }}
+        >          
+        <h2>Total Nodes in Cluster</h2>
           <span>{clusterTotalNodes}</span>
         </Box>
-       <Box sx={{border: '1px solid red'}}>
-          <h2>Total Deployments in Cluster</h2>
+        <Box sx={{
+          border: '1px solid black',
+          minWidth: 300,
+          maxWidth: '45%',
+          textAlign: 'center'
+          }}
+        >          
+        <h2>Total Deployments in Cluster</h2>
           <span>{clusterTotalDeployments}</span>
         </Box>
-        <Box sx={{border: '1px solid red'}}>
-          <h2>Total Pods in Cluster</h2>
+        <Box sx={{
+          border: '1px solid black',
+          minWidth: 300,
+          maxWidth: '45%',
+          textAlign: 'center'
+          }}
+        >            
+        <h2>Total Pods in Cluster</h2>
           <span>{clusterTotalPods}</span>
         </Box>
-        <Box sx={{border: '1px solid red'}}>
-          <h2>Total Services in Cluster</h2>
+        <Box sx={{
+          border: '1px solid black',
+          minWidth: 300,
+          maxWidth: '45%',
+          textAlign: 'center'
+          }}
+        >            
+        <h2>Total Services in Cluster</h2>
           <span>{clusterTotalServices}</span>
         </Box>
         
       </Box>
     </div>
+    </Container>
   )
  }
 

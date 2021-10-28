@@ -34,7 +34,7 @@ export const fetchCpuUsage = async() => {
     }
   })
   .then(res => res.json())
-  const cpuUsage = data.data.result[0].value[1];
+  const cpuUsage = parseInt(data.data.result[0].value[1]);
   return cpuUsage;
 }
 
@@ -48,6 +48,7 @@ export const fetchMemoryUsage = async() => {
     }
   }).then(res => res.json())
   const memoryUsage = data.data.result[0].value[1];
+  console.log(memoryUsage)
   return memoryUsage;
 }
 
