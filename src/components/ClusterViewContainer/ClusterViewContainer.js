@@ -1,7 +1,7 @@
 /**
  * ************************************
  *
- * @module  ClusterView.js
+ * @module  ClusterViewContainer.js
  * @description component that renders cluster information on home page
  *
  * ************************************
@@ -9,6 +9,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,19 +18,23 @@ import Typography from '@mui/material/Typography';
 import NodeOverview from '../NodeOverview/NodeOverview';
 import ClusterOverview from '../ClusterOverview/ClusterOverview';
 import * as nodePromql from '../../utils/node-promql-util';
+import * as actions from '../../actions/actions';
+
 
 const primaryColor = '#25274D';
 
-
-// TO DO: UPDATE APP STATE TO KEEP TRACK OF CURRENT NODE NAME IN CASE USE CLICKS ON THE NODE DETAILS TAB DIRECTLY 
-
 const ClusterViewContainer = () => {
-  const [nodeNames, setNodeNames] = useState([]);
+  // hooks
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  // extract data from Redux store state
+  const { nodeNames } = useSelector(state => state.node);
 
   useEffect( async () => {
     const nodeNames = await nodePromql.fetchNodeNamesList();
-    setNodeNames(nodeNames);
+    // update redux store
+    dispatch(actions.setNodeNames(nodeNames));  
   }, []);
   
   const goToNode = (nodeName) => {

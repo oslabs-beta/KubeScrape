@@ -1,13 +1,14 @@
 /**
  * ************************************
  *
- * @module NodeDetails.js
+ * @module NodeDetailsContainer.js
  * @description Component to render details of each individual K8s Node
  * 
  * ************************************
  */
 
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -21,12 +22,18 @@ import DeploymentContainer from '../DeploymentContainer/DeploymentContainer';
 const primaryColor = '#25274D';
 
 const NodeDetailsContainer = () => {
-  
-  const [nodeName, setNode] = useState('');
-  
-  const handleChange = event => {
-    setNode(event.target.value);
+  // get nodeNames from Redux store
+  const { nodeNames } = useSelector(state => state.node);
+
+  // keep track of current node
+  const [ currentNode, setCurrentNode ] = useState(nodeNames[0] || '');
+
+  const handleChange = (event) => {
+    // set current node
+    setCurrentNode(event.target.value)
   }
+
+  console.log(`current node is ${currentNode}`);
 
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
@@ -49,16 +56,17 @@ const NodeDetailsContainer = () => {
                   borderRadius: '5px',
             }}>
             <InputLabel sx={{ color: 'white' }}>View Node</InputLabel>
-            <Select sx={{ color: 'white' }} value={nodeName} onChange={handleChange}>
-              <MenuItem value='Node 1'>Node 1</MenuItem>
-              <MenuItem value='Node 2'>Node 2</MenuItem>
-              <MenuItem value='Node 3'>Node 3</MenuItem>
+            <Select sx={{ color: 'white' }} value={currentNode} onChange={handleChange}>
+              {nodeNames.map(nodeName => 
+                <MenuItem key={nodeName} value={nodeName}>{nodeName}</MenuItem>
+              )}
+
+              <MenuItem value={'minikube-node'}>{'minikube-node'}</MenuItem>
             </Select>
           </FormControl>
         </Toolbar>
       </AppBar>
 
-      {nodeName}
       <DeploymentContainer />
 
     </Box>
