@@ -37,6 +37,7 @@ const ClusterOverview = () => {
     const currentTotalDeployments = await clusterPromql.fetchTotalDeployments();
     const currentTotalPods = await clusterPromql.fetchTotalPods();
     const currentTotalServices = await clusterPromql.fetchTotalServices();
+
     setClusterCpuUsage(currentClusterCpuUsage);
     setClusterMemoryUsage(currentClusterMemoryUsage);
     setClusterTotalNodes(currentTotalNodes);
