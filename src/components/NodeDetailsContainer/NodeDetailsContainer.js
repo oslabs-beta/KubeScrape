@@ -26,6 +26,7 @@ const NodeDetailsContainer = () => {
   const { nodeNames } = useSelector(state => state.node);
 
   // keep track of current node
+  // set first node in node names list as default if defined
   const [ currentNode, setCurrentNode ] = useState(nodeNames[0] || '');
 
   const handleChange = (event) => {
@@ -60,7 +61,7 @@ const NodeDetailsContainer = () => {
               {nodeNames.map(nodeName => 
                 <MenuItem key={nodeName} value={nodeName}>{nodeName}</MenuItem>
               )}
-
+              {/* test dropdown item */}
               <MenuItem value={'minikube-node'}>{'minikube-node'}</MenuItem>
             </Select>
           </FormControl>
