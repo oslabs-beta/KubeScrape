@@ -24,27 +24,27 @@ const nodeReducer = (
   const deepStateClone = JSON.parse(JSON.stringify(state));
   
   switch (action.type) {
-    case types.GET_NODE_NAMES:
+    case types.SET_NODE_NAMES:
       return {
         ...state,
         nodeNames: action.payload
       }
-    case types.GET_CPU_USAGE:
+    case types.SET_CPU_USAGE:
       return {
         ...deepStateClone,
         nodeCpuUsage: action.payload
       }
-    case types.GET_MEMORY_USAGE:
+    case types.SET_MEMORY_USAGE:
       return {
         ...deepStateClone,
         nodeMemoryUsage: action.payload
       }
-    case types.GET_TOTAL_PODS:
+    case types.SET_TOTAL_PODS:
       return {
         ...deepStateClone,
         nodeTotalPods: action.payload
       }
-    case types.GET_POD_CAPACITY:
+    case types.SET_POD_CAPACITY:
       return {
         ...deepStateClone,
         nodePodCapacity: action.payload
