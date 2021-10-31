@@ -11,9 +11,12 @@ import React, { useEffect } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import regeneratorRuntime from 'regenerator-runtime';
+import { ThemeProvider } from '@mui/material/styles';
 
+import { theme } from './theme';
 import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewContainer';
 import NodeDetailsContainer from './components/NodeDetailsContainer/NodeDetailsContainer';
+import PodViewContainer from './components/PodViewContainer/PodViewContainer';
 
 const App = () => {
   const history = useHistory();
@@ -25,17 +28,23 @@ const App = () => {
 
   return (
     <div className='main'>
-      <Sidebar />
+      <ThemeProvider theme={theme}>
+        <Sidebar />
 
-      <Switch>
-        <Route path='/' exact>
-          <ClusterViewContainer />
-        </Route>
+        <Switch>
+          <Route path='/' exact>
+            <ClusterViewContainer />
+          </Route>
 
-        <Route path='/node' exact>
-          <NodeDetailsContainer />
-        </Route>
-      </Switch>
+          <Route path='/node' exact>
+            <NodeDetailsContainer />
+          </Route>
+
+          <Route path='/pod' exact>
+            <PodViewContainer />
+          </Route>
+        </Switch>
+      </ThemeProvider>
     </div>
   );
 };

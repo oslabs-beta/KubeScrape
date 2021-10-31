@@ -14,6 +14,7 @@ import GaugeChart from 'react-gauge-chart';
 import { Doughnut } from 'react-chartjs-2';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
 
 
 import * as actions from '../../actions/actions';
@@ -23,7 +24,7 @@ import * as nodePromql from '../../utils/node-promql-util';
 
 //create a functional component
 const NodeOverview = () => {
-
+  const theme = useTheme();
   //useSelector allows you to extract data from the Redux store state, using a selector function
   //this function accesses the state from the nodeReducer by subscribing to the store through sseSelector
   const { nodeNames, nodeCpuUsage, nodeMemoryUsage, nodeTotalPods, nodePodCapacity } = useSelector(state => state.node);

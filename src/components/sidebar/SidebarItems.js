@@ -23,4 +23,9 @@ export const SidebarItems = [
     path: '/node',
     icon: <AiFillCodepenCircle className='sidebarMenuItemIcons'/>
   },
+  {
+  title: 'Pod',
+  path: '/pod',
+  icon: <AiFillCodepenCircle className='sidebarMenuItemIcons'/>
+  },
 ];
