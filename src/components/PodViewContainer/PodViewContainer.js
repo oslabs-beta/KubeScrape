@@ -26,6 +26,8 @@ import K8sContainersOverview from '../K8sContainersOverview/K8sContainersOvervie
  const PodViewContainer = () => {
    //TODO: Update to get list of pod names from the redux store
    const [podNamesList, setPodnamesList] = useState(containerPromql.fetchDemoPodNamesList());
+   const [allContainerNamesList, setAllContainerNamesList] = useState([]);
+
 
  
    // keep track of current pod
@@ -38,9 +40,12 @@ import K8sContainersOverview from '../K8sContainersOverview/K8sContainersOvervie
      setCurrentPod(event.target.value)
    }
  
-   console.log('current pod: ', currentPod)
+   useEffect(async() => {
+    //get all cluster's containers using fetch request and update state
+    const allContainerNamesList = await containerPromql.fetchContainerNamesList();
+    setAllContainerNamesList(allContainerNamesList);
+  }, []);
    
-
    // Appbar uses display:flex + flex-direction: column
    // while Toolbar uses display:flex with default flex-direction: row to display items inline
    return(
@@ -74,7 +79,7 @@ import K8sContainersOverview from '../K8sContainersOverview/K8sContainersOvervie
          </Toolbar>
        </AppBar>
  
-       <K8sContainersOverview podName={currentPod}/>  
+       <K8sContainersOverview podName={currentPod} allContainers={allContainerNamesList}/>  
  
      </Box>
    )

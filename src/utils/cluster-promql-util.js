@@ -9,7 +9,6 @@
 
 //return the cpu usage percentage at the cluster level
 export const fetchClusterCpuUsage = async () => {
-  console.log("in fetch Cluster")
   const data = await fetch('http://localhost:30000/api/v1/query?query=(1 - sum by (instance)(increase(node_cpu_seconds_total{mode="idle"}[5m])) / sum by (instance)(increase(node_cpu_seconds_total[5m])))*100', {
     method: 'GET',
     headers: {
@@ -18,7 +17,6 @@ export const fetchClusterCpuUsage = async () => {
     }
   })
   .then(res => res.json());
-  console.log ('fetch cluster', {data})
   const clusterCpuUsage= parseInt(data.data.result[0].value[1]);
   return clusterCpuUsage;  
 }
