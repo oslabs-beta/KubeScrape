@@ -1,0 +1,33 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole #used to define permissions to nodes, pods, endpoints
+metadata:
+  name: prometheus
+rules:
+  - apiGroups: ['']
+    resources: #what resources to monitor with the permissions
+      - nodes
+      - nodes/proxy
+      - services
+      - endpoints
+      - pods
+    verbs: ['get', 'list', 'watch'] #permissions 
+  - apiGroups:
+      - extensions
+    resources:
+      - ingresses
+    verbs: ['get', 'list', 'watch']
+  - nonResourceURLs: ['/metrics']
+    verbs: ['get']
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding #grants permissions defined in the clusterRole to all namespaces in the K8 cluster
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects: 
+  - kind: ServiceAccount
+    name: default
+    namespace: monitoring
