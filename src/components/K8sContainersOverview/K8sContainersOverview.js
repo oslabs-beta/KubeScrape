@@ -24,7 +24,6 @@ const K8sContainersOverview = (props) => {
   const [containerCpuUsageValues, setContainerCpuUsageValues] = useState({});
   const [timeLabels, setTimeLabels] = useState([]);
   const [datasets, setDatasets] = useState([]);
-  console.log('all contaners ', props.podName, props.allContainers);
  
   //get all current pod's containers and update state
 
@@ -36,81 +35,45 @@ const K8sContainersOverview = (props) => {
       }
     })
     setPodContainerNamesList(currentPodContainers);
-  }, [props.allContainers]);
-
-  useEffect(async () => {
-    const updatedCpuUsageValues = updateCpuUsageValues();
-    setContainerCpuUsageValues(updatedCpuUsageValues);
-  }, [podContainerNamesList]);
+  }, [props.allContainers, props.podName]);
 
 
   //****START HERE****//
- // return data in the following format to be readable by LineChart: {label: containerName, data: [values]} 
+ // return data in the following format to be readable by LineChart: [{label: containerName, data: [values]}] 
 // return timeLabels as an array
-// const updateCpuUsageValues = () => {
-//     const startTime = Math.floor((Date.now() - 300000) / 1000.0);
-//     const endTime = Math.floor(Date.now() / 1000.0);
-//     for (let i = 0; i < podContainer)
-// }
+const updateCpuUsageValues = async () => {
+    const startTime = Math.floor((Date.now() - 300000) / 1000.0);
+    const endTime = Math.floor(Date.now() / 1000.0);
+    const updatedCpuValues = { timeLabels: [], dataset: [] };
+    for (let i = 0; i < podContainerNamesList.length; i++) {
+      updatedCpuValues.dataset[i] = { label: podContainerNamesList[i], data: [] };
+      const containerCpuValues = await containerPromql.fetchRangeContainerCpuUsage(podContainerNamesList[i], startTime, endTime);
+      containerCpuValues.forEach(value => {
+        updatedCpuValues.timeLabels.push(timeFunction(value[0]));
+        updatedCpuValues.dataset[i].data.push(value[1]);
+        updatedCpuValues.dataset[i].backgroundColor = 'rgb(255, 99, 132)',
+        updatedCpuValues.dataset[i].borderColor = 'rgba(255, 99, 132, 0.2)'
+      });
+    }
+    return updatedCpuValues;
+}
 
- 
-  
+useEffect(async () => {
+  for (const container of podContainerNamesList) {
+    const updatedCpuValues = await updateCpuUsageValues();
+    setTimeLabels(updatedCpuValues.timeLabels);
+    setDatasets(updatedCpuValues.dataset);
+    const interval = setInterval(async () => {
+      const updatedCpuValues = await updateCpuUsageValues();
+      setTimeLabels(updatedCpuValues.timeLabels);
+      setDatasets(updatedCpuValues.dataset);
+    }, 3000)
+    return () => clearInterval(interval);
+  }
 
-  ///COMMENT OUT / DELETE WHEN DONE
-  // const setCpuUsageValues = async () => {
-  //   const startTime = Math.floor((Date.now() - 300000) / 1000.0);
-  //   const endTime = Math.floor(Date.now() / 1000.0);
-  //   let updatedCpuValues = {};
-  //   for (const container in podContainerNamesList) {
-  //     updatedCpuValues[container] = await containerPromql.fetchRangeContainerCpuUsage(container, startTime, endTime);
-  //   }
-  //   console.log('VALUES:', updatedCpuValues)
-  //   return updatedCpuValues;
-  // }
- 
+}, [podContainerNamesList]);
 
-  // const setCpuUsageValues = async () => {
-  //   const startTime = Math.floor((Date.now() - 300000) / 1000.0);
-  //   const endTime = Math.floor(Date.now() / 1000.0);
-  //   let updatedDataset;
-  //   let updatedTimeLabels;
-  //   for (const container in podContainerNamesList) {
-  //     const cpuUsageValues = await containerPromql.fetchRangeContainerCpuUsage(container, startTime, endTime);
-  //     // an array of updated cpuUsage values
-  //     const containerData = cpuUsageValues.map(value => {
-  //       return Math.floor(value[1] * 1000.0);
-  //     })
-  //     //a dataset object readable by the LineChart component
-  //     const updatedDataset = { label: container, data: containerData };
-
-  //     //an array of update times associated with each value
-  //     const updatedTimeLabels = cpuUsageValues.map(value => {
-  //       return timeFunction(value[0]);
-  //     })
-
-
-  //     console.log('dataset: ', updatedDataset, ', timelabels: ', updatedTimeLabels)
-  //   }
-  //   return { timeLabels: updatedTimeLabels, datasets: updatedDataset }
-
-  // }
-  // //allContainerNamesList is an array of arrays where containerNamesList[0] = containerName, containerNamesList[1] = podName
-  // useEffect(async () => {
-  
-
-  //   // check if container's pod name is equal to current pod name
-  //   // if it is, add to podContainerNamesList in state
-
-  //   console.log('PODS: ', podContainerNamesList)
-  //   const values = await setCpuUsageValues();
-  //   setContainerCpuUsageValues(values);
-
-    
-  //   // const values = await updateCpuUsageValues();
-  //   // setTimeLabels(values[timeLabels]);
-  //   // setDatasets(datasets.concat(values[datasets]));
-  //   // console.log('here: ', timeLabels, 'there: ',datasets)
-  // }, []);
+console.log('usedeffect ', timeLabels, datasets)
 
 
   //returns single value and timestamp every 3 seconds
