@@ -4,15 +4,16 @@ import { Line } from "react-chartjs-2";
 const LineChart = (props) => {
   const data = {
     labels: props.xAxis,
-    datasets: [
-      {
-        label: props.xAxisLabel,
-        data: props.yAxis,
-        fill: false,
-        backgroundColor: "#018790",
-        borderColor: "rgba(75, 192, 192, 0.2)",
-      },
-    ],
+    datasets: props.datasets
+    // [
+    //   {
+    //     label: props.xAxisLabel,
+    //     data: props.yAxis,
+    //     fill: false,
+    //     backgroundColor: "#018790",
+    //     borderColor: "rgba(75, 192, 192, 0.2)",
+    //   },
+    // ],
   };
 
   const options = {

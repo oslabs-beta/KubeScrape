@@ -7,26 +7,25 @@
  * ************************************
  */
 
- import React, { useEffect, useState } from 'react';
- import { useSelector } from 'react-redux';
- import AppBar from '@mui/material/AppBar';
- import Box from '@mui/material/Box';
- import Toolbar from '@mui/material/Toolbar';
- import Typography from '@mui/material/Typography';
- import FormControl from '@mui/material/FormControl';
- import Select from '@mui/material/Select';
- import MenuItem from '@mui/material/MenuItem';
- import InputLabel from '@mui/material/InputLabel';
- import K8sContainerOverview from '../K8sContainerOverview/K8sContainerOverview';
- import * as containerPromql from '../../utils/container-promql-utils';
- 
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import * as containerPromql from '../../utils/container-promql-utils';
+import K8sContainersOverview from '../K8sContainersOverview/K8sContainersOverview';
+
  const primaryColor = '#25274D';
  
  //
  const PodViewContainer = () => {
    //TODO: Update to get list of pod names from the redux store
    const [podNamesList, setPodnamesList] = useState(containerPromql.fetchDemoPodNamesList());
-   const [allContainerNamesList, setContainerNamesList] = useState([]);
 
  
    // keep track of current pod
@@ -40,25 +39,7 @@
    }
  
    console.log('current pod: ', currentPod)
-
-   //TODO: Map through container info for current pod:
-   //For each container in the allContainers list,
-   //render a K8sPodOverview component with containtername as props:
    
-
-   //allContainerNamesList is an array of arrays where containerNamesList[0] = containerName, containerNamesList[1] = podName
-   useEffect(async () => {
-    const allContainerNamesList = await containerPromql.fetchContainerNamesList();
-    setContainerNamesList(allContainerNamesList);
-   }, []);
-
-   const currentPodK8sContainers = allContainerNamesList.map((container, index) => {
-     if (container[1] === currentPod) {
-       return <K8sContainerOverview key={index} containerName={container[0]}/>
-     }
-   })
-
-  console.log('this pod\'s containers: ', currentPodK8sContainers);
 
    // Appbar uses display:flex + flex-direction: column
    // while Toolbar uses display:flex with default flex-direction: row to display items inline
@@ -93,7 +74,7 @@
          </Toolbar>
        </AppBar>
  
-       {currentPodK8sContainers}
+       <K8sContainersOverview podName={currentPod}/>  
  
      </Box>
    )
