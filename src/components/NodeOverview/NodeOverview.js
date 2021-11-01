@@ -46,11 +46,11 @@ const NodeOverview = () => {
     const nodePodCapacity = await nodePromql.fetchPodCapacity();
     const currentNetworkUtilization = await nodePromql.fetchNetworkUtilization();
     const currentNetworkErrors = await nodePromql.fetchNetworkErrors();
-    dispatch(actions.getNodeNames(nodeNamesList))
-    dispatch(actions.getCpuUsage(nodeCpuUsagePercentage))
-    dispatch(actions.getMemoryUsage(nodeMemoryUsagePercentage));
-    dispatch(actions.getPodTotal(nodePodTotal));
-    dispatch(actions.getPodCapacity(nodePodCapacity));
+    dispatch(actions.setNodeNames(nodeNamesList))
+    dispatch(actions.setCpuUsage(nodeCpuUsagePercentage))
+    dispatch(actions.setMemoryUsage(nodeMemoryUsagePercentage));
+    dispatch(actions.setPodTotal(nodePodTotal));
+    dispatch(actions.setPodCapacity(nodePodCapacity));
     setNodeNetworkUtilization(currentNetworkUtilization);
     setNodeNetworkErrors(currentNetworkErrors);
   }, []);
