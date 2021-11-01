@@ -70,3 +70,20 @@ export const fetchRangeContainerCpuUsage = async (containerName, startTime, endT
   // console.log('timestamps and cpu usage', rangeContainerCpuUsage);
   return rangeContainerCpuUsage;  
 };
+
+//returns an array of CPU usage values between an input start and end time, in 15s intervals
+//for each element in the array, element[0] = unixtimestamp, element[1] = CPU usage seconds
+export const fetchRangeContainerMemoryUsage = async (containerName, startTime, endTime) => {
+  const data = await fetch(`http://localhost:30000/api/v1/query_range?query=rate(container_memory_usage_bytes{container="${containerName}"}[10m])&start=${startTime}&end=${endTime}&step=60s`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(res => res.json());
+
+  const rangeContainerMemoryUsage = data.data.result[0].values;
+  // console.log('timestamps and cpu usage', rangeContainerCpuUsage);
+  return rangeContainerMemoryUsage;  
+};

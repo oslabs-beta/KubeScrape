@@ -17,7 +17,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
-import DeploymentContainer from '../DeploymentContainer/DeploymentContainer';
+import PodDetailsContainer from '../PodDetailsContainer/PodDetails';
 
 const primaryColor = '#25274D';
 
@@ -68,7 +68,7 @@ const NodeDetailsContainer = () => {
         </Toolbar>
       </AppBar>
 
-      <DeploymentContainer />
+      <PodDetailsContainer />
 
     </Box>
   )
