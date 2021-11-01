@@ -40,16 +40,6 @@ const getDeploymentData = async () => {
       <Box
         selected className='deploymentBox'
         key={el.metric.deployment}
-        
-        // sx={{
-        //   border: '1px solid black',
-        //   p: .3,
-        //   m: .3,
-        //   borderRadius: 1,
-        //   // textAlign: 'center',
-        //   fontSize: '0.75rem',
-        //   maxWidth: 225
-        // }}
       >
         <h2 selected className='h2Update'> {el.metric.deployment} </h2>
         <li>Instance: {el.metric.instance}</li>
