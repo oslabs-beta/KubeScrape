@@ -42,12 +42,10 @@ const getDeploymentData = async () => {
     return (
       <Box selected className='deploymentBox' key={el.metric.deployment}>
         <h2 selected className='h2Update'>
-          {' '}
-          {el.metric.deployment}{' '}
+          {el.metric.deployment}
         </h2>
         <li>Instance: {el.metric.instance}</li>
         <li>Namespace: {el.metric.namespace}</li>
-        <li>Condition: {el.metric.condition}</li>
         <li>
           Created On: {formatDate} {formatTime}
         </li>
