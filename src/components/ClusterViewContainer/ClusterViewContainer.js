@@ -20,7 +20,6 @@ import ClusterOverview from '../ClusterOverview/ClusterOverview';
 import * as nodePromql from '../../utils/node-promql-util';
 import * as actions from '../../actions/actions';
 
-
 const primaryColor = '#25274D';
 
 const ClusterViewContainer = () => {
@@ -29,50 +28,52 @@ const ClusterViewContainer = () => {
   const history = useHistory();
 
   // extract data from Redux store state
-  const { nodeNames } = useSelector(state => state.node);
+  const { nodeNames } = useSelector((state) => state.node);
 
-  useEffect( async () => {
+  useEffect(async () => {
     const nodeNames = await nodePromql.fetchNodeNamesList();
     // update redux store
-    dispatch(actions.setNodeNames(nodeNames));  
+    dispatch(actions.setNodeNames(nodeNames));
   }, []);
-  
+
   const goToNode = (nodeName) => {
     history.push({
-      pathname:'/node',
-      nodeName: nodeName
-    })
-  }
-  
-  return(
+      pathname: '/node',
+      nodeName: nodeName,
+    });
+  };
+
+  return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='relative' sx={{
-        backgroundColor: primaryColor,
-        width: '100%',
-        marginBottom: '20px'
-      }}>
+      <AppBar
+        position='relative'
+        sx={{
+          backgroundColor: primaryColor,
+          width: '100%',
+          marginBottom: '20px',
+        }}
+      >
         <Toolbar>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Cluster View
           </Typography>
         </Toolbar>
       </AppBar>
-      
+
       <ClusterOverview />
-      
+
       <Container>
         <Typography variant='h6' component='div'>
           Running nodes
-
-          {nodeNames.map(nodeName => 
+          {nodeNames.map((nodeName) => (
             <Container key={nodeName} onClick={() => goToNode(nodeName)}>
-              <NodeOverview/>
-            </Container>)}
-
+              <NodeOverview />
+            </Container>
+          ))}
         </Typography>
       </Container>
-    </Box>  
+    </Box>
   );
-}
+};
 
 export default ClusterViewContainer;

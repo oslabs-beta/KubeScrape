@@ -18,8 +18,6 @@ import regeneratorRuntime from 'regenerator-runtime';
 import * as clusterPromql from '../../utils/cluster-promql-util';
 
 const getDeploymentData = async () => {
-  console.log('In deployment API get function');
-
   const dataObj = await fetch(
     'http://localhost:30000/api/v1/query?query=kube_deployment_created',
     {
@@ -30,7 +28,6 @@ const getDeploymentData = async () => {
       },
     }
   ).then((res) => res.json());
-  // console.log({ dataObj });
 
   let dataArr = dataObj.data.result;
 
