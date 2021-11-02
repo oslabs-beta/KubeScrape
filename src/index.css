@@ -20,11 +20,13 @@ body {
   margin: 0.5 rem;
 }
 
+/* overwrite header so theres no awkward gap */
 .h2Update {
   margin-top: 0;
   margin-bottom: 0.4em;
 }
 
+/* add a margin for all list items except for last one */
 li:not(:last-child) {
   margin-bottom: 5px;
 }
