@@ -7,26 +7,22 @@
  * ************************************
  */
 
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import { 
+  AppBar, Box, Toolbar,
+  Container, Typography
+} from '@mui/material';
 import NodeOverview from '../NodeOverview/NodeOverview';
 import ClusterOverview from '../ClusterOverview/ClusterOverview';
 import * as nodePromql from '../../utils/node-promql-util';
 import * as actions from '../../actions/actions';
-
 
 const primaryColor = '#25274D';
 
 const ClusterViewContainer = () => {
   // hooks
   const dispatch = useDispatch();
-  const history = useHistory();
 
   // extract data from Redux store state
   const { nodeNames } = useSelector(state => state.node);
@@ -37,13 +33,6 @@ const ClusterViewContainer = () => {
     dispatch(actions.setNodeNames(nodeNames));  
   }, []);
   
-  const goToNode = (nodeName) => {
-    history.push({
-      pathname:'/node',
-      nodeName: nodeName
-    })
-  }
-  
   return(
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='relative' sx={{
@@ -52,8 +41,8 @@ const ClusterViewContainer = () => {
         marginBottom: '20px'
       }}>
         <Toolbar>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            Cluster View
+          <Typography variant='h5' component='div' sx={{ flexGrow: 1 }}>
+            Cluster View 
           </Typography>
         </Toolbar>
       </AppBar>
@@ -61,15 +50,22 @@ const ClusterViewContainer = () => {
       <ClusterOverview />
       
       <Container>
-        <Typography variant='h6' component='div'>
-          Running nodes
-
-          {nodeNames.map(nodeName => 
-            <Container key={nodeName} onClick={() => goToNode(nodeName)}>
-              <NodeOverview/>
-            </Container>)}
-
+        <Typography variant='h6' component='div' sx={{ 
+          backgroundColor: primaryColor,
+          display: 'box-sizing',
+          padding: '10px 25px',
+          borderRadius: '5px',
+          margin: '20px', 
+          flexGrow: 1 }}>
+            Running Nodes
         </Typography>
+        
+        <Container sx={{ display: 'flex' }}> 
+          {nodeNames.map(nodeName => 
+            <NodeOverview key={nodeName} nodeName={nodeName}/>
+          )}
+        </Container>
+
       </Container>
     </Box>  
   );
