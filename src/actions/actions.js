@@ -8,7 +8,6 @@
  */
 
 import * as actionTypes from '../constants/actionTypes';
-import regeneratorRuntime from "regenerator-runtime";
 
 /* actions that are dispatched to the reducer */
 

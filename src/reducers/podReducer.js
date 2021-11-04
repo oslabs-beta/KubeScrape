@@ -7,53 +7,53 @@
  * ************************************
  */
 
- import * as types from '../constants/actionTypes';
+import * as types from '../constants/actionTypes';
 
- const initialState = {
+const initialState = {
    podNames: [],
    podInfo: []
- };
+};
  
- const podReducer = (
-   state = initialState, 
-   action
- ) => {
-   const deepStateClone = JSON.parse(JSON.stringify(state));
+const podReducer = (
+  state = initialState, 
+  action
+  ) => {
+  const deepStateClone = JSON.parse(JSON.stringify(state));
    
-   switch (action.type) {
-     case types.SET_POD_NAMES:
-       return {
-         ...state,
-         podNames: action.payload
-       }
-      case types.SET_POD_INFO:
+  switch (action.type) {
+    case types.SET_POD_NAMES:
       return {
         ...state,
-        podInfo: action.payload
+        podNames: action.payload
+        }
+    case types.SET_POD_INFO:
+    return {
+      ...state,
+      podInfo: action.payload
+    }
+    case types.SET_CPU_USAGE:
+      return {
+        ...deepStateClone,
+        podCpuUsage: action.payload
       }
-     case types.SET_CPU_USAGE:
-       return {
-         ...deepStateClone,
-         podCpuUsage: action.payload
-       }
-     case types.SET_MEMORY_USAGE:
-       return {
-         ...deepStateClone,
-         podMemoryUsage: action.payload
-       }
-     case types.SET_TOTAL_PODS:
-       return {
-         ...deepStateClone,
-         podTotalPods: action.payload
-       }
-     case types.SET_POD_CAPACITY:
-       return {
-         ...deepStateClone,
-         podPodCapacity: action.payload
-       }
-     default:
-       return state
-   }
+    case types.SET_MEMORY_USAGE:
+      return {
+        ...deepStateClone,
+        podMemoryUsage: action.payload
+      }
+    case types.SET_TOTAL_PODS:
+      return {
+        ...deepStateClone,
+        podTotalPods: action.payload
+      }
+    case types.SET_POD_CAPACITY:
+      return {
+        ...deepStateClone,
+        podPodCapacity: action.payload
+      }
+    default:
+      return state
+  }
  };
  
  export default podReducer;

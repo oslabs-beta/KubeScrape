@@ -8,16 +8,16 @@
  */
 
 
- import React, { useState, useEffect } from 'react';
- import { useSelector } from 'react-redux';
- import GaugeChart from 'react-gauge-chart';
- import { Doughnut } from 'react-chartjs-2';
- import Container from '@mui/material/Container';
- import Box from '@mui/material/Box';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import GaugeChart from 'react-gauge-chart';
+import { Doughnut } from 'react-chartjs-2';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
- import * as clusterPromql from '../../utils/cluster-promql-util';
+import * as clusterPromql from '../../utils/cluster-promql-util';
 
- //create a functional component
+//create a functional component
 const ClusterOverview = () => {
   
   //initialize state that is rendered only in this component

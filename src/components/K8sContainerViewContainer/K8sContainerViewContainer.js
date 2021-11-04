@@ -21,6 +21,7 @@ import InputLabel from '@mui/material/InputLabel';
 import * as containerPromql from '../../utils/container-promql-util';
 import * as podPromql from '../../utils/pod-promql-util';
 import K8sContainersOverview from '../K8sContainersOverview/K8sContainersOverview';
+import K8sContainerHeading from '../K8sContainerHeading/K8sContainerHeading';
 import * as actions from '../../actions/actions'
 
 const primaryColor = '#25274D';
@@ -29,38 +30,42 @@ const primaryColor = '#25274D';
 const K8sContainerViewContainer = (props) => {
 
   //access podNames state from store, and set allContainerNamesList state
-  const { podNames } = useSelector(state => state.pod);
+  const { podInfo } = useSelector(state => state.pod);
   const { nodeNames } = useSelector(state => state.node);
   const [allContainerNamesList, setAllContainerNamesList] = useState([]);
   // keep track of current pod
   // set first pod in pod names list as default if defined
-  const [ currentPod, setCurrentPod ] = useState(podNames[0] || 'no pod selected');
+  const [currentPod, setCurrentPod] = useState(podInfo[0].podName || 'no pod selected');
+
+  //**START HERE **/
+  const [currentPodInfo, setCurrentPodInfo] = useState(podInfo[0] || []);
 
   const dispatch = useDispatch();
-
   //get array of pod names from prometheus server and use the array to update state
   //get all cluster's containers using fetch request and update state
   useEffect(async () => {
-    const podNamesList = await podPromql.fetchPodNamesList(nodeNames[0]);
+    const podInfoList = await podPromql.fetchPodInfoList(nodeNames[0]);
     const allContainerNamesList = await containerPromql.fetchContainerNamesList();
-    dispatch(actions.setPodNames(podNamesList));
+    dispatch(actions.setPodInfo(podInfoList));
     setAllContainerNamesList(allContainerNamesList);
     }, []);
  
   //TODO: Set current pod based on user's selection from PodOverview component
   //if podNames is empty, get pod names array from Prometheus server and set state
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     // set current pod
-    if (podNames === []) {
-      const podNamesList = podPromql.fetchPodNamesList(nodeNames[0]);
-      dispatch(actions.setPodNames(podNamesList));
+    if (podInfo === []) {
+      const podInfoList = podPromql.fetchPodInfoList(nodeNames[0]);
+      dispatch(actions.setPodInfo(podInfoList));
     }
-    setCurrentPod(event.target.value)
+    const currentPodInfoResult = await podPromql.fetchCurrentPodInfo(event.target.value);
+    setCurrentPodInfo(currentPodInfoResult);
+    setCurrentPod(event.target.value);
   }
- 
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
+
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='relative' sx={{
         backgroundColor: primaryColor,
@@ -80,8 +85,8 @@ const K8sContainerViewContainer = (props) => {
             <InputLabel sx={{ color: 'white' }}>Current Pod</InputLabel>
 
             <Select sx={{ color: 'white' }} value={currentPod} onChange={handleChange}>
-              {podNames.map(podName => 
-                <MenuItem key={podName} value={podName}>{podName}</MenuItem>
+              {podInfo.map(pod => 
+                <MenuItem key={pod.podName} value={pod.podName}>{pod.podName}</MenuItem>
               )} 
 
               {/* test dropdown item */}
@@ -90,10 +95,9 @@ const K8sContainerViewContainer = (props) => {
           </FormControl>
         </Toolbar>
       </AppBar>
-      
-      {/* render K8sContainerOverview component with currentPod and allContainers as props */}
       <K8sContainersOverview 
-        podName={currentPod} 
+        podName={currentPod}
+        podInfo={currentPodInfo}
         allContainers={allContainerNamesList}
       />  
     </Box>

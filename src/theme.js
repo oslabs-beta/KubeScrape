@@ -1,7 +1,16 @@
+/**
+ * ************************************
+ *
+ * @module  theme.js
+ * @description creates MUI theme that can be applied across components
+
+ *
+ * ************************************
+ */
+
+
 import { createTheme } from '@mui/material/styles';
 
-
-//create MUI theme that can be applied across all components
 export const theme = createTheme({
     palette: {
       primary: { main: '#25274D' },

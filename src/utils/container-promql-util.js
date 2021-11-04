@@ -5,8 +5,9 @@
  * @description contains functions that fetches and return data about containers from the Prometheus server
  *
  * ************************************
- */
+*/
 
+//NOTE on using rate() in queries
 //rate()  it lets you calculate the per-second average rate of how a value is increasing over a period of time.
 //user rate() when working with counters (e.g. cpu seconds)
 
@@ -20,11 +21,9 @@ export const fetchDemoPodNamesList = () => {
     return result.metric.pod;
   });
   return podNamesList;  
-}
+};
 
-
-
-//return container names and their associated pod name as an array of arrays where containerNamesList[0] = containerName, containerNamesList[1] = podName
+//returns container names and their associated pod name as an array of arrays where containerNamesList[0] = containerName, containerNamesList[1] = podName
 export const fetchContainerNamesList = async () => {
   const data = await fetch('http://localhost:30000/api/v1/query?query=kube_pod_container_info', {
     method: 'GET',
@@ -39,9 +38,9 @@ export const fetchContainerNamesList = async () => {
     return [ result.metric.container, result.metric.pod ];
   });
   return allContainerNamesList;  
-}
+};
 
-//return current CPU Usage rate and timestamp as an array where cpuUsage[0] = unixtimestamp, cpuUsage[1] = 
+//returns current CPU Usage rate and timestamp as an array where cpuUsage[0] = unixtimestamp, cpuUsage[1] = 
 export const fetchContainerCpuUsage = async (containerName) => {
   const data = await fetch(`http://localhost:30000/api/v1/query?query=rate(container_cpu_usage_seconds_total{container="${containerName}"}[10m])`, {
     method: 'GET',
@@ -56,7 +55,6 @@ export const fetchContainerCpuUsage = async (containerName) => {
   console.log('timestamp and cpu usage', containerCpuUsage);
   return containerCpuUsage;  
 };
-
 
 //returns an array of CPU usage values between an input start and end time, in 60s intervals
 //for each element in the array, element[0] = unixtimestamp, element[1] = CPU usage seconds
@@ -120,32 +118,5 @@ export const fetchRangeContainerMemorySaturation = async (containerName, startTi
   .then(res => res.json());
 
   const rangeContainerMemorySaturation = data.data.result[0].values;
-  //Demo data:
-  // [
-  //   [
-  //   1635863436,
-  //   "0.1215625"
-  //   ],
-  //   [
-  //   1635863496,
-  //   "0.1206640625"
-  //   ],
-  //   [
-  //   1635863556,
-  //   "0.1206640625"
-  //   ],
-  //   [
-  //   1635863616,
-  //   "0.1206640625"
-  //   ],
-  //   [
-  //   1635863676,
-  //   "0.1206640625"
-  //   ],
-  //   [
-  //   1635863736,
-  //   "0.1206640625"
-  //   ]
-  // ];
   return rangeContainerMemorySaturation;  
 };

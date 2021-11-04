@@ -11,6 +11,7 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 //timeFunction converts unix timestamp to human readable time for line charts
 import timeFunction from '../../utils/time-function-util';
+import K8sContainerHeading from '../K8sContainerHeading/K8sContainerHeading';
 
 //fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
 import * as containerPromql from '../../utils/container-promql-util';
@@ -157,6 +158,10 @@ const K8sContainersOverview = (props) => {
   //render each line chart for the current pod with data from state (each container has its own line on each chart)
   return (
     <Box>
+
+      <Box>
+      <K8sContainerHeading podInfo={props.podInfo}/>
+      </Box>
 
       {/* CPU Usage Line Chart */}
       <Box

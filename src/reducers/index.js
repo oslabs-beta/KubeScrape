@@ -7,7 +7,7 @@
  * @description A place to combine reducers
  *
  * ************************************
- */
+*/
 
 import { combineReducers } from 'redux';
 
@@ -22,4 +22,3 @@ const reducers = combineReducers({
 });
 
 export default reducers;
-

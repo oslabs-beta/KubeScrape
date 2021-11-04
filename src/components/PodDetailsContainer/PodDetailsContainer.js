@@ -7,25 +7,25 @@
  * ************************************
  */
 
- import React, { useState, useEffect } from 'react';
- import { useHistory } from 'react-router-dom';
- import { useSelector, useDispatch } from 'react-redux';
- import AppBar from '@mui/material/AppBar';
- import Container from '@mui/material/Container';
- import Box from '@mui/material/Box';
- import Toolbar from '@mui/material/Toolbar';
- import Typography from '@mui/material/Typography';
- import FormControl from '@mui/material/FormControl';
- import Select from '@mui/material/Select';
- import MenuItem from '@mui/material/MenuItem';
- import InputLabel from '@mui/material/InputLabel';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import AppBar from '@mui/material/AppBar';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
 import PodOverview from '../PodOverview/PodOverview';
- import * as actions from '../../actions/actions';
- import * as podPromql from '../../utils/pod-promql-util';
+import * as actions from '../../actions/actions';
+import * as podPromql from '../../utils/pod-promql-util';
  
- const primaryColor = '#25274D';
+const primaryColor = '#25274D';
  
- const PodDetailsContainer = (props) => {
+const PodDetailsContainer = (props) => {
    
   //useSelector allows you to extract data from the Redux store state, using a selector function
   //this function accesses the state from the nodeReducer by subscribing to the store through sseSelector
@@ -52,9 +52,9 @@ import PodOverview from '../PodOverview/PodOverview';
       podName: podName
     })
   }
- 
-   const podEls = podInfo.map((pod, index) => {
-     return (
+
+    const podEls = podInfo.map((pod, index) => {
+      return (
     <Container key={pod.podName} onClick={() => goToPod(pod.podName)}>
       <PodOverview 
         key={'pod' + index} 
@@ -66,42 +66,40 @@ import PodOverview from '../PodOverview/PodOverview';
       />
     </Container>
       )
-   });
+    });
 
-   // Appbar uses display:flex + flex-direction: column
-   // while Toolbar uses display:flex with default flex-direction: row to display items inline
-   return(
-     <Box sx={{ flexGrow: 1 }}>
-       <AppBar position='relative' sx={{
-         backgroundColor: primaryColor,
-         width: '100%',
-         marginBottom: '20px'
-       }}>
-         {/* <Toolbar>
-           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-             Pod Details
-           </Typography> */}
- 
-           {/* <FormControl variant='filled' 
-             sx={{ minWidth: 200, 
-                   padding: 0,
-                   border: '1px solid white',
-                   borderRadius: '5px',
-             }}>
-             <InputLabel sx={{ color: 'white' }}>View Pod</InputLabel>
-             <Select sx={{ color: 'white' }} value={podName} onChange={handleChange}>
-               <MenuItem value='Pod 1'>Pod 1</MenuItem>
-               <MenuItem value='Pod 2'>Pod 2</MenuItem>
-               <MenuItem value='Pod 3'>Pod 3</MenuItem>
-             </Select>
-           </FormControl> */}
-         {/* </Toolbar> */}
-       </AppBar>
- 
-       {podEls}
- 
-     </Box>
-   )
- }
+    // Appbar uses display:flex + flex-direction: column
+    // while Toolbar uses display:flex with default flex-direction: row to display items inline
+    return(
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position='relative' sx={{
+          backgroundColor: primaryColor,
+          width: '100%',
+          marginBottom: '20px'
+        }}>
+          {/* <Toolbar>
+            <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+              Pod Details
+            </Typography> */}
+
+            {/* <FormControl variant='filled' 
+              sx={{ minWidth: 200, 
+                    padding: 0,
+                    border: '1px solid white',
+                    borderRadius: '5px',
+              }}>
+              <InputLabel sx={{ color: 'white' }}>View Pod</InputLabel>
+              <Select sx={{ color: 'white' }} value={podName} onChange={handleChange}>
+                <MenuItem value='Pod 1'>Pod 1</MenuItem>
+                <MenuItem value='Pod 2'>Pod 2</MenuItem>
+                <MenuItem value='Pod 3'>Pod 3</MenuItem>
+              </Select>
+            </FormControl> */}
+          {/* </Toolbar> */}
+        </AppBar>
+        {podEls}
+      </Box>
+    )
+}
  
  export default PodDetailsContainer;
