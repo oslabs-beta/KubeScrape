@@ -9,24 +9,27 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
-import { Doughnut } from 'react-chartjs-2';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-
+import { 
+  Container, Grid, Typography
+} from '@mui/material';
+import { styled } from '@mui/system';
 
 import * as actions from '../../actions/actions';
 
 //fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
 import * as nodePromql from '../../utils/node-promql-util';
 
+const primaryColor='#25274D';
+
 //create a functional component
-const NodeOverview = () => {
+const NodeOverview = (props) => {
 
   //useSelector allows you to extract data from the Redux store state, using a selector function
   //this function accesses the state from the nodeReducer by subscribing to the store through sseSelector
-  const { nodeNames, nodeCpuUsage, nodeMemoryUsage, nodeTotalPods, nodePodCapacity } = useSelector(state => state.node);
+  const { nodeCpuUsage, nodeMemoryUsage, nodeTotalPods, nodePodCapacity } = useSelector(state => state.node);
   const [nodeNetworkUtilization, setNodeNetworkUtilization] = useState(0);
   const [nodeNetworkErrors, setNodeNetworkErrors] = useState(0);
 
@@ -34,6 +37,7 @@ const NodeOverview = () => {
   //dispatch can now be used to dispatch actions as needed
   const dispatch = useDispatch();
 
+  const history = useHistory();
 
   //the useEffect hook lets you perform side effects in function components. It tells React that we need to do something after render (like componentDidMount)
   //in these cases, useEffect is used to fetch data from the Prometheus server and using the results to update state
@@ -54,102 +58,101 @@ const NodeOverview = () => {
     setNodeNetworkErrors(currentNetworkErrors);
   }, []);
 
+  // Styles
+  const PREFIX = 'NodeOverview';
+  const classes = {
+    flex: `${PREFIX}-flex`,
+    graphItem: `${PREFIX}-graphItem`,
+    metricsItem: `${PREFIX}-metrixItem`,
+  }
+  const StyledContainer = styled(Container)(({ theme }) => ({
+    ':hover': {
+      filter: 'brightness(150%)'
+    }
+  }));
+  const GridItem = styled(Grid)(({ theme }) => ({
+    [`&.${classes.flex}`] : {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+    },
+    [`&.${classes.graphItem}`] : {
+      marginTop: '-15px'
+    },
+    [`&.${classes.metricsItem}`] : {
+      marginTop: '25px'
+    }
+  }));
+
+  // function to handle node click
+  const goToNode = (nodeName) => {
+    history.push({
+      pathname:'/node',
+      nodeName: nodeName
+    })
+  }
+
+  // function to render a gauge
+  const renderGauge = (title, value) => {
+    return(
+      <>          
+        <h6>{title}</h6>
+        <GaugeChart id="gauge-chart" 
+          nrOfLevels={3} 
+          colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
+          arcWidth={0.3} 
+          arcPadding={0}
+          percent={value} 
+          textColor={"#FFF"}
+          needleColor="#FFF"           
+        />
+      </>
+    )
+  }
+
   return (
-    <Container>
-      <h2>Node Name: {nodeNames}</h2>
-      <div className="flex-container">
-        <Box 
-            sx={{
-              border: '1px solid black',
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              p: 1,
-              m: 1,
-              width: '90%'
-            }}
-        >
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%',
-            }}
-          >
-            <h2>CPU Usage (percent of total)</h2>
-            <GaugeChart id="gauge-chart" 
-              nrOfLevels={3} 
-              colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
-              arcWidth={0.3} 
-              arcPadding={0}
-              percent={nodeCpuUsage / 100} 
-              textColor={"#FFF"}
-              needleColor="#FFF" 
-            />
-          </Box>
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%'
-            }}
-          >          
-          <h2>Memory Usage (percent of allocatable memory)</h2>
-            <GaugeChart id="gauge-chart" 
-              nrOfLevels={3} 
-              colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
-              arcWidth={0.3}
-              arcPadding={0}
-              percent={nodeMemoryUsage} 
-              textColor={"#FFF"}
-              needleColor="#FFF"
-            />
-          </Box>
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%'
-            }}
-          >           
-          <h2>Pods Running</h2>
-            <Doughnut id="doughnut"
-              data={{
-                labels: ['Number of Running Pods', 'Remaining Pod Capacity'],
-                datasets: [{
-                  data: [nodeTotalPods, nodePodCapacity - nodeTotalPods],
-                  backgroundColor: ['#F8E9A1', '#29648A'],
-                  borderColor: ['#AAABB8', '#AAABB8']
-                }]
-              }}
-              options = {{
-                legend: {
-                  labels: {
-                    fontColor: "#FFF"
-                  }
-                }
-              }}
-            />
-          </Box>
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%'
-            }}
-          >            
-          <h2>Current Network Utilization</h2>
-            <span>{nodeNetworkUtilization}</span> <p>kilobytes per second</p>
-          </Box>
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%',
-            textAlign: 'center'
-            }}
-          >            
-          <h2>Total Network Errors</h2>
-            <span>{nodeNetworkErrors}</span> <p>errors while transmitting or receiving</p>
-          </Box>
-        </Box>
-      </div>
-    </Container>
+    <StyledContainer maxWidth={'xs'} 
+      onClick={() => goToNode(props.nodeName)}
+      sx={{
+        backgroundColor: primaryColor,
+        borderRadius: '5px',
+        paddingBottom: '10px'
+      }}>
+      <Typography 
+        variant='h6' 
+        component='div' 
+        align='center'
+        sx={{
+          paddingTop: '20px'
+        }}>
+        Node: {props.nodeName}
+      </Typography>
+      <Grid container justifyContent='center'>
+        <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>
+          <span>{nodeTotalPods}</span>            
+          <h6>Active Pods</h6>
+        </GridItem>
+        <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>
+          <span>{nodePodCapacity - nodeTotalPods}</span>            
+          <h6>Available Pods</h6>
+        </GridItem>
+        <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>            
+          <span>{nodeNetworkUtilization} kb/s</span> 
+          <h6>Network Utilization</h6>
+        </GridItem>
+        <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>            
+          <span>{nodeNetworkErrors}</span> 
+          <h6>Errors</h6>
+        </GridItem>
+        <GridItem item lg={6} className={`${classes.flex} ${classes.graphItem}`}>
+          {renderGauge('Node CPU Usage', nodeCpuUsage / 100)}
+        </GridItem>
+        <GridItem item lg={6} className={`${classes.flex} ${classes.graphItem}`}>          
+          {renderGauge('Node Memory Usage', nodeMemoryUsage)}
+        </GridItem>
+      </Grid>
+    </StyledContainer>
   )
 }
 

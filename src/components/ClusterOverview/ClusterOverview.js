@@ -8,20 +8,22 @@
  */
 
 
- import React, { useState, useEffect } from 'react';
- import { useSelector } from 'react-redux';
- import GaugeChart from 'react-gauge-chart';
- import { Doughnut } from 'react-chartjs-2';
- import Container from '@mui/material/Container';
- import Box from '@mui/material/Box';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import GaugeChart from 'react-gauge-chart';
+import { Container, Grid } from '@mui/material';
+import * as clusterPromql from '../../utils/cluster-promql-util';
+import { styled } from '@mui/system';
 
- import * as clusterPromql from '../../utils/cluster-promql-util';
+const primaryColor = '#25274D';
 
  //create a functional component
 const ClusterOverview = () => {
+  // TO DO: get deployments from redux store using useSelector
   
+
+
   //initialize state that is rendered only in this component
-  const { nodeNames } = useSelector(state => state.node);
   const [clusterCpuUsage, setClusterCpuUsage] = useState(0);
   const [clusterMemoryUsage, setClusterMemoryUsage] = useState(0);
   const [clusterTotalNodes, setClusterTotalNodes] = useState(0);
@@ -44,100 +46,84 @@ const ClusterOverview = () => {
     setClusterTotalDeployments(currentTotalDeployments);
     setClusterTotalPods(currentTotalPods);
     setClusterTotalServices(currentTotalServices);
+
   }, []);
+
+  const PREFIX = 'ClusterOverview';
+
+  const classes = {
+    flex: `${PREFIX}-flex`,
+    graphItem: `${PREFIX}-graphItem`,
+    metricsItem: `${PREFIX}-metrixItem`,
+  }
+
+  const GridItem = styled(Grid)(({ theme }) => ({
+    [`&.${classes.flex}`] : {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    [`&.${classes.graphItem}`] : {
+      backgroundColor: primaryColor,
+      margin: '10px 20px 0',
+      paddingBottom: '10px',
+      borderRadius: '5px',
+    },
+    [`&.${classes.metricsItem}`] : {
+      backgroundColor: primaryColor,
+      paddingBottom: '15px',
+      margin: '10px 20px',
+      borderRadius: '5px',
+    }
+  }));
+
+  const renderGauge = (title, value) => {
+    return(
+      <>          
+        <h3>{title}</h3>
+        <GaugeChart id="gauge-chart" 
+          nrOfLevels={3} 
+          colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
+          arcWidth={0.3} 
+          arcPadding={0}
+          percent={value} 
+          textColor={"#FFF"}
+          needleColor="#FFF"           
+        />
+      </>
+    )
+  }
 
   return(
     <Container>
-      <h2>Cluster Name: {nodeNames}</h2>
-      <div className="object-info-div">
-        <Box 
-            sx={{
-              border: '1px solid black',
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: 'center',
-              p: 1,
-              m: 1,
-              width: '90%'
-            }}
-        > 
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%'
-            }}
-          >          
-          <h2>CPU Usage (percent of total)</h2>
-            <GaugeChart id="gauge-chart" 
-              nrOfLevels={3} 
-              colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
-              arcWidth={0.3} 
-              arcPadding={0}
-              percent={clusterCpuUsage / 100} 
-              textColor={"#FFF"}
-              needleColor="#FFF"           
-            />
-          </Box>
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%'
-            }}
-          >          
-          <h2>Memory Usage (percent of allocatable memory)</h2>
-            <GaugeChart id="gauge-chart" 
-              nrOfLevels={3} 
-              colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
-              arcWidth={0.3} 
-              arcPadding={0}
-              percent={clusterMemoryUsage} 
-              textColor={"#FFF"}
-              needleColor="#FFF"           
-            />
-          </Box>
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%',
-            textAlign: 'center'
-            }}
-          >          
-          <h2>Total Nodes in Cluster</h2>
-            <span>{clusterTotalNodes}</span>
-          </Box>
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%',
-            textAlign: 'center'
-            }}
-          >          
-          <h2>Total Deployments in Cluster</h2>
-            <span>{clusterTotalDeployments}</span>
-          </Box>
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%',
-            textAlign: 'center'
-            }}
-          >            
-          <h2>Total Pods in Cluster</h2>
-            <span>{clusterTotalPods}</span>
-          </Box>
-          <Box sx={{
-            border: '1px solid black',
-            minWidth: 300,
-            maxWidth: '45%',
-            textAlign: 'center'
-            }}
-          >            
-          <h2>Total Services in Cluster</h2>
-            <span>{clusterTotalServices}</span>
-          </Box>
-          
-        </Box>
-      </div>
+    {/* <h2>Cluster Name: {nodeNames}</h2> */}
+      <Grid container justifyContent='center'>
+        <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>          
+          <h5>Total Nodes</h5>
+          <span>{clusterTotalNodes}</span>
+        </GridItem>
+        <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>          
+          <h5>Total Deployments</h5>
+          <span>{clusterTotalDeployments.length}</span>
+        </GridItem>
+        <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>            
+          <h5>Total Pods</h5>
+          <span>{clusterTotalPods}</span>
+        </GridItem>
+        <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>            
+          <h5>Total Services</h5>
+          <span>{clusterTotalServices}</span>
+        </GridItem>
+
+        <GridItem item xs={8} sm={4} className={`${classes.flex} ${classes.graphItem}`}>
+          {renderGauge('CPU Usage', clusterCpuUsage / 100)}
+        </GridItem>
+        <GridItem item xs={8} sm={4} className={`${classes.flex} ${classes.graphItem}`}>
+          {renderGauge('Memory Usage', clusterMemoryUsage)}
+        </GridItem>
+      </Grid>
+      
     </Container>
   )
  }
