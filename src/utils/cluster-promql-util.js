@@ -56,9 +56,9 @@ export const fetchTotalNodes = async () => {
   return totalNodes;  
 }
 
-//return the total number of deployments created in the cluster
+//return an array of deployments 
 export const fetchTotalDeployments = async () => {
-  const data = await fetch('http://localhost:30000/api/v1/query?query=count(kube_deployment_created)', {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=kube_deployment_created', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -66,10 +66,10 @@ export const fetchTotalDeployments = async () => {
     }
   })
   .then(res => res.json());
-  const totalDeployments = data.data.result[0].value[1];
+
+  const totalDeployments = data.data.result;
   return totalDeployments;  
 }
-
 
 //return the total number of pods created in the cluster
 export const fetchTotalPods = async () => {

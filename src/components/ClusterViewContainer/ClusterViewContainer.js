@@ -7,43 +7,72 @@
  * ************************************
  */
 
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import { 
+  AppBar, Box, Toolbar,
+  Container, Typography
+} from '@mui/material';
 import NodeOverview from '../NodeOverview/NodeOverview';
 import ClusterOverview from '../ClusterOverview/ClusterOverview';
+import DeploymentOverview from '../DeploymentContainer/DeploymentOverview';
+import * as clusterPromql from '../../utils/cluster-promql-util'
 import * as nodePromql from '../../utils/node-promql-util';
 import * as actions from '../../actions/actions';
-
+import { styled } from '@mui/system';
 
 const primaryColor = '#25274D';
 
 const ClusterViewContainer = () => {
   // hooks
   const dispatch = useDispatch();
-  const history = useHistory();
 
   // extract data from Redux store state
   const { nodeNames } = useSelector(state => state.node);
+  const { deployments } = useSelector(state => state.cluster)
+
+  // TODO: render deployments
+  // TODO: prevent element from rerendering? useMemo? some optimization hook
+  // TODO: add shadows to components
 
   useEffect( async () => {
     const nodeNames = await nodePromql.fetchNodeNamesList();
-    // update redux store
-    dispatch(actions.setNodeNames(nodeNames));  
+    const deployments = await clusterPromql.fetchTotalDeployments();
+
+    dispatch(actions.setNodeNames(nodeNames)); 
+    dispatch(actions.setClusterDeployments(deployments)) 
   }, []);
   
-  const goToNode = (nodeName) => {
-    history.push({
-      pathname:'/node',
-      nodeName: nodeName
-    })
-  }
-  
+  const StyledTypography = styled(Typography)(({ theme }) => ({
+    backgroundColor: primaryColor,
+    display: 'box-sizing',
+    padding: '10px 25px',
+    borderRadius: '5px',
+    marginBottom: '20px', 
+    flexGrow: 1 
+  }))
+
+  const nodeComponents = [];
+  nodeNames.forEach(nodeName => {
+    nodeComponents.push(
+      <NodeOverview key={nodeNames} nodeName={nodeName}/>
+    )
+  })
+
+  const deploymentComponents = [];
+  deployments.forEach((depl, i) => {
+    deploymentComponents.push(
+      <DeploymentOverview 
+        key={depl.metric.instance + i}
+        instance={depl.metric.instance}
+        job={depl.metric.job}
+        namespace={depl.metric.namespace}
+        createdOnDate={new Date(depl.value[1] * 1000).toLocaleString()}
+        >
+      </DeploymentOverview>
+    )
+  })
+
   return(
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='relative' sx={{
@@ -52,24 +81,38 @@ const ClusterViewContainer = () => {
         marginBottom: '20px'
       }}>
         <Toolbar>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            Cluster View
+          <Typography variant='h5' component='div' sx={{ flexGrow: 1 }}>
+            Cluster View 
           </Typography>
         </Toolbar>
       </AppBar>
       
-      <ClusterOverview />
-      
+      <Container sx={{ marginBottom: '40px' }}>
+        <ClusterOverview />
+      </Container>
+
       <Container>
-        <Typography variant='h6' component='div'>
-          Running nodes
+        <StyledTypography variant='h6' component='div'>
+            Running Nodes
+        </StyledTypography>
+        
+        <Container sx={{ display: 'flex', marginBottom: '40px' }}> 
+          {nodeComponents}
+        </Container>
+      </Container>
+    
+      <Container>
+        <StyledTypography variant='h6' component='div'>
+          Deployments
+        </StyledTypography>
 
-          {nodeNames.map(nodeName => 
-            <Container key={nodeName} onClick={() => goToNode(nodeName)}>
-              <NodeOverview/>
-            </Container>)}
+        <Container sx={{ 
+          display: 'flex', 
+          marginBottom: '40px',
+          justifyContent: 'center'}}>
+          {deploymentComponents}
+        </Container>
 
-        </Typography>
       </Container>
     </Box>  
   );
