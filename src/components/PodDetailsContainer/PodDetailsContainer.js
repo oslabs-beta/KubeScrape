@@ -8,8 +8,10 @@
  */
 
  import React, { useState, useEffect } from 'react';
+ import { useHistory } from 'react-router-dom';
  import { useSelector, useDispatch } from 'react-redux';
  import AppBar from '@mui/material/AppBar';
+ import Container from '@mui/material/Container';
  import Box from '@mui/material/Box';
  import Toolbar from '@mui/material/Toolbar';
  import Typography from '@mui/material/Typography';
@@ -23,28 +25,47 @@ import PodOverview from '../PodOverview/PodOverview';
  
  const primaryColor = '#25274D';
  
- const PodDetailsContainer = () => {
+ const PodDetailsContainer = (props) => {
    
-  const [podName, setPod] = useState('');
   //useSelector allows you to extract data from the Redux store state, using a selector function
   //this function accesses the state from the nodeReducer by subscribing to the store through sseSelector
-  const { podNames } = useSelector(state => state.pod);
+  const { podNames, podInfo } = useSelector(state => state.pod);
+  const [podName, setPodName] = useState('');
+
 
   //the useDispatch hook returns a reference to the dispatch function from the Redux store.
   //dispatch can now be used to dispatch actions as needed
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const handleChange = event => {
-    setPod(event.target.value);
-  }
-
-   useEffect(async () => {
-     const podNamesList = await podPromql.fetchPodNamesList();
-     dispatch(actions.setPodNames(podNamesList));
+  useEffect(async () => {
+    const podNamesList = await podPromql.fetchPodNamesList(props.node);
+    const podInfoList = await podPromql.fetchPodInfoList(props.node);
+    dispatch(actions.setPodNames(podNamesList));
+    dispatch(actions.setPodInfo(podInfoList));
     }, []);
+
+  //TODO: Fix goToPod so it redirects to the correct pod and top of the page in K8sContainerOverview when a PodOverview is clicked
+  const goToPod = (podName) => {
+    history.push({
+      pathname:'/pod',
+      podName: podName
+    })
+  }
  
-   const podEls = podNames.map((podName, index) => {
-     return <PodOverview key={'pod' + index}podName={podName}/>
+   const podEls = podInfo.map((pod, index) => {
+     return (
+    <Container key={pod.podName} onClick={() => goToPod(pod.podName)}>
+      <PodOverview 
+        key={'pod' + index} 
+        podName={pod.podName}
+        namespace={pod.podNamespace}
+        ip={pod.podIp}
+        deployment={pod.createdByDeployment}
+        uid={pod.uid}
+      />
+    </Container>
+      )
    });
 
    // Appbar uses display:flex + flex-direction: column
@@ -56,12 +77,12 @@ import PodOverview from '../PodOverview/PodOverview';
          width: '100%',
          marginBottom: '20px'
        }}>
-         <Toolbar>
+         {/* <Toolbar>
            <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
              Pod Details
-           </Typography>
+           </Typography> */}
  
-           <FormControl variant='filled' 
+           {/* <FormControl variant='filled' 
              sx={{ minWidth: 200, 
                    padding: 0,
                    border: '1px solid white',
@@ -73,8 +94,8 @@ import PodOverview from '../PodOverview/PodOverview';
                <MenuItem value='Pod 2'>Pod 2</MenuItem>
                <MenuItem value='Pod 3'>Pod 3</MenuItem>
              </Select>
-           </FormControl>
-         </Toolbar>
+           </FormControl> */}
+         {/* </Toolbar> */}
        </AppBar>
  
        {podEls}

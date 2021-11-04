@@ -17,7 +17,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
-import PodDetailsContainer from '../PodDetailsContainer/PodDetails';
+import PodDetailsContainer from '../PodDetailsContainer/PodDetailsContainer';
 
 const primaryColor = '#25274D';
 
@@ -35,6 +35,7 @@ const NodeDetailsContainer = () => {
   }
 
   console.log(`current node is ${currentNode}`);
+
 
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
@@ -67,8 +68,8 @@ const NodeDetailsContainer = () => {
           </FormControl>
         </Toolbar>
       </AppBar>
-
-      <PodDetailsContainer />
+      
+      <PodDetailsContainer node={currentNode}/>
 
     </Box>
   )

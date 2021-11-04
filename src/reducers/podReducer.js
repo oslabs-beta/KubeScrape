@@ -11,6 +11,7 @@
 
  const initialState = {
    podNames: [],
+   podInfo: []
  };
  
  const podReducer = (
@@ -25,6 +26,11 @@
          ...state,
          podNames: action.payload
        }
+      case types.SET_POD_INFO:
+      return {
+        ...state,
+        podInfo: action.payload
+      }
      case types.SET_CPU_USAGE:
        return {
          ...deepStateClone,

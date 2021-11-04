@@ -48,7 +48,7 @@ const ClusterOverview = () => {
 
   return(
     <Container>
-      <h2>Cluster Name: {nodeNames}</h2>
+      <h2>Cluster Overview</h2>
       <div className="object-info-div">
         <Box 
             sx={{
@@ -90,7 +90,7 @@ const ClusterOverview = () => {
               colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
               arcWidth={0.3} 
               arcPadding={0}
-              percent={clusterMemoryUsage} 
+              percent={clusterMemoryUsage / 100} 
               textColor={"#FFF"}
               needleColor="#FFF"           
             />

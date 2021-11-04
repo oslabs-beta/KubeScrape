@@ -41,7 +41,7 @@ const NodeOverview = () => {
   useEffect(async () => {
     const nodeNamesList = await nodePromql.fetchNodeNamesList();
     const nodeCpuUsagePercentage = await nodePromql.fetchCpuUsage();
-    const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage();
+    const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage(nodeNames[0]);
     const nodePodTotal = await nodePromql.fetchPodTotal();
     const nodePodCapacity = await nodePromql.fetchPodCapacity();
     const currentNetworkUtilization = await nodePromql.fetchNetworkUtilization();
@@ -99,7 +99,7 @@ const NodeOverview = () => {
               colors={["#29648A", "#F8E9A1", "#F76C6C"]} 
               arcWidth={0.3}
               arcPadding={0}
-              percent={nodeMemoryUsage} 
+              percent={nodeMemoryUsage / 100} 
               textColor={"#FFF"}
               needleColor="#FFF"
             />

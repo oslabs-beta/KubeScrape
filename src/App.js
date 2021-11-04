@@ -16,7 +16,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewContainer';
 import NodeDetailsContainer from './components/NodeDetailsContainer/NodeDetailsContainer';
-import PodViewContainer from './components/PodViewContainer/PodViewContainer';
+import K8sContainerViewContainer from './components/K8sContainerViewContainer/K8sContainerViewContainer';
 
 const App = () => {
   const history = useHistory();
@@ -41,7 +41,7 @@ const App = () => {
           </Route>
 
           <Route path='/pod' exact>
-            <PodViewContainer />
+            <K8sContainerViewContainer />
           </Route>
         </Switch>
       </ThemeProvider>

@@ -39,17 +39,20 @@ export const fetchCpuUsage = async() => {
 }
 
 //return node memory usage as a number
-export const fetchMemoryUsage = async() => {
-  const data = await fetch('http://localhost:30000/api/v1/query?query=((sum(node_memory_MemTotal_bytes)-sum(node_memory_MemFree_bytes)-sum(node_memory_Buffers_bytes)-sum(node_memory_Cached_bytes))/sum(node_memory_MemTotal_bytes))', {
+export const fetchMemoryUsage = async(nodeName) => {
+  const data = await fetch(`http://localhost:30000/api/v1/query?query=(1-sum(kube_node_status_allocatable_memory_bytes{node="${nodeName}"})/sum(kube_node_status_capacity_memory_bytes{node="${nodeName}"}))*100`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
   }).then(res => res.json())
-  const memoryUsage = parseInt(data.data.result[0].value[1]);
+  const memoryUsage = data.data.result[0].value[1];
   return memoryUsage;
 }
+
+//unreliable memory usage query: 
+//'http://localhost:30000/api/v1/query?query=((sum(node_memory_MemTotal_bytes)-sum(node_memory_MemFree_bytes)-sum(node_memory_Buffers_bytes)-sum(node_memory_Cached_bytes))/sum(node_memory_MemTotal_bytes))'
 
 //return total pods running in node as a number
 export const fetchPodTotal= async() => {
