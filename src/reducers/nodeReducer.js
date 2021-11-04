@@ -26,7 +26,7 @@ const nodeReducer = (
   switch (action.type) {
     case types.SET_NODE_NAMES:
       return {
-        ...state,
+        ...deepStateClone,
         nodeNames: action.payload
       }
     case types.SET_CPU_USAGE:

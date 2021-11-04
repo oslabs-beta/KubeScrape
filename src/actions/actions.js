@@ -12,6 +12,13 @@ import regeneratorRuntime from "regenerator-runtime";
 
 /* actions that are dispatched to the reducer */
 
+// cluster actions
+export const setClusterDeployments = (deployments) => ({
+  type: actionTypes.SET_CLUSTER_DEPLOYMENTS,
+  payload: deployments
+});
+
+// node actions
 export const setNodeNames = (nodeNames) => ({
   type: actionTypes.SET_NODE_NAMES,
   payload: nodeNames
