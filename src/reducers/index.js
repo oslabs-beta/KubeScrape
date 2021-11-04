@@ -12,7 +12,7 @@
 import { combineReducers } from 'redux';
 
 // import all reducers here
-import clusterReducer from './cluserReducer';
+import clusterReducer from './clusterReducer';
 import nodeReducer from './nodeReducer';
 
 // combine reducers
