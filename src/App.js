@@ -10,10 +10,9 @@
 import React, { useEffect } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import { Switch, Route, useHistory } from 'react-router-dom';
-import regeneratorRuntime from 'regenerator-runtime';
-
 import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewContainer';
 import NodeDetailsContainer from './components/NodeDetailsContainer/NodeDetailsContainer';
+import Visualizer from './components/ClusterOverview/Visualizer';
 
 const App = () => {
   const history = useHistory();
@@ -34,6 +33,10 @@ const App = () => {
 
         <Route path='/node' exact>
           <NodeDetailsContainer />
+        </Route>
+
+        <Route path='/visualizer' exact>
+          <Visualizer/>
         </Route>
       </Switch>
     </div>
