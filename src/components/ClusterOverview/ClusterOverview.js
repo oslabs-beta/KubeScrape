@@ -15,14 +15,15 @@ import { Container, Grid } from '@mui/material';
 import * as clusterPromql from '../../utils/cluster-promql-util';
 import { styled } from '@mui/system';
 
- 
 const primaryColor = '#25274D';
 
  //create a functional component
 const ClusterOverview = () => {
+  // TO DO: get deployments from redux store using useSelector
   
+
+
   //initialize state that is rendered only in this component
-  const { nodeNames } = useSelector(state => state.node);
   const [clusterCpuUsage, setClusterCpuUsage] = useState(0);
   const [clusterMemoryUsage, setClusterMemoryUsage] = useState(0);
   const [clusterTotalNodes, setClusterTotalNodes] = useState(0);
@@ -45,6 +46,7 @@ const ClusterOverview = () => {
     setClusterTotalDeployments(currentTotalDeployments);
     setClusterTotalPods(currentTotalPods);
     setClusterTotalServices(currentTotalServices);
+
   }, []);
 
   const PREFIX = 'ClusterOverview';
@@ -64,8 +66,8 @@ const ClusterOverview = () => {
     },
     [`&.${classes.graphItem}`] : {
       backgroundColor: primaryColor,
-      margin: '20px',
-      paddingBottom: '20px',
+      margin: '10px 20px 0',
+      paddingBottom: '10px',
       borderRadius: '5px',
     },
     [`&.${classes.metricsItem}`] : {
@@ -94,7 +96,7 @@ const ClusterOverview = () => {
   }
 
   return(
-    <Container sx={{ paddingBottom: '30px' }}>
+    <Container>
     {/* <h2>Cluster Name: {nodeNames}</h2> */}
       <Grid container justifyContent='center'>
         <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>          
@@ -103,7 +105,7 @@ const ClusterOverview = () => {
         </GridItem>
         <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>          
           <h5>Total Deployments</h5>
-          <span>{clusterTotalDeployments}</span>
+          <span>{clusterTotalDeployments.length}</span>
         </GridItem>
         <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>            
           <h5>Total Pods</h5>
