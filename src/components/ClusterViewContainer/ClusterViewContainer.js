@@ -43,8 +43,6 @@ const ClusterViewContainer = () => {
     dispatch(actions.setClusterDeployments(deployments)) 
   }, []);
   
-  console.log(deployments);
-
   const StyledTypography = styled(Typography)(({ theme }) => ({
     backgroundColor: primaryColor,
     display: 'box-sizing',
