@@ -10,7 +10,6 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  nodeNames: [],
   nodeCpuUsage: 0,
   nodeMemoryUsage: 0,
   nodeTotalPods: 0,
@@ -24,11 +23,6 @@ const nodeReducer = (
   const deepStateClone = JSON.parse(JSON.stringify(state));
   
   switch (action.type) {
-    case types.SET_NODE_NAMES:
-      return {
-        ...deepStateClone,
-        nodeNames: action.payload
-      }
     case types.SET_CPU_USAGE:
       return {
         ...deepStateClone,

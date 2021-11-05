@@ -7,22 +7,7 @@
  * ************************************
  */
 
-
-//return a node names as an array of strings
-export const fetchNodeNamesList = async () => {
-  const data = await fetch('http://localhost:30000/api/v1/query?query=kube_node_info', {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(res => res.json());
-  const nodeNamesList = data.data.result.map(result => {
-    return result.metric.node;
-  });
-  return nodeNamesList;  
-}
+import 'regenerator-runtime/runtime';
 
 //return node CPU usage as a number
 export const fetchCpuUsage = async() => {

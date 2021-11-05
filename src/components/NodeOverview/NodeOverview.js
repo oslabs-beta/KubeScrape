@@ -42,14 +42,12 @@ const NodeOverview = (props) => {
   //the useEffect hook lets you perform side effects in function components. It tells React that we need to do something after render (like componentDidMount)
   //in these cases, useEffect is used to fetch data from the Prometheus server and using the results to update state
   useEffect(async () => {
-    const nodeNamesList = await nodePromql.fetchNodeNamesList();
     const nodeCpuUsagePercentage = await nodePromql.fetchCpuUsage();
     const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage();
     const nodePodTotal = await nodePromql.fetchPodTotal();
     const nodePodCapacity = await nodePromql.fetchPodCapacity();
     const currentNetworkUtilization = await nodePromql.fetchNetworkUtilization();
     const currentNetworkErrors = await nodePromql.fetchNetworkErrors();
-    dispatch(actions.setNodeNames(nodeNamesList))
     dispatch(actions.setCpuUsage(nodeCpuUsagePercentage))
     dispatch(actions.setMemoryUsage(nodeMemoryUsagePercentage));
     dispatch(actions.setPodTotal(nodePodTotal));
