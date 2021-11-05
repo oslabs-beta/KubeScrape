@@ -80,8 +80,8 @@ export const fetchTotalPods = async () => {
 }
 
 //return the total number of services in the cluster
-export const fetchTotalServices = async () => {
-  const data = await fetch('http://localhost:30000/api/v1/query?query=count(kube_service_created)', {
+export const fetchAllServices = async () => {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=kube_service_created', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -89,7 +89,7 @@ export const fetchTotalServices = async () => {
     }
   })
   .then(res => res.json());
-  const totalServices = data.data.result[0].value[1];
+  const totalServices = data.data.result;
   return totalServices;  
 }
 

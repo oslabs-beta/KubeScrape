@@ -38,7 +38,7 @@ const ClusterViewContainer = () => {
     const namespaces = await clusterPromql.fetchAllNamespaces();
     const nodes = await clusterPromql.fetchClusterNodes();
     const deployments = await clusterPromql.fetchTotalDeployments();
-    const services = await clusterPromql.fetchTotalServices();
+    const services = await clusterPromql.fetchAllServices();
 
     dispatch(actions.setClusterNamespaces(namespaces));
     dispatch(actions.setClusterNodes(nodes)); 

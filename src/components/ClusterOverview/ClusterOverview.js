@@ -106,7 +106,7 @@ const ClusterOverview = () => {
         </GridItem>
         <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>            
           <h5>Total Services</h5>
-          <span>{services, nodes.length}</span>
+          <span>{services.length}</span>
         </GridItem>
 
         <GridItem item xs={8} sm={4} className={`${classes.flex} ${classes.graphItem}`}>
