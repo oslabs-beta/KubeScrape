@@ -17,7 +17,6 @@ import NodeOverview from '../NodeOverview/NodeOverview';
 import ClusterOverview from '../ClusterOverview/ClusterOverview';
 import DeploymentOverview from '../DeploymentContainer/DeploymentOverview';
 import * as clusterPromql from '../../utils/cluster-promql-util'
-import * as nodePromql from '../../utils/node-promql-util';
 import * as actions from '../../actions/actions';
 import { styled } from '@mui/system';
 
@@ -28,19 +27,23 @@ const ClusterViewContainer = () => {
   const dispatch = useDispatch();
 
   // extract data from Redux store state
-  const { nodeNames } = useSelector(state => state.node);
-  const { deployments } = useSelector(state => state.cluster)
+  const { deployments, nodes } = useSelector(state => state.cluster)
 
   // TODO: render deployments
   // TODO: prevent element from rerendering? useMemo? some optimization hook
   // TODO: add shadows to components
 
   useEffect( async () => {
-    const nodeNames = await nodePromql.fetchNodeNamesList();
+    // initialize state when app loads
+    const namespaces = await clusterPromql.fetchAllNamespaces();
+    const nodes = await clusterPromql.fetchClusterNodes();
     const deployments = await clusterPromql.fetchTotalDeployments();
+    const services = await clusterPromql.fetchTotalServices();
 
-    dispatch(actions.setNodeNames(nodeNames)); 
+    dispatch(actions.setClusterNamespaces(namespaces));
+    dispatch(actions.setClusterNodes(nodes)); 
     dispatch(actions.setClusterDeployments(deployments)) 
+    dispatch(actions.setClusterServices(services));
   }, []);
   
   const StyledTypography = styled(Typography)(({ theme }) => ({
@@ -53,9 +56,10 @@ const ClusterViewContainer = () => {
   }))
 
   const nodeComponents = [];
-  nodeNames.forEach(nodeName => {
+
+  nodes.forEach(node => {
     nodeComponents.push(
-      <NodeOverview key={nodeNames} nodeName={nodeName}/>
+      <NodeOverview key={node} nodeName={node}/>
     )
   })
 
