@@ -43,9 +43,9 @@ export const setMemoryUsage = (nodeMemoryUsage) => ({
   payload: nodeMemoryUsage
 });
 
-export const setPodTotal = (nodePodTotal) => ({
-  type: actionTypes.SET_TOTAL_PODS,
-  payload: nodePodTotal
+export const setNodePods = (nodes) => ({
+  type: actionTypes.SET_NODE_PODS,
+  payload: nodes
 });
 
 export const setPodCapacity = (nodePodCapacity) => ({

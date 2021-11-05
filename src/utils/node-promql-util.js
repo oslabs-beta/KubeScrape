@@ -36,16 +36,16 @@ export const fetchMemoryUsage = async() => {
   return memoryUsage;
 }
 
-//return total pods running in node as a number
-export const fetchPodTotal= async() => {
-  const data = await fetch('http://localhost:30000/api/v1/query?query=count(kube_pod_info)', {
+// return all pods from a node
+export const fetchNodePods= async(nodeName) => {
+  const data = await fetch(`http://localhost:30000/api/v1/query?query=kube_pod_info{node="${nodeName}"}`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
   }).then(res => res.json())
-  const podTotal= data.data.result[0].value[1];
+  const podTotal= data.data.result;
   return podTotal;
 }
 

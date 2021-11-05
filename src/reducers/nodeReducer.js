@@ -12,7 +12,7 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   nodeCpuUsage: 0,
   nodeMemoryUsage: 0,
-  nodeTotalPods: 0,
+  pods: [],
   nodePodCapacity: 0
 };
 
@@ -33,10 +33,10 @@ const nodeReducer = (
         ...deepStateClone,
         nodeMemoryUsage: action.payload
       }
-    case types.SET_TOTAL_PODS:
+    case types.SET_NODE_PODS:
       return {
         ...deepStateClone,
-        nodeTotalPods: action.payload
+        pods: action.payload
       }
     case types.SET_POD_CAPACITY:
       return {

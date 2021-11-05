@@ -29,7 +29,7 @@ const NodeOverview = (props) => {
 
   //useSelector allows you to extract data from the Redux store state, using a selector function
   //this function accesses the state from the nodeReducer by subscribing to the store through sseSelector
-  const { nodeCpuUsage, nodeMemoryUsage, nodeTotalPods, nodePodCapacity } = useSelector(state => state.node);
+  const { nodeCpuUsage, nodeMemoryUsage, pods, nodePodCapacity } = useSelector(state => state.node);
   const [nodeNetworkUtilization, setNodeNetworkUtilization] = useState(0);
   const [nodeNetworkErrors, setNodeNetworkErrors] = useState(0);
 
@@ -44,13 +44,14 @@ const NodeOverview = (props) => {
   useEffect(async () => {
     const nodeCpuUsagePercentage = await nodePromql.fetchCpuUsage();
     const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage();
-    const nodePodTotal = await nodePromql.fetchPodTotal();
+    const pods = await nodePromql.fetchNodePods(props.nodeName);
     const nodePodCapacity = await nodePromql.fetchPodCapacity();
     const currentNetworkUtilization = await nodePromql.fetchNetworkUtilization();
     const currentNetworkErrors = await nodePromql.fetchNetworkErrors();
+
     dispatch(actions.setCpuUsage(nodeCpuUsagePercentage))
     dispatch(actions.setMemoryUsage(nodeMemoryUsagePercentage));
-    dispatch(actions.setPodTotal(nodePodTotal));
+    dispatch(actions.setNodePods(pods));
     dispatch(actions.setPodCapacity(nodePodCapacity));
     setNodeNetworkUtilization(currentNetworkUtilization);
     setNodeNetworkErrors(currentNetworkErrors);
@@ -128,11 +129,11 @@ const NodeOverview = (props) => {
       </Typography>
       <Grid container justifyContent='center'>
         <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>
-          <span>{nodeTotalPods}</span>            
+          <span>{pods.length}</span>            
           <h6>Active Pods</h6>
         </GridItem>
         <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>
-          <span>{nodePodCapacity - nodeTotalPods}</span>            
+          <span>{nodePodCapacity - pods.length}</span>            
           <h6>Available Pods</h6>
         </GridItem>
         <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>            
