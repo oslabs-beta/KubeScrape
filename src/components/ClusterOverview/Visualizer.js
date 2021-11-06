@@ -20,6 +20,7 @@ import nodeIcon from '../../icons/node-icon.svg';
 import deplIcon from '../../icons/deployment-icon.svg';
 import svcIcon from '../../icons/service-icon.svg';
 import podIcon from '../../icons/pod-icon.svg';
+import { truncate } from 'original-fs';
 
 const primaryColor = '#25274D';
 
@@ -164,6 +165,7 @@ const Visualizer = () => {
   // docs: https://ww3.arb.ca.gov/ei/tools/lib/vis/docs/network.html
   const options = {
     layout: {
+      // uncomment to display nodes in a hierarchy
       // hierarchical: {
       //   direction: "UD",
       //   sortMethod: "directed",
@@ -187,14 +189,10 @@ const Visualizer = () => {
     },
   };
 
-  const events = {
-    // todo: fit network graph inside viewport
-  };
-
   return(
     <Box sx={{ 
       flexGrow: 1,
-      height: '95vh' }}> 
+      height: '90vh' }}> 
       <AppBar position='relative' sx={{
         backgroundColor: primaryColor,
         marginBottom: '20px'
@@ -209,7 +207,16 @@ const Visualizer = () => {
       <Graph
         graph={graph}
         options={options}
-        events={events}
+        getNetwork={(network) => {
+          // Using the vis.js Network API
+          // ensure that the network eases in to fit the viewport
+          setTimeout(() => network.fit({
+            animation: {
+              duration: 3000,
+              easingFunction: 'linear'
+            }
+          }), 1000);
+        }}
       />
 
     </Box>
