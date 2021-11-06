@@ -32,13 +32,13 @@ const K8sContainerViewContainer = (props) => {
   //access podNames state from store, and set allContainerNamesList state
   const { podInfo } = useSelector(state => state.pod);
   const { nodeNames } = useSelector(state => state.node);
-  const [allContainerNamesList, setAllContainerNamesList] = useState([]);
+  const [ allContainerNamesList, setAllContainerNamesList ] = useState([]);
   // keep track of current pod
   // set first pod in pod names list as default if defined
-  const [currentPod, setCurrentPod] = useState(podInfo[0].podName || 'no pod selected');
+  const [ currentPod, setCurrentPod ] = useState(podInfo[0].podName || 'no pod selected');
 
   //**START HERE **/
-  const [currentPodInfo, setCurrentPodInfo] = useState(podInfo[0] || []);
+  const [ currentPodInfo, setCurrentPodInfo ] = useState(podInfo[0] || []);
 
   const dispatch = useDispatch();
   //get array of pod names from prometheus server and use the array to update state
@@ -95,6 +95,7 @@ const K8sContainerViewContainer = (props) => {
           </FormControl>
         </Toolbar>
       </AppBar>
+      <K8sContainerHeading podInfo={currentPodInfo}/>
       <K8sContainersOverview 
         podName={currentPod}
         podInfo={currentPodInfo}

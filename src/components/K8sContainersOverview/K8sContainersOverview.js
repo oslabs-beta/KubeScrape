@@ -21,16 +21,16 @@ import LineChart from '../charts/LineChart';
 //CpuUtilization (seconds), MemoryUtilization (bytes), CpuSaturation (throttled seconds), Memory Saturation (percentage of limit)
 //timeLabels for x-axes as an array, datasets for y-axes as an array of objects (one object per container)
 const K8sContainersOverview = (props) => {
-  const [podContainerNamesList, setPodContainerNamesList] = useState([]);
-  const [containerCpuUsageValues, setContainerCpuUsageValues] = useState({});
-  const [cpuTimeLabels, setCpuTimeLabels] = useState([]);
-  const [cpuDatasets, setCpuDatasets] = useState([]);
-  const [cpuSaturationTimeLabels, setCpuSaturationTimeLabels] = useState([]);
-  const [cpuSaturationDatasets, setCpuSaturationDatasets] = useState([]);
-  const [memoryTimeLabels, setMemoryTimeLabels] = useState([]);
-  const [memoryDatasets, setMemoryDatasets] = useState([]);
-  const [memorySaturationTimeLabels, setMemorySaturationTimeLabels] = useState([]);
-  const [memorySaturationDatasets, setMemorySaturationDatasets] = useState([]);
+  const [ podContainerNamesList, setPodContainerNamesList ] = useState([]);
+  // const [ containerCpuUsageValues, setContainerCpuUsageValues ] = useState({});
+  const [ cpuTimeLabels, setCpuTimeLabels ] = useState([]);
+  const [ cpuDatasets, setCpuDatasets ] = useState([]);
+  const [ cpuSaturationTimeLabels, setCpuSaturationTimeLabels ] = useState([]);
+  const [ cpuSaturationDatasets, setCpuSaturationDatasets ] = useState([]);
+  const [ memoryTimeLabels, setMemoryTimeLabels ] = useState([]);
+  const [ memoryDatasets, setMemoryDatasets ] = useState([]);
+  const [ memorySaturationTimeLabels, setMemorySaturationTimeLabels ] = useState([]);
+  const [ memorySaturationDatasets, setMemorySaturationDatasets ] = useState([]);
  
   //whenever allContainers or podName are updated in K8sContainerViewContainer, get all current pod's containers and update state
   useEffect(() => {
@@ -74,10 +74,14 @@ const K8sContainersOverview = (props) => {
     for (let i = 0; i < podContainerNamesList.length; i++) {
       updatedCpuSaturationValues.timeLabels = [];
       updatedCpuSaturationValues.dataset[i] = { label: podContainerNamesList[i], data: [] };
-      const containerCpuSaturationValues = await containerPromql.fetchRangeContainerMemoryUsage(podContainerNamesList[i], startTime, endTime);
+      const containerCpuSaturationValues = await containerPromql.fetchRangeContainerCpuSaturation(podContainerNamesList[i], startTime, endTime);
+      if (containerCpuSaturationValues === 0) {
+        updatedCpuSaturationValues.dataset[i].label = `${podContainerNamesList[i]}: No CPU Seconds Throttled`
+        return updatedCpuSaturationValues;
+      }
       containerCpuSaturationValues.forEach(value => {
         updatedCpuSaturationValues.timeLabels.push(timeFunction(value[0]));
-        updatedCpuSaturationValues.dataset[i].data.push(value[1] * 100);
+        updatedCpuSaturationValues.dataset[i].data.push(value[1]);
         updatedCpuSaturationValues.dataset[i].backgroundColor = 'rgb(255, 99, 132)',
         updatedCpuSaturationValues.dataset[i].borderColor = 'rgba(255, 99, 132, 0.2)'
       });
@@ -108,11 +112,14 @@ const K8sContainersOverview = (props) => {
     const startTime = Math.floor((Date.now() - 300000) / 1000.0);
     const endTime = Math.floor(Date.now() / 1000.0);
     const updatedMemorySaturationValues = { timeLabels: [], dataset: [] };
-
     for (let i = 0; i < podContainerNamesList.length; i++) {
       updatedMemorySaturationValues.timeLabels = [];
       updatedMemorySaturationValues.dataset[i] = { label: podContainerNamesList[i], data: [] };
       const containerMemorySaturationValues = await containerPromql.fetchRangeContainerMemorySaturation(podContainerNamesList[i], startTime, endTime);
+      if (containerMemorySaturationValues === 0) {
+        updatedMemorySaturationValues.dataset[i].label = `${podContainerNamesList[i]}: No Memory Limit Set`
+        return updatedMemorySaturationValues;
+      }
       containerMemorySaturationValues.forEach(value => {
         updatedMemorySaturationValues.timeLabels.push(timeFunction(value[0]));
         updatedMemorySaturationValues.dataset[i].data.push(value[1] * 100);
@@ -158,7 +165,6 @@ const K8sContainersOverview = (props) => {
   //render each line chart for the current pod with data from state (each container has its own line on each chart)
   return (
     <Box>
-
       <Box>
       <K8sContainerHeading podInfo={props.podInfo}/>
       </Box>
@@ -202,8 +208,8 @@ const K8sContainersOverview = (props) => {
         <LineChart 
           key={props.podName + 'cpuUsage'}
           metricName="CPU Saturation (Seconds Throttled)"
-          xAxis={cpuTimeLabels}
-          datasets={cpuDatasets}
+          xAxis={cpuSaturationTimeLabels}
+          datasets={cpuSaturationDatasets}
         />
       </Box>
 

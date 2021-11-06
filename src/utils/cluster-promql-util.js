@@ -27,7 +27,7 @@ export const fetchClusterCpuUsage = async () => {
 //kube_node_status_capacity tells how much memory is available to kubernetes
 //kube_node_status_allocatable tells memory resources of a node available for scheduling
 export const fetchClusterMemoryUsage = async() => {
-  const data = await fetch('http://localhost:30000/api/v1/query?query=(1-sum(kube_node_status_allocatable_memory_bytes)/sum(kube_node_status_capacity_memory_bytes))*100', {
+  const data = await fetch('http://localhost:30000/api/v1/query?query=(1-sum(kube_node_status_allocatable{resource="memory", unit="byte"})/sum(kube_node_status_capacity{resource="memory", unit="byte"}))*100', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
