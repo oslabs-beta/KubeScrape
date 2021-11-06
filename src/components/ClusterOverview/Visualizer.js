@@ -1,8 +1,8 @@
 /**
  * ************************************
  *
- * @module DeploymentOverview.js
- * @description renders deployment information from the prometheus server
+ * @module Visualizer.js
+ * @description renders a network graph visualizing relationship between k8s objects
  *
  * ************************************
  */
@@ -14,17 +14,14 @@ import {
   Typography
 } from '@mui/material';
 import Graph from 'react-graph-vis';
-import cpIcon from './../../icons/control-plane-icon.svg';
-import nsIcon from './../../icons/namespace-icon.svg';
-import nodeIcon from './../../icons/node-icon.svg';
-import deplIcon from './../../icons/deployment-icon.svg';
-import svcIcon from './../../icons/service-icon.svg';
-import podIcon from './../../icons/pod-icon.svg';
+import cpIcon from '../../icons/control-plane-icon.svg';
+import nsIcon from '../../icons/namespace-icon.svg';
+import nodeIcon from '../../icons/node-icon.svg';
+import deplIcon from '../../icons/deployment-icon.svg';
+import svcIcon from '../../icons/service-icon.svg';
+import podIcon from '../../icons/pod-icon.svg';
 
-// TODO: SET UP ESLINT FOR JSX FILES
 const primaryColor = '#25274D';
-
-const edgeColor = '#8526d3';
 
 const Visualizer = () => {
 
@@ -34,15 +31,16 @@ const Visualizer = () => {
   const graph = {
     nodes: [
       { 
-        id: "control-plane", 
-        label: "Control Plane", 
+        id: 'control-plane', 
+        label: 'Control Plane', 
         size: 45,
         font: { color: '#ffffff' }, 
         image: cpIcon, 
-        shape: "image"},
+        shape: 'image'
+      },
     ],
     edges: []
-  }
+  };
 
   // add a network node for each k8s node and point control plane node to each
   nodes.forEach(nodeName => {
@@ -52,8 +50,8 @@ const Visualizer = () => {
       size: 37.5,
       font: { color: '#ffffff' },
       image: nodeIcon, 
-      shape: "image"
-    }
+      shape: 'image'
+    };
     graph.nodes.push(nodeNode);
 
     const cpEdge = {
@@ -61,7 +59,7 @@ const Visualizer = () => {
       to: nodeNode.id,
       width: 3,
       length: 400
-    }
+    };
 
     graph.edges.push(cpEdge);
 
@@ -73,7 +71,7 @@ const Visualizer = () => {
         size: 30,
         font: { color: '#ffffff' },
         image: nsIcon, 
-        shape: "image"
+        shape: 'image'
       };
       graph.nodes.push(nsNode);
   
@@ -94,7 +92,7 @@ const Visualizer = () => {
             label: pod.metric.pod,
             font: { color: '#ffffff' },
             image: podIcon, 
-            shape: "image"
+            shape: 'image'
           };
           graph.nodes.push(podNode);
 
@@ -113,10 +111,10 @@ const Visualizer = () => {
             width: 2, 
             color: '#ffffff',
             dashes: true
-          }
+          };
           graph.edges.push(deplEdge);
 
-      })
+        });
 
       // add a deployment node for each k8s node in the namespace
       // and point the namespace to each
@@ -127,7 +125,7 @@ const Visualizer = () => {
             label: depl.metric.deployment,
             font: { color: '#ffffff' },
             image: deplIcon, 
-            shape: "image"
+            shape: 'image'
           };
           graph.nodes.push(deplNode);
 
@@ -148,7 +146,7 @@ const Visualizer = () => {
             label: svc.metric.service,
             font: { color: '#ffffff' },
             image: svcIcon,
-            shape: "image"
+            shape: 'image'
           };
           graph.nodes.push(svcNode);
 
@@ -158,14 +156,10 @@ const Visualizer = () => {
             width: 2
           };
           graph.edges.push(nsEdge);
-        })
+        });
   
-    })
-  })
-
-  console.log(deployments);
-
-  console.log(pods);
+    });
+  });
 
   // docs: https://ww3.arb.ca.gov/ei/tools/lib/vis/docs/network.html
   const options = {
@@ -189,39 +183,37 @@ const Visualizer = () => {
       },
     },
     edges: {
-      color: edgeColor,
+      color: '#8526d3',
     },
-    height: '1200px'
   };
 
   const events = {
-    select: function(event) {
-      var { nodes, edges } = event;
-    }
+    // todo: fit network graph inside viewport
   };
 
   return(
-    <Box sx={{ flexGrow: 1 }}>
-    <AppBar position='relative' sx={{
-      backgroundColor: primaryColor,
-      width: '100%',
-      marginBottom: '20px'
-    }}>
-      <Toolbar>
-        <Typography variant='h5' component='div' sx={{ flexGrow: 1 }}>
+    <Box sx={{ 
+      flexGrow: 1,
+      height: '95vh' }}> 
+      <AppBar position='relative' sx={{
+        backgroundColor: primaryColor,
+        marginBottom: '20px'
+      }}>
+        <Toolbar>
+          <Typography variant='h5' component='div' sx={{ flexGrow: 1 }}>
           Visualizer
-        </Typography>
-      </Toolbar>
-    </AppBar>
+          </Typography>
+        </Toolbar>
+      </AppBar>
     
-    <Graph
-      graph={graph}
-      options={options}
-      events={events}
-    />
+      <Graph
+        graph={graph}
+        options={options}
+        events={events}
+      />
 
-  </Box>
-  )
-}
+    </Box>
+  );
+};
 
 export default Visualizer;
