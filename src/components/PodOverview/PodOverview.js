@@ -11,8 +11,7 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
  
-//create a functional component
-export const PodOverview = (props) => { 
+const PodOverview = (props) => { 
 
   return (
     <Grid sx={{border: '1px solid black'}}>

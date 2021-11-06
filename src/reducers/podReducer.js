@@ -10,7 +10,6 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-   podNames: [],
    podInfo: []
 };
  
@@ -21,11 +20,6 @@ const podReducer = (
   const deepStateClone = JSON.parse(JSON.stringify(state));
    
   switch (action.type) {
-    case types.SET_POD_NAMES:
-      return {
-        ...state,
-        podNames: action.payload
-        }
     case types.SET_POD_INFO:
     return {
       ...state,

@@ -10,7 +10,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SidebarItems } from './SidebarItems';
-//imported useTheme
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -88,7 +87,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const Sidebar = () => {
-  //apply theme to component
+
   const theme = useTheme();
   
   const [open, setOpen] = React.useState(false);
@@ -114,7 +113,7 @@ const Sidebar = () => {
 
   return (
     <Box>
-      <Drawer variant='permanent' open={open} sx={{backgroundColor: `${theme.palette.background.default}`}}>
+      <Drawer variant='permanent' open={open} sx={{backgroundColor: theme.palette.background.default}}>
         <DrawerHeader>
           <IconButton sx={{color: 'white'}} onClick={open ? handleDrawerClose : handleDrawerOpen}>
             {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}

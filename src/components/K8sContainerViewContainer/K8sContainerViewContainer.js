@@ -29,10 +29,10 @@ const primaryColor = '#25274D';
 
 const K8sContainerViewContainer = (props) => {
 
-  //access podNames state from store, and set allContainerNamesList state
+  //access podInfo state from store, and set allContainers state
   const { podInfo } = useSelector(state => state.pod);
   const { nodeNames } = useSelector(state => state.node);
-  const [ allContainerNamesList, setAllContainerNamesList ] = useState([]);
+  const [ allContainers, setAllContainers ] = useState([]);
   // keep track of current pod
   // set first pod in pod names list as default if defined
   const [ currentPod, setCurrentPod ] = useState(podInfo[0].podName || 'no pod selected');
@@ -44,20 +44,14 @@ const K8sContainerViewContainer = (props) => {
   //get array of pod names from prometheus server and use the array to update state
   //get all cluster's containers using fetch request and update state
   useEffect(async () => {
-    const podInfoList = await podPromql.fetchPodInfoList(nodeNames[0]);
-    const allContainerNamesList = await containerPromql.fetchContainerNamesList();
-    dispatch(actions.setPodInfo(podInfoList));
-    setAllContainerNamesList(allContainerNamesList);
+    const podInfoArray = await podPromql.fetchPodInfoList(nodeNames[0]);
+    const allContainers = await containerPromql.fetchContainerNames();
+    dispatch(actions.setPodInfo(podInfoArray));
+    setAllContainers(allContainers);
     }, []);
  
-  //TODO: Set current pod based on user's selection from PodOverview component
-  //if podNames is empty, get pod names array from Prometheus server and set state
+  // get info on the user-selected pod and update state
   const handleChange = async (event) => {
-    // set current pod
-    if (podInfo === []) {
-      const podInfoList = podPromql.fetchPodInfoList(nodeNames[0]);
-      dispatch(actions.setPodInfo(podInfoList));
-    }
     const currentPodInfoResult = await podPromql.fetchCurrentPodInfo(event.target.value);
     setCurrentPodInfo(currentPodInfoResult);
     setCurrentPod(event.target.value);
@@ -88,9 +82,6 @@ const K8sContainerViewContainer = (props) => {
               {podInfo.map(pod => 
                 <MenuItem key={pod.podName} value={pod.podName}>{pod.podName}</MenuItem>
               )} 
-
-              {/* test dropdown item */}
-              {/* <MenuItem value={'minikube-node'}>{'minikube-node'}</MenuItem> */}
             </Select>
           </FormControl>
         </Toolbar>
@@ -99,7 +90,7 @@ const K8sContainerViewContainer = (props) => {
       <K8sContainersOverview 
         podName={currentPod}
         podInfo={currentPodInfo}
-        allContainers={allContainerNamesList}
+        allContainers={allContainers}
       />  
     </Box>
   )

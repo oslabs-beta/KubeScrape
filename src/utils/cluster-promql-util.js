@@ -21,8 +21,6 @@ export const fetchClusterCpuUsage = async () => {
   return clusterCpuUsage;  
 }
 
-
-
 //return the memory usage percentage at the cluster level
 //kube_node_status_capacity tells how much memory is available to kubernetes
 //kube_node_status_allocatable tells memory resources of a node available for scheduling
@@ -38,9 +36,6 @@ export const fetchClusterMemoryUsage = async() => {
   console.log(clusterMemoryUsage)
   return clusterMemoryUsage;
 }
-
-//unreliable query: http://localhost:30000/api/v1/query?query=((sum(node_memory_MemTotal_bytes)-sum(node_memory_MemFree_bytes)-sum(node_memory_Buffers_bytes)-sum(node_memory_Cached_bytes))/sum(node_memory_MemTotal_bytes))
-
 
 //return the total number of nodes created in the cluster
 export const fetchTotalNodes = async () => {

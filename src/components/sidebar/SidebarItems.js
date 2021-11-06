@@ -10,7 +10,7 @@
  */
 
 import React from 'react';
-import { AiFillHome, AiFillCodepenCircle } from 'react-icons/ai';
+import { AiFillHome, AiFillCodepenCircle, AiFillCodeSandboxSquare } from 'react-icons/ai';
 
 export const SidebarItems = [
   {
@@ -24,8 +24,8 @@ export const SidebarItems = [
     icon: <AiFillCodepenCircle className='sidebarMenuItemIcons'/>
   },
   {
-  title: 'Pod',
-  path: '/pod',
-  icon: <AiFillCodepenCircle className='sidebarMenuItemIcons'/>
+    title: 'Pod',
+    path: '/pod',
+    icon: <AiFillCodeSandboxSquare className='sidebarMenuItemIcons'/>
   },
 ];

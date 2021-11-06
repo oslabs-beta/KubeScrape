@@ -37,7 +37,6 @@ const NodeDetailsContainer = () => {
 
   console.log(`current node is ${currentNode}`);
 
-
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
