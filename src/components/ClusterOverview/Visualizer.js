@@ -20,7 +20,6 @@ import nodeIcon from '../../icons/node-icon.svg';
 import deplIcon from '../../icons/deployment-icon.svg';
 import svcIcon from '../../icons/service-icon.svg';
 import podIcon from '../../icons/pod-icon.svg';
-import { truncate } from 'original-fs';
 
 const primaryColor = '#25274D';
 
@@ -37,7 +36,9 @@ const Visualizer = () => {
         size: 45,
         font: { color: '#ffffff' }, 
         image: cpIcon, 
-        shape: 'image'
+        shape: 'image',
+        x: 200,
+        y: 160
       },
     ],
     edges: []
@@ -59,7 +60,7 @@ const Visualizer = () => {
       from: 'control-plane',
       to: nodeNode.id,
       width: 3,
-      length: 400
+      length: 500
     };
 
     graph.edges.push(cpEdge);
@@ -162,19 +163,18 @@ const Visualizer = () => {
     });
   });
 
-  // docs: https://ww3.arb.ca.gov/ei/tools/lib/vis/docs/network.html
+  // docs: https://visjs.github.io/vis-network/docs/network/
   const options = {
     layout: {
+      randomSeed: 10, // required for the x and y coordinates of CP node to be in a fixed position
       // uncomment to display nodes in a hierarchy
+      // note: this will cause some pod labels overlap
       // hierarchical: {
       //   direction: "UD",
       //   sortMethod: "directed",
       // },
     },
     physics: {
-      hierarchicalRepulsion: {
-        avoidOverlap: 10
-      },
       barnesHut: {
         enabled: true,
         gravitationalConstant: -1000,
@@ -208,11 +208,10 @@ const Visualizer = () => {
         graph={graph}
         options={options}
         getNetwork={(network) => {
-          // Using the vis.js Network API
           // ensure that the network eases in to fit the viewport
           setTimeout(() => network.fit({
             animation: {
-              duration: 3000,
+              duration: 2000,
               easingFunction: 'linear'
             }
           }), 1000);
