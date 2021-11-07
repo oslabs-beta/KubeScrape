@@ -1,7 +1,7 @@
 {
-  "name": "Electron-App",
+  "name": "KubeScrape",
   "version": "1.0.0",
-  "description": "Simple electron app",
+  "description": "Kubernetes cluster metrics visualizer",
   "main": "src/main.js",
   "scripts": {
     "prod": "cross-env NODE_ENV=production webpack --mode production --config webpack.build.config.js && electron --noDevServer .",
@@ -12,21 +12,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ntgv93/Electron-App.git"
+    "url": "https://github.com/oslabs-beta/KubeScrape.git"
   },
   "keywords": [],
   "author": "Vince Nguyen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ntgv93/Electron-App/issues"
+    "url": "https://github.com/oslabs-beta/KubeScrape/issues"
   },
-  "homepage": "https://github.com/ntgv93/Electron-App#readme",
+  "homepage": "https://github.com/oslabs-beta/KubeScrape#readme",
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.5",
-    "@mui/system": "^5.0.6",
     "chart.js": "^3.6.0",
     "electron": "^15.2.0",
     "electron-squirrel-startup": "^1.0.0",
