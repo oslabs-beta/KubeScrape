@@ -41,8 +41,8 @@ const K8sContainersOverview = (props) => {
   }, [props.allContainers, props.podName]);
 
   // there is an 'update' function for each metric: CPU Usage, CPU Saturation, Memory Usage, and Memory Saturation
-  // for each of the four metrics below, return data in the following format to be readable by LineChart: 
-  //[{ timeLabels:[timestamps],label: containerName, data: [values] }] 
+  // for CPU Usage Values, return data in the following format to be readable by LineChart: 
+  // [{ timeLabels:[timestamps],label: containerName, data: [values] }] 
   const updateCpuUsageValues = async () => {
       const startTime = Math.floor((Date.now() - 300000) / 1000.0);
       const endTime = Math.floor(Date.now() / 1000.0);
@@ -62,6 +62,8 @@ const K8sContainersOverview = (props) => {
       return updatedCpuValues;
   }
 
+  // for CPU Saturation Values, return data in the following format to be readable by LineChart: 
+  // [{ timeLabels:[timestamps],label: containerName, data: [values] }] 
   const updateCpuSaturationValues = async () => {
     const startTime = Math.floor((Date.now() - 300000) / 1000.0);
     const endTime = Math.floor(Date.now() / 1000.0);
@@ -85,6 +87,8 @@ const K8sContainersOverview = (props) => {
     return updatedCpuSaturationValues;
   }
 
+  // for Memory Usage Values, return data in the following format to be readable by LineChart: 
+  // [{ timeLabels:[timestamps],label: containerName, data: [values] }] 
   const updateMemoryUsageValues = async () => {
     const startTime = Math.floor((Date.now() - 300000) / 1000.0);
     const endTime = Math.floor(Date.now() / 1000.0);
@@ -104,6 +108,8 @@ const K8sContainersOverview = (props) => {
     return updatedMemoryValues;
   }
   
+  // for Memory Saturation Values, return data in the following format to be readable by LineChart: 
+  // [{ timeLabels:[timestamps],label: containerName, data: [values] }] 
   const updateMemorySaturationValues = async () => {
     const startTime = Math.floor((Date.now() - 300000) / 1000.0);
     const endTime = Math.floor(Date.now() / 1000.0);

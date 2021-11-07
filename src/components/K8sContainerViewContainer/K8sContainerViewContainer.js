@@ -33,11 +33,10 @@ const K8sContainerViewContainer = (props) => {
   const { podInfo } = useSelector(state => state.pod);
   const { nodeNames } = useSelector(state => state.node);
   const [ allContainers, setAllContainers ] = useState([]);
-  // keep track of current pod
-  // set first pod in pod names list as default if defined
-  const [ currentPod, setCurrentPod ] = useState(podInfo[0].podName || 'no pod selected');
 
-  //**START HERE **/
+  // keep track of current pod
+  // set first pod in pod names list as default if it's defined
+  const [ currentPod, setCurrentPod ] = useState(podInfo[0].podName || 'no pod selected');
   const [ currentPodInfo, setCurrentPodInfo ] = useState(podInfo[0] || []);
 
   const dispatch = useDispatch();
@@ -56,6 +55,7 @@ const K8sContainerViewContainer = (props) => {
     setCurrentPodInfo(currentPodInfoResult);
     setCurrentPod(event.target.value);
   }
+  
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
