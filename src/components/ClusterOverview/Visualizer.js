@@ -176,7 +176,6 @@ const Visualizer = () => {
     },
     physics: {
       barnesHut: {
-        enabled: true,
         gravitationalConstant: -1000,
         centralGravity: 0,
         springLength: 150,

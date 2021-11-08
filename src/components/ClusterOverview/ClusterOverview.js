@@ -16,7 +16,6 @@ import { styled } from '@mui/system';
 
 const primaryColor = '#25274D';
 
-// TO DO: switch over to redux
 const ClusterOverview = () => {
 
   //initialize state that is rendered only in this component
@@ -73,7 +72,7 @@ const ClusterOverview = () => {
 
   const renderGauge = (title, value) => {
     return(
-      <>          
+      <Grid item xs={12}>          
         <h3>{title}</h3>
         <GaugeChart id="gauge-chart" 
           nrOfLevels={3} 
@@ -84,36 +83,36 @@ const ClusterOverview = () => {
           textColor={"#FFF"}
           needleColor="#FFF"           
         />
-      </>
+      </Grid>
     )
   }
 
   return(
-    <Container>
+    <Container sx={{width: '90%'}}>
     {/* <h2>Cluster Name: {nodeNames}</h2> */}
       <Grid container justifyContent='center'>
-        <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>          
+        <GridItem item xs={12} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>          
           <h5>Total Nodes</h5>
           <span>{clusterTotalNodes}</span>
         </GridItem>
-        <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>          
+        <GridItem item xs={12} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>          
           <h5>Total Deployments</h5>
           <span>{clusterTotalDeployments.length}</span>
         </GridItem>
-        <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>            
+        <GridItem item xs={12} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>            
           <h5>Total Pods</h5>
           <span>{clusterTotalPods}</span>
         </GridItem>
-        <GridItem item xs={6} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>            
+        <GridItem item xs={12} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>            
           <h5>Total Services</h5>
           <span>{services.length}</span>
         </GridItem>
 
-        <GridItem item xs={8} sm={4} className={`${classes.flex} ${classes.graphItem}`}>
+        <GridItem item xs={12} sm={4} className={`${classes.flex} ${classes.graphItem}`}>
           {renderGauge('CPU Usage', clusterCpuUsage / 100)}
         </GridItem>
-        <GridItem item xs={8} sm={4} className={`${classes.flex} ${classes.graphItem}`}>
-          {renderGauge('Memory Usage', clusterMemoryUsage)}
+        <GridItem item xs={12} sm={4} className={`${classes.flex} ${classes.graphItem}`}>
+          {renderGauge('Memory Usage', clusterMemoryUsage / 100)}
         </GridItem>
       </Grid>
       

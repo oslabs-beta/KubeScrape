@@ -11,12 +11,14 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import PodDetailsContainer from '../PodDetailsContainer/PodDetailsContainer';
 
 const primaryColor = '#25274D';
 
@@ -38,7 +40,7 @@ const NodeDetailsContainer = () => {
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{flexGrow: 1}}>
       <AppBar position='relative' sx={{
         backgroundColor: primaryColor,
         width: '100%',
@@ -66,6 +68,7 @@ const NodeDetailsContainer = () => {
           </FormControl>
         </Toolbar>
       </AppBar>
+      <PodDetailsContainer node={currentNode}/>
     </Box>
   )
 }

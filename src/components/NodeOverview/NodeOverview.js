@@ -43,7 +43,7 @@ const NodeOverview = (props) => {
   //in these cases, useEffect is used to fetch data from the Prometheus server and using the results to update state
   useEffect(async () => {
     const nodeCpuUsagePercentage = await nodePromql.fetchCpuUsage();
-    const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage();
+    const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage(props.nodeName);
     const pods = await nodePromql.fetchNodePods(props.nodeName);
     const nodePodCapacity = await nodePromql.fetchPodCapacity();
     const currentNetworkUtilization = await nodePromql.fetchNetworkUtilization();
@@ -148,7 +148,7 @@ const NodeOverview = (props) => {
           {renderGauge('Node CPU Usage', nodeCpuUsage / 100)}
         </GridItem>
         <GridItem item lg={6} className={`${classes.flex} ${classes.graphItem}`}>          
-          {renderGauge('Node Memory Usage', nodeMemoryUsage)}
+          {renderGauge('Node Memory Usage', nodeMemoryUsage / 100)}
         </GridItem>
       </Grid>
     </StyledContainer>

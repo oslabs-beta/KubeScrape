@@ -52,3 +52,13 @@ export const setPodCapacity = (nodePodCapacity) => ({
   type: actionTypes.SET_POD_CAPACITY,
   payload: nodePodCapacity
 });
+
+export const setPodNames = (podNames) => ({
+  type: actionTypes.SET_POD_NAMES,
+  payload: podNames
+})
+
+export const setPodInfo = (podInfo) => ({
+  type: actionTypes.SET_POD_INFO,
+  payload: podInfo
+});
