@@ -16,6 +16,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewContainer';
 import NodeDetailsContainer from './components/NodeDetailsContainer/NodeDetailsContainer';
+import Visualizer from './components/ClusterOverview/Visualizer';
 import K8sContainerViewContainer from './components/K8sContainerViewContainer/K8sContainerViewContainer';
 
 const App = () => {
@@ -38,6 +39,10 @@ const App = () => {
 
           <Route path='/node' exact>
             <NodeDetailsContainer />
+          </Route>
+
+          <Route path='/visualizer' exact>
+            <Visualizer/>
           </Route>
 
           <Route path='/pod' exact>

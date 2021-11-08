@@ -24,11 +24,11 @@ const primaryColor = '#25274D';
 
 const NodeDetailsContainer = () => {
   // get nodeNames from Redux store
-  const { nodeNames } = useSelector(state => state.node);
+  const { nodes } = useSelector(state => state.cluster);
 
   // keep track of current node
   // set first node in node names list as default if defined
-  const [ currentNode, setCurrentNode ] = useState(nodeNames[0] || '');
+  const [ currentNode, setCurrentNode ] = useState(nodes[0] || '');
 
   const handleChange = (event) => {
     // set current node
@@ -47,7 +47,7 @@ const NodeDetailsContainer = () => {
         marginBottom: '20px'
       }}>
         <Toolbar>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+          <Typography variant='h5' component='div' sx={{ flexGrow: 1 }}>
             Node Details
           </Typography>
 
@@ -59,8 +59,8 @@ const NodeDetailsContainer = () => {
             }}>
             <InputLabel sx={{ color: 'white' }}>View Node</InputLabel>
             <Select sx={{ color: 'white' }} value={currentNode} onChange={handleChange}>
-              {nodeNames.map(nodeName => 
-                <MenuItem key={nodeName} value={nodeName}>{nodeName}</MenuItem>
+              {nodes.map(node => 
+                <MenuItem key={node} value={node}>{node}</MenuItem>
               )}
               {/* test dropdown item */}
               <MenuItem value={'minikube-node'}>{'minikube-node'}</MenuItem>
