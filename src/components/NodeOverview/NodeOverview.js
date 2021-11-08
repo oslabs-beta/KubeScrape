@@ -30,8 +30,8 @@ const NodeOverview = (props) => {
   //useSelector allows you to extract data from the Redux store state, using a selector function
   //this function accesses the state from the nodeReducer by subscribing to the store through sseSelector
   const { nodeCpuUsage, nodeMemoryUsage, nodeTotalPods, nodePodCapacity } = useSelector(state => state.node);
-  const [nodeNetworkUtilization, setNodeNetworkUtilization] = useState(0);
-  const [nodeNetworkErrors, setNodeNetworkErrors] = useState(0);
+  const [ nodeNetworkUtilization, setNodeNetworkUtilization ] = useState(0);
+  const [ nodeNetworkErrors, setNodeNetworkErrors ] = useState(0);
 
   //the useDispatch hook returns a reference to the dispatch function from the Redux store.
   //dispatch can now be used to dispatch actions as needed
@@ -44,7 +44,7 @@ const NodeOverview = (props) => {
   useEffect(async () => {
     const nodeNamesList = await nodePromql.fetchNodeNamesList();
     const nodeCpuUsagePercentage = await nodePromql.fetchCpuUsage();
-    const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage();
+    const nodeMemoryUsagePercentage = await nodePromql.fetchMemoryUsage(props.nodeName);
     const nodePodTotal = await nodePromql.fetchPodTotal();
     const nodePodCapacity = await nodePromql.fetchPodCapacity();
     const currentNetworkUtilization = await nodePromql.fetchNetworkUtilization();
@@ -149,7 +149,7 @@ const NodeOverview = (props) => {
           {renderGauge('Node CPU Usage', nodeCpuUsage / 100)}
         </GridItem>
         <GridItem item lg={6} className={`${classes.flex} ${classes.graphItem}`}>          
-          {renderGauge('Node Memory Usage', nodeMemoryUsage)}
+          {renderGauge('Node Memory Usage', nodeMemoryUsage / 100)}
         </GridItem>
       </Grid>
     </StyledContainer>

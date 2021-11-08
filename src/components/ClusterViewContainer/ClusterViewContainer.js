@@ -74,7 +74,7 @@ const ClusterViewContainer = () => {
   })
 
   return(
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, width: '90%' }}>
       <AppBar position='relative' sx={{
         backgroundColor: primaryColor,
         width: '100%',
