@@ -13,10 +13,9 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
 import { 
-  Container, Grid, Typography,
-  styled
+  Container, Grid, Typography
 } from '@mui/material';
- 
+import { styled } from '@mui/material/styles';
 import * as actions from '../../actions/actions';
  
 // fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
