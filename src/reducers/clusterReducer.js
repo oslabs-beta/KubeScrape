@@ -10,7 +10,10 @@
 import * as types from './../constants/actionTypes';
 
 const initialState = {
-  deployments: []
+  namespaces: [],
+  deployments: [],
+  services: [],
+  nodes: []
 };
 
 const clusterReducer = (
@@ -20,10 +23,25 @@ const clusterReducer = (
   const deepStateClone = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
+    case types.SET_CLUSTER_NAMESPACES:
+      return {
+        ...deepStateClone,
+        namespaces: action.payload
+      }
     case types.SET_CLUSTER_DEPLOYMENTS:
       return {
         ...deepStateClone,
         deployments: action.payload
+      }
+    case types.SET_CLUSTER_SERVICES:
+      return {
+        ...deepStateClone,
+        services: action.payload
+      }
+    case types.SET_CLUSTER_NODES:
+      return {
+        ...deepStateClone,
+        nodes: action.payload
       }
     default:
         return state;

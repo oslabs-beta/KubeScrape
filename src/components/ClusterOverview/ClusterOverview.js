@@ -7,7 +7,6 @@
  * ************************************
  */
 
-
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
@@ -17,11 +16,7 @@ import { styled } from '@mui/system';
 
 const primaryColor = '#25274D';
 
-//create a functional component
 const ClusterOverview = () => {
-  // TO DO: get deployments from redux store using useSelector
-  
-
 
   //initialize state that is rendered only in this component
   const [clusterCpuUsage, setClusterCpuUsage] = useState(0);
@@ -29,23 +24,20 @@ const ClusterOverview = () => {
   const [clusterTotalNodes, setClusterTotalNodes] = useState(0);
   const [clusterTotalDeployments, setClusterTotalDeployments] = useState(0);
   const [clusterTotalPods, setClusterTotalPods] = useState(0);
-  const [clusterTotalServices, setClusterTotalServices] = useState(0);
+  // const [clusterTotalServices, setClusterTotalServices] = useState();
+  const { services, nodes } = useSelector(state => state.cluster);
 
   //fetch data from promQL server to update state
   useEffect(async() => {
     const currentClusterCpuUsage = await clusterPromql.fetchClusterCpuUsage();
     const currentClusterMemoryUsage = await clusterPromql.fetchClusterMemoryUsage();
-    const currentTotalNodes = await clusterPromql.fetchTotalNodes();
     const currentTotalDeployments = await clusterPromql.fetchTotalDeployments();
     const currentTotalPods = await clusterPromql.fetchTotalPods();
-    const currentTotalServices = await clusterPromql.fetchTotalServices();
 
     setClusterCpuUsage(currentClusterCpuUsage);
     setClusterMemoryUsage(currentClusterMemoryUsage);
-    setClusterTotalNodes(currentTotalNodes);
     setClusterTotalDeployments(currentTotalDeployments);
     setClusterTotalPods(currentTotalPods);
-    setClusterTotalServices(currentTotalServices);
 
   }, []);
 
@@ -113,7 +105,7 @@ const ClusterOverview = () => {
         </GridItem>
         <GridItem item xs={12} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>            
           <h5>Total Services</h5>
-          <span>{clusterTotalServices}</span>
+          <span>{services.length}</span>
         </GridItem>
 
         <GridItem item xs={12} sm={4} className={`${classes.flex} ${classes.graphItem}`}>

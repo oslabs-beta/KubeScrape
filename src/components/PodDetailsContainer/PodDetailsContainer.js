@@ -48,7 +48,7 @@ const PodDetailsContainer = (props) => {
 
     const podEls = podInfo.map((pod, index) => {
       return (
-      <Grid item container xs={12} sm={4} key={'index: ' + index } onClick={() => goToPod(pod.podName)}
+      <Grid item xs={12} sm={6} key={'index: ' + index } onClick={() => goToPod(pod.podName)}
       >
       <PodOverview
         key={'pod' + index} 
@@ -72,7 +72,7 @@ const PodDetailsContainer = (props) => {
           marginBottom: '20px'
         }}>
         </AppBar>
-        <Grid container spacing={2} direction="column" alignItems="center">
+        <Grid container spacing={2}>
           {podEls}
         </Grid>
       </Box>

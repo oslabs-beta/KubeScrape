@@ -17,12 +17,22 @@ export const setClusterDeployments = (deployments) => ({
   payload: deployments
 });
 
-// node actions
-export const setNodeNames = (nodeNames) => ({
-  type: actionTypes.SET_NODE_NAMES,
-  payload: nodeNames
+export const setClusterNamespaces = (namespaces) => ({
+  type: actionTypes.SET_CLUSTER_NAMESPACES,
+  payload: namespaces
 });
 
+export const setClusterServices = (services) => ({
+  type: actionTypes.SET_CLUSTER_SERVICES,
+  payload: services
+});
+
+export const setClusterNodes = (nodes) => ({
+  type: actionTypes.SET_CLUSTER_NODES,
+  payload: nodes
+});
+
+// node actions
 export const setCpuUsage = (nodeCpuUsage) => ({
   type: actionTypes.SET_CPU_USAGE,
   payload: nodeCpuUsage
@@ -33,9 +43,9 @@ export const setMemoryUsage = (nodeMemoryUsage) => ({
   payload: nodeMemoryUsage
 });
 
-export const setPodTotal = (nodePodTotal) => ({
-  type: actionTypes.SET_TOTAL_PODS,
-  payload: nodePodTotal
+export const setNodePods = (nodes) => ({
+  type: actionTypes.SET_NODE_PODS,
+  payload: nodes
 });
 
 export const setPodCapacity = (nodePodCapacity) => ({

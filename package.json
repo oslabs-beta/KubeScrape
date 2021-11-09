@@ -1,7 +1,7 @@
 {
-  "name": "Electron-App",
+  "name": "KubeScrape",
   "version": "1.0.0",
-  "description": "Simple electron app",
+  "description": "Kubernetes cluster metrics visualizer",
   "main": "src/main.js",
   "scripts": {
     "prod": "cross-env NODE_ENV=production webpack --mode production --config webpack.build.config.js && electron --noDevServer .",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ntgv93/Electron-App.git"
+    "url": "https://github.com/oslabs-beta/KubeScrape.git"
   },
   "keywords": [],
   "author": "Vince Nguyen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ntgv93/Electron-App/issues"
+    "url": "https://github.com/oslabs-beta/KubeScrape/issues"
   },
-  "homepage": "https://github.com/ntgv93/Electron-App#readme",
+  "homepage": "https://github.com/oslabs-beta/KubeScrape#readme",
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
@@ -33,6 +33,7 @@
     "react-chartjs-2": "^3.3.0",
     "react-dom": "^17.0.2",
     "react-gauge-chart": "^0.4.0",
+    "react-graph-vis": "^1.0.7",
     "react-icons": "^4.3.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
@@ -54,8 +55,11 @@
     "electron-packager": "^15.3.0",
     "eslint": "^8.0.1",
     "eslint-import-resolver-webpack": "^0.13.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.21.5",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
