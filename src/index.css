@@ -1,7 +1,7 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #ffffff;
-  /* background-color: #202129; */
+  background-color: #202129;
 }
 
 .main, .flex-container{

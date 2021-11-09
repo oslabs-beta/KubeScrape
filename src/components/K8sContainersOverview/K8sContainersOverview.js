@@ -157,7 +157,6 @@ const K8sContainersOverview = (props) => {
   return (
     <Box>
       <Box>
-      <K8sContainerHeading podInfo={props.podInfo}/>
       </Box>
 
       {/* CPU Usage Line Chart */}

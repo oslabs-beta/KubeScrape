@@ -10,7 +10,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
-  AppBar, Box, Toolbar,
+  AppBar, Box, Grid, Toolbar,
   Container, Typography
 } from '@mui/material';
 import NodeOverview from '../NodeOverview/NodeOverview';

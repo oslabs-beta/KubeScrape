@@ -16,29 +16,30 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles'; 
-
-const FlexItem = styled('span')({
-
-});
+import { styled } from '@mui/system'; 
+import { DirectionsWalk } from '@mui/icons-material';
 
 
+const Detail = styled(ListItem)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  // fontSize: '1.5vw',
+}));
 
-const PodOverview = (props) => { 
 
-  return (
-    <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-    <Paper variant='outlined' sx={{boxShadow: 20}}>
-      <List >
-      <ListItem sx={{display: 'flex', justifyContent: 'space-between', fontSize: '1.5vw'}} divider={true}><span>pod:</span> <span>{props.podName}</span></ListItem>
-      <ListItem sx={{display: 'flex', justifyContent: 'space-between', fontSize: '1.5vw'}} divider={true}><span>namespace:</span>  <span>{props.namespace}</span></ListItem>
-      <ListItem sx={{display: 'flex', justifyContent: 'space-between', fontSize: '1.5vw'}} divider={true}><span>ip:</span>  <span>{props.ip}</span></ListItem>
-      <ListItem sx={{display: 'flex', justifyContent: 'space-between', fontSize: '1.5vw'}} divider={true}><span>deployment:</span>  <span>{props.deployment}</span></ListItem>
-      <ListItem sx={{display: 'flex', justifyContent: 'space-between', fontSize: '1.5vw'}} divider={true}><span>uid:</span>  <span>{props.uid}</span></ListItem>
+
+const PodOverview = (props) => (
+  <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+    <Paper variant='outlined' sx={{boxShadow: 10}}>
+      <List>
+        <Detail ><span>pod: {props.podName}</span></Detail>
+        <Detail ><span>namespace: {props.namespace}</span></Detail>
+        <Detail ><span>ip: {props.ip}</span></Detail>
+        <Detail ><span>deployment: {props.deployment}</span></Detail>
+        <Detail ><span>uid: {props.uid}</span></Detail>
       </List>
     </Paper>
-    </Box>
-  );
-};
+  </Box>
+);
 
 export default PodOverview;
