@@ -27,7 +27,6 @@ const Visualizer = () => {
 
   const { namespaces, nodes, deployments, services } = useSelector(state => state.cluster);
   const { pods } = useSelector(state => state.node);
-
   const graph = {
     nodes: [
       { 
@@ -47,7 +46,7 @@ const Visualizer = () => {
   // add a network node for each k8s node and point control plane node to each
   nodes.forEach(nodeName => {
     const nodeNode = {
-      id: nodeName,
+      id: `${nodeName}-node`,
       label: nodeName,
       size: 37.5,
       font: { color: '#ffffff' },
@@ -68,7 +67,7 @@ const Visualizer = () => {
     // add a node for each namespace and point k8s node to each
     namespaces.forEach(ns => {
       const nsNode = {
-        id: ns.metric.namespace,
+        id: `${ns.metric.namespace}-ns`,
         label: ns.metric.namespace,
         size: 30,
         font: { color: '#ffffff' },
@@ -90,7 +89,7 @@ const Visualizer = () => {
         .filter(pod => pod.metric.namespace === ns.metric.namespace)
         .forEach(pod => {
           const podNode = {
-            id: pod.metric.pod,
+            id: `${pod.metric.pod}-pod`,
             label: pod.metric.pod,
             font: { color: '#ffffff' },
             image: podIcon, 
@@ -123,7 +122,7 @@ const Visualizer = () => {
       deployments.filter(depl => depl.metric.namespace === ns.metric.namespace)
         .forEach(depl => {
           const deplNode = {
-            id: depl.metric.deployment,
+            id: `${depl.metric.deployment}-depl`,
             label: depl.metric.deployment,
             font: { color: '#ffffff' },
             image: deplIcon, 
@@ -144,7 +143,7 @@ const Visualizer = () => {
       services.filter(svc => svc.metric.namespace === ns.metric.namaespace)
         .forEach(svc => {
           const svcNode = {
-            id: svc.metric.service,
+            id: `${svc.metric.service}-svc`,
             label: svc.metric.service,
             font: { color: '#ffffff' },
             image: svcIcon,
