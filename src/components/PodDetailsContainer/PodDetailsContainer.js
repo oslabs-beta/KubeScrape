@@ -46,31 +46,29 @@ const PodDetailsContainer = (props) => {
     });
   };
 
-  const podEls = podInfo.map((pod, index) => {
-    return (
-      <Grid item xs={12} sm={6} key={'index: ' + index } onClick={() => goToPod(pod.podName)}
-      >
-        <PodOverview
-          key={'pod' + index} 
-          podName={pod.podName}
-          namespace={pod.podNamespace}
-          ip={pod.podIp}
-          deployment={pod.createdByDeployment}
-          uid={pod.uid}
-        />
-      </Grid>
-    )
-    });
+  const podEls = podInfo.map((pod, index) => (
+    <Grid item container key={'index: ' + index} xs={12} sm={6} justifyContent='center' onClick={() => goToPod(pod.podName)}
+    >
+      <PodOverview
+        key={'pod' + index} 
+        podName={pod.podName}
+        namespace={pod.podNamespace}
+        ip={pod.podIp}
+        deployment={pod.createdByDeployment}
+        uid={pod.uid}
+      />
+    </Grid>
+  ));
 
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
-    <Box>
+    <Container>
       <Typography variant='h4' align='center' gutterBottom>Click on a pod for more information</Typography>
-      <Grid container spacing={2}>
+      <Grid container justifyContent='center' alignItems='center' spacing={2}>
         {podEls}
       </Grid>
-    </Box>
+    </Container>
   );
 };
  

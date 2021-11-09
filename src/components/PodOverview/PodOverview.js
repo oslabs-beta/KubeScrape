@@ -29,10 +29,10 @@ const Detail = styled(ListItem)(({ theme }) => ({
 
 
 const PodOverview = (props) => (
-  <Container 
+  <Box 
     sx={{
-      display: 'flex', 
-      justifyContent: 'space-between', 
+      // display: 'flex', 
+      // justifyContent: 'center', 
       maxWidth: '350px',     
       ':hover': {
         filter: 'brightness(150%)'
@@ -47,7 +47,7 @@ const PodOverview = (props) => (
         <Detail ><span>uid: {props.uid}</span></Detail>
       </List>
     </Paper>
-  </Container>
+  </Box>
 );
 
 export default PodOverview;
