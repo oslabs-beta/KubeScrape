@@ -31,19 +31,19 @@ const K8sContainerViewContainer = (props) => {
 
   //access podInfo state from store, and set allContainers state
   const { podInfo } = useSelector(state => state.pod);
-  const { nodeNames } = useSelector(state => state.node);
+  const { nodes } = useSelector(state => state.cluster);
   const [ allContainers, setAllContainers ] = useState([]);
 
   // keep track of current pod
   // set first pod in pod names list as default if it's defined
-  const [ currentPod, setCurrentPod ] = useState(podInfo[0].podName || 'no pod selected');
+  const [ currentPod, setCurrentPod ] = useState(podInfo[0]?.podName || 'no pod selected');
   const [ currentPodInfo, setCurrentPodInfo ] = useState(podInfo[0] || []);
 
   const dispatch = useDispatch();
   //get array of pod names from prometheus server and use the array to update state
   //get all cluster's containers using fetch request and update state
   useEffect(async () => {
-    const podInfoArray = await podPromql.fetchPodInfoList(nodeNames[0]);
+    const podInfoArray = await podPromql.fetchPodInfoList(nodes[0]);
     const allContainers = await containerPromql.fetchContainerNames();
     dispatch(actions.setPodInfo(podInfoArray));
     setAllContainers(allContainers);
