@@ -53,9 +53,9 @@ const NodeDetailsContainer = () => {
 
           <FormControl variant='filled' 
             sx={{ minWidth: 200, 
-                  padding: 0,
-                  border: '1px solid white',
-                  borderRadius: '5px',
+              padding: 0,
+              border: '1px solid white',
+              borderRadius: '5px',
             }}>
             <InputLabel sx={{ color: 'white' }}>View Node</InputLabel>
             <Select sx={{ color: 'white' }} value={currentNode} onChange={handleChange}>

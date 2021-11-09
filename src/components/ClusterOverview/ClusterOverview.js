@@ -18,7 +18,7 @@ const primaryColor = '#25274D';
 
 const ClusterOverview = () => {
 
-  //initialize state that is rendered only in this component
+  // initialize state that is rendered only in this component
   const [clusterCpuUsage, setClusterCpuUsage] = useState(0);
   const [clusterMemoryUsage, setClusterMemoryUsage] = useState(0);
   const [clusterTotalNodes, setClusterTotalNodes] = useState(0);
@@ -27,7 +27,7 @@ const ClusterOverview = () => {
   // const [clusterTotalServices, setClusterTotalServices] = useState();
   const { services, nodes } = useSelector(state => state.cluster);
 
-  //fetch data from promQL server to update state
+  // fetch data from promQL server to update state
   useEffect(async() => {
     const currentClusterCpuUsage = await clusterPromql.fetchClusterCpuUsage();
     const currentClusterMemoryUsage = await clusterPromql.fetchClusterMemoryUsage();
@@ -89,7 +89,7 @@ const ClusterOverview = () => {
 
   return(
     <Container sx={{width: '90%'}}>
-    {/* <h2>Cluster Name: {nodeNames}</h2> */}
+      {/* <h2>Cluster Name: {nodeNames}</h2> */}
       <Grid container justifyContent='center'>
         <GridItem item xs={12} sm={2} className={`${classes.flex} ${classes.metricsItem}`}>          
           <h5>Total Nodes</h5>

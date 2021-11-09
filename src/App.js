@@ -13,7 +13,7 @@ import { Switch, Route, useHistory } from 'react-router-dom';
 import regeneratorRuntime from 'regenerator-runtime';
 import { ThemeProvider } from '@mui/material/styles';
 
-import { theme } from './theme';
+import theme from './theme';
 import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewContainer';
 import NodeDetailsContainer from './components/NodeDetailsContainer/NodeDetailsContainer';
 import Visualizer from './components/ClusterOverview/Visualizer';

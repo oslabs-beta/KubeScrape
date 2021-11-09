@@ -52,8 +52,8 @@ const ClusterViewContainer = () => {
     padding: '10px 25px',
     borderRadius: '5px',
     marginBottom: '20px', 
-    flexGrow: 1 
-  }))
+    flexGrow: 1
+  }));
 
   const nodeComponents = [];
 
@@ -80,7 +80,6 @@ const ClusterViewContainer = () => {
   return(
     <Box sx={{ flexGrow: 1, width: '90%' }}>
       <AppBar position='relative' sx={{
-        backgroundColor: primaryColor,
         width: '100%',
         marginBottom: '20px'
       }}>

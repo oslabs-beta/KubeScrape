@@ -23,7 +23,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 const drawerWidth = 180;
-const primaryColor = '#25274D';
+// const primaryColor = '#25274D';
 
 // Mixins provide additional rules that can be injected directly into styles
 // theme here is just MUI's default theme
@@ -33,7 +33,7 @@ const openedMixin = (theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen
   }),
-  backgroundColor: primaryColor,
+  // backgroundColor: primaryColor,
   overflowX:'hidden'
 });
 
@@ -43,7 +43,7 @@ const closedMixin = (theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
   }),
-  backgroundColor: primaryColor,
+  // backgroundColor: primaryColor,
   overflowX:'hidden'
 });
 

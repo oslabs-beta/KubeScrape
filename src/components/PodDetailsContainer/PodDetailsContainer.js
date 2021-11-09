@@ -11,7 +11,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  AppBar, Box, Grid
+  AppBar, Box, Grid, Typography
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import PodOverview from '../PodOverview/PodOverview';
@@ -36,47 +36,42 @@ const PodDetailsContainer = (props) => {
     const podInfoList = await podPromql.fetchPodInfoList(props.node);
     dispatch(actions.setPodNames(podNamesList));
     dispatch(actions.setPodInfo(podInfoList));
-    }, []);
+  }, []);
 
   // TODO: Fix goToPod so it redirects to the correct pod and top of the page in K8sContainerOverview when a PodOverview is clicked
   const goToPod = (podName) => {
     history.push({
       pathname:'/pod',
-      podName: podName
-    })
-  }
+      podName
+    });
+  };
 
-    const podEls = podInfo.map((pod, index) => {
-      return (
+  const podEls = podInfo.map((pod, index) => {
+    return (
       <Grid item xs={12} sm={6} key={'index: ' + index } onClick={() => goToPod(pod.podName)}
       >
-      <PodOverview
-        key={'pod' + index} 
-        podName={pod.podName}
-        namespace={pod.podNamespace}
-        ip={pod.podIp}
-        deployment={pod.createdByDeployment}
-        uid={pod.uid}
-      />
+        <PodOverview
+          key={'pod' + index} 
+          podName={pod.podName}
+          namespace={pod.podNamespace}
+          ip={pod.podIp}
+          deployment={pod.createdByDeployment}
+          uid={pod.uid}
+        />
       </Grid>
-      )
+    )
     });
 
-    // Appbar uses display:flex + flex-direction: column
-    // while Toolbar uses display:flex with default flex-direction: row to display items inline
-    return(
-      <Box >
-        <AppBar position='relative' sx={{
-          backgroundColor: primaryColor,
-          width: '100%',
-          marginBottom: '20px'
-        }}>
-        </AppBar>
-        <Grid container spacing={2}>
-          {podEls}
-        </Grid>
-      </Box>
-    )
-}
+  // Appbar uses display:flex + flex-direction: column
+  // while Toolbar uses display:flex with default flex-direction: row to display items inline
+  return(
+    <Box>
+      <Typography>Click on a pod for more information</Typography>
+      <Grid container spacing={2}>
+        {podEls}
+      </Grid>
+    </Box>
+  );
+};
  
- export default PodDetailsContainer;
+export default PodDetailsContainer;
