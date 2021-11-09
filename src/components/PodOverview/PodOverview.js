@@ -23,7 +23,7 @@ import { DirectionsWalk } from '@mui/icons-material';
 const Detail = styled(ListItem)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
-  // fontSize: '1.5vw',
+  fontSize: '14px',
 }));
 
 
@@ -32,13 +32,14 @@ const PodOverview = (props) => (
   <Box 
     sx={{
       // display: 'flex', 
-      // justifyContent: 'center', 
-      maxWidth: '350px',     
+      // alignItems: 'center', 
+      maxWidth: '350px',
+      fontSize: '1rem',   
       ':hover': {
         filter: 'brightness(150%)'
       }
     }}>
-    <Paper elevation={5}>
+    <Paper elevation={5} sx={{display: 'flex', alignItems: 'center', height: '200px'}}>
       <List>
         <Detail ><span>pod: {props.podName}</span></Detail>
         <Detail ><span>namespace: {props.namespace}</span></Detail>
