@@ -8,7 +8,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { AppBar, Box, Toolbar, Container, Typography } from '@mui/material';
+import { AppBar, Box, Toolbar, Container, Typography, Paper } from '@mui/material';
 
 const primaryColor = '#25274D';
 
@@ -171,8 +171,12 @@ const fetchAlert = async () => {
             margin: '10px',
           }}
         >
+
           <h3>{alertName}</h3>
-          <Box sx={{ display: 'flex', marginBottom: '40px' }}>{alertDetailsArray}</Box>
+          <Box sx={{ display: 'flex', marginBottom: '40px' }}>
+            {/* <Paper>{alertDetailsArray}</Paper> */}
+            {alertDetailsArray}
+          </Box>
         </Container>
       );
     }
@@ -205,7 +209,6 @@ const AlertsOverview = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-
       {allAlerts}
     </Box>
   );
