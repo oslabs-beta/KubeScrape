@@ -38,7 +38,7 @@ const PodOverview = (props) => (
         filter: 'brightness(150%)'
       }
     }}>
-    <Paper elevation={10}>
+    <Paper elevation={5}>
       <List>
         <Detail ><span>pod: {props.podName}</span></Detail>
         <Detail ><span>namespace: {props.namespace}</span></Detail>

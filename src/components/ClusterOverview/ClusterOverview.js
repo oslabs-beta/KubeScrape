@@ -116,25 +116,25 @@ const ClusterOverview = () => {
         </GridItem>
 
         <GridItem item container xs={12} sm={4} className={`${classes.flex} ${classes.metricsItem}`}>   
-          <Paper elevation={10} sx={{width: '100%', pb: '15px' }}>
+          <Paper elevation={5} sx={{width: '100%', pb: '15px' }}>
             <h5>Total Pods</h5>
             <span>{clusterTotalPods}</span>
           </Paper>
         </GridItem>
         <GridItem item xs={12} sm={4} className={`${classes.flex} ${classes.metricsItem}`}>  
-          <Paper elevation={10} sx={{width: '100%', pb: '15px' }}>
+          <Paper elevation={5} sx={{width: '100%', pb: '15px' }}>
             <h5>Total Services</h5>
             <span>{services.length}</span>
           </Paper>
         </GridItem>
  
         <GridItem item xs={12} sm={4} className={`${classes.flex} ${classes.graphItem}`}>
-          <Paper elevation={10} sx={{width: '100%', pb: '15px' }}>
+          <Paper elevation={5} sx={{width: '100%', pb: '15px' }}>
             {renderGauge('CPU Usage', clusterCpuUsage / 100)}
           </Paper>
         </GridItem>
         <GridItem item xs={12} sm={4} className={`${classes.flex} ${classes.graphItem}`}>
-          <Paper elevation={10} sx={{width: '100%', pb: '15px' }}>
+          <Paper elevation={5} sx={{width: '100%', pb: '15px' }}>
             {renderGauge('Memory Usage', clusterMemoryUsage / 100)}
           </Paper>
         </GridItem>

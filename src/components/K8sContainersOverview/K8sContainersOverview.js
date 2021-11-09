@@ -180,7 +180,7 @@ const K8sContainersOverview = (props) => {
 
       {/* CPU Usage Line Chart */}
       <Box key={props.containerName}>
-        <GraphPaper elevation={10}>
+        <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 
             key={props.podName + 'cpuUsage'}
@@ -193,7 +193,7 @@ const K8sContainersOverview = (props) => {
 
       {/* CPU Saturation Line Chart */}
       <Box key={props.containerName}>
-        <GraphPaper elevation={10}>
+        <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 
             key={props.podName + 'cpuSaturation'}
@@ -206,7 +206,7 @@ const K8sContainersOverview = (props) => {
 
       {/* Memory Usage Line Chart */}
       <Box key={props.containerName}>
-        <GraphPaper elevation={10}>
+        <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 
             key={props.podName + 'memoryUsage'}
@@ -219,7 +219,7 @@ const K8sContainersOverview = (props) => {
 
       {/* Memory Saturation Line Chart */}
       <Box key={props.containerName}>
-        <GraphPaper elevation={10}>
+        <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 
             key={props.podName + 'memorySaturation'}

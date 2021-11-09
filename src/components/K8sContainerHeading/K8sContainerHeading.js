@@ -21,7 +21,7 @@ const Detail = styled(ListItem)(({ theme }) => ({
  
 const K8sContainerHeading = (props) => (
   <Box>
-    <Paper elevation={10}>
+    <Paper elevation={5}>
       <List>
         <Detail>pod: {props.podInfo.podName}</Detail>
         <Detail>namespace: {props.podInfo.podNamespace}</Detail>
