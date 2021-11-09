@@ -27,24 +27,24 @@ const primaryColor = '#25274D';
 
 // Mixins provide additional rules that can be injected directly into styles
 // theme here is just MUI's default theme
-const openedMixin = (theme) => ({
+const openedMixin = theme => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen
+    duration: theme.transitions.duration.enteringScreen,
   }),
   backgroundColor: primaryColor,
-  overflowX:'hidden'
+  overflowX: 'hidden',
 });
 
-const closedMixin = (theme) => ({
+const closedMixin = theme => ({
   width: theme.spacing(7),
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen
+    duration: theme.transitions.duration.leavingScreen,
   }),
   backgroundColor: primaryColor,
-  overflowX:'hidden'
+  overflowX: 'hidden',
 });
 
 // styled() takes in a component to be wrapped and outputs a component that wraps it which has specified styles
@@ -55,7 +55,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
-  ...theme.mixins.toolbar
+  ...theme.mixins.toolbar,
 }));
 
 // similarly here, we are taking the MuiDrawer component and wrapping it inside a new component
@@ -63,18 +63,18 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const Drawer = styled(MuiDrawer, {
   // indicates if the prop should be forwarded from the parent component to the wrapped component
   // here, we are specifying that all props BUT the 'open' prop will be forwarded to the wrapped component on the DOM
-  shouldForwardProp: (prop) => prop !== 'open'
+  shouldForwardProp: prop => prop !== 'open',
 })(({ theme, open }) => ({
   width: drawerWidth,
-  // specifies how white space should be 
+  // specifies how white space should be
   whiteSpace: 'nowrap',
   boxSizing: 'border-box',
-  // if open is true, then 
+  // if open is true, then
   // overwite Drawer's component styling on the entire web with output openedMixing(theme)
   // and overwrite the Paper component side Drawer with output openedMixing(theme)
   ...(open && {
     ...openedMixin(theme),
-    '& .MuiDrawer-paper': openedMixin(theme)
+    '& .MuiDrawer-paper': openedMixin(theme),
   }),
 
   // if open is false, then
@@ -82,14 +82,13 @@ const Drawer = styled(MuiDrawer, {
   // and overwrite the Paper component side Drawer with output closedMixin(theme)
   ...(!open && {
     ...closedMixin(theme),
-    '& .MuiDrawer-paper': closedMixin(theme)
-  })
+    '& .MuiDrawer-paper': closedMixin(theme),
+  }),
 }));
 
 const Sidebar = () => {
-
   const theme = useTheme();
-  
+
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -100,32 +99,32 @@ const Sidebar = () => {
     setOpen(false);
   };
 
-  const menuItems = SidebarItems.map((item) => 
-    <Link key={item.title} to={item.path} style={{ color: 'white', textDecoration: 'none'}}>
-      <ListItem button >
-          <ListItemIcon style={{ color: 'white' }}>
-            {item.icon}
-          </ListItemIcon>
-          <ListItemText primary={item.title} />
+  const menuItems = SidebarItems.map(item => (
+    <Link key={item.title} to={item.path} style={{ color: 'white', textDecoration: 'none' }}>
+      <ListItem button>
+        <ListItemIcon style={{ color: 'white' }}>{item.icon}</ListItemIcon>
+        <ListItemText primary={item.title} />
       </ListItem>
     </Link>
-  );
+  ));
 
   return (
     <Box>
-      <Drawer variant='permanent' open={open} sx={{backgroundColor: theme.palette.background.default}}>
+      <Drawer
+        variant="permanent"
+        open={open}
+        sx={{ backgroundColor: theme.palette.background.default }}
+      >
         <DrawerHeader>
-          <IconButton sx={{color: 'white'}} onClick={open ? handleDrawerClose : handleDrawerOpen}>
+          <IconButton sx={{ color: 'white' }} onClick={open ? handleDrawerClose : handleDrawerOpen}>
             {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          {menuItems}
-        </List>
+        <List>{menuItems}</List>
       </Drawer>
     </Box>
-  )
-}
+  );
+};
 
 export default Sidebar;
