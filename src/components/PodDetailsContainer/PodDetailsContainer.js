@@ -11,7 +11,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  AppBar, Box, Grid, Typography
+  AppBar, Box, Container, Grid, Typography
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import PodOverview from '../PodOverview/PodOverview';

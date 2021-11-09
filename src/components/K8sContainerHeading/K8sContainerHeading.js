@@ -16,24 +16,21 @@ import { styled } from '@mui/system';
 const Detail = styled(ListItem)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
-  fontSize: '1.5vw',
   divider: true
 }));
  
-const K8sContainerHeading = (props) => {
-  return (
-    <Box>
-      <Paper variant='outlined' sx={{boxShadow: 10}}>
+const K8sContainerHeading = (props) => (
+  <Box>
+    <Paper elevation={10}>
       <List>
-      <Detail>pod: {props.podInfo.podName}</Detail>
-      <Detail>namespace: {props.podInfo.podNamespace}</Detail>
-      <Detail>ip: {props.podInfo.podIp}</Detail>
-      <Detail>deployment: {props.podInfo.createdByDeployment}</Detail>
-      <Detail>uid: {props.podInfo.uid}</Detail>
+        <Detail>pod: {props.podInfo.podName}</Detail>
+        <Detail>namespace: {props.podInfo.podNamespace}</Detail>
+        <Detail>ip: {props.podInfo.podIp}</Detail>
+        <Detail>deployment: {props.podInfo.createdByDeployment}</Detail>
+        <Detail>uid: {props.podInfo.uid}</Detail>
       </List>
-      </Paper>
-    </Box>
-  )
-}
+    </Paper>
+  </Box>
+)
  
 export default K8sContainerHeading;

@@ -11,15 +11,6 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
-  // components: {
-    Typography: {
-      styleOverrides: {
- 
-          backgroundColor: '#25274D'
-
-      }
-    },
-  // },
   palette: {
     primary: { 
       main: '#25274D'

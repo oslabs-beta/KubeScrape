@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import Box from '@mui/material/Box';
+import { Box, Container } from '@mui/material';
 import Card from '@mui/material/Card';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -29,8 +29,16 @@ const Detail = styled(ListItem)(({ theme }) => ({
 
 
 const PodOverview = (props) => (
-  <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-    <Paper variant='outlined' sx={{boxShadow: 10}}>
+  <Container 
+    sx={{
+      display: 'flex', 
+      justifyContent: 'space-between', 
+      maxWidth: '350px',     
+      ':hover': {
+        filter: 'brightness(150%)'
+      }
+    }}>
+    <Paper elevation={10}>
       <List>
         <Detail ><span>pod: {props.podName}</span></Detail>
         <Detail ><span>namespace: {props.namespace}</span></Detail>
@@ -39,7 +47,7 @@ const PodOverview = (props) => (
         <Detail ><span>uid: {props.uid}</span></Detail>
       </List>
     </Paper>
-  </Box>
+  </Container>
 );
 
 export default PodOverview;
