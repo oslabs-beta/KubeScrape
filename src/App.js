@@ -18,6 +18,7 @@ import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewC
 import NodeDetailsContainer from './components/NodeDetailsContainer/NodeDetailsContainer';
 import Visualizer from './components/ClusterOverview/Visualizer';
 import K8sContainerViewContainer from './components/K8sContainerViewContainer/K8sContainerViewContainer';
+import AlertsOverview from './components/AlertsOverview/AlertsOverview';
 
 const App = () => {
   const history = useHistory();
@@ -28,25 +29,29 @@ const App = () => {
   }, []);
 
   return (
-    <div className='main'>
+    <div className="main">
       <ThemeProvider theme={theme}>
         <Sidebar />
 
         <Switch>
-          <Route path='/' exact>
+          <Route path="/" exact>
             <ClusterViewContainer />
           </Route>
 
-          <Route path='/node' exact>
+          <Route path="/node" exact>
             <NodeDetailsContainer />
           </Route>
 
-          <Route path='/visualizer' exact>
-            <Visualizer/>
+          <Route path="/visualizer" exact>
+            <Visualizer />
           </Route>
 
-          <Route path='/pod' exact>
+          <Route path="/pod" exact>
             <K8sContainerViewContainer />
+          </Route>
+
+          <Route path="/alerts" exact>
+            <AlertsOverview />
           </Route>
         </Switch>
       </ThemeProvider>
