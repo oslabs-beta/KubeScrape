@@ -23,7 +23,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 const drawerWidth = 180;
-const primaryColor = '#25274D';
 
 // Mixins provide additional rules that can be injected directly into styles
 // theme here is just MUI's default theme
@@ -33,7 +32,6 @@ const openedMixin = (theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen
   }),
-  backgroundColor: primaryColor,
   overflowX:'hidden'
 });
 
@@ -43,7 +41,6 @@ const closedMixin = (theme) => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
   }),
-  backgroundColor: primaryColor,
   overflowX:'hidden'
 });
 
@@ -103,10 +100,10 @@ const Sidebar = () => {
   const menuItems = SidebarItems.map((item) => 
     <Link key={item.title} to={item.path} style={{ color: 'white', textDecoration: 'none'}}>
       <ListItem button >
-          <ListItemIcon style={{ color: 'white' }}>
-            {item.icon}
-          </ListItemIcon>
-          <ListItemText primary={item.title} />
+        <ListItemIcon style={{ color: 'white' }}>
+          {item.icon}
+        </ListItemIcon>
+        <ListItemText primary={item.title} />
       </ListItem>
     </Link>
   );
@@ -125,7 +122,7 @@ const Sidebar = () => {
         </List>
       </Drawer>
     </Box>
-  )
-}
+  );
+};
 
 export default Sidebar;

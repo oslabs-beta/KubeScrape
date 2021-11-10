@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import { Box, Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -41,7 +41,7 @@ const NodeDetailsContainer = () => {
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
-    <Box sx={{flexGrow: 1}}>
+    <Container sx={{flexGrow: 1}}>
       <AppBar position='relative' sx={{
         backgroundColor: primaryColor,
         width: '100%',
@@ -68,7 +68,7 @@ const NodeDetailsContainer = () => {
         </Toolbar>
       </AppBar>
       <PodDetailsContainer node={currentNode}/>
-    </Box>
+    </Container>
   );
 };
 

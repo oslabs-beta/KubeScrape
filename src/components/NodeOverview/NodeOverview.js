@@ -107,6 +107,7 @@ const NodeOverview = (props) => {
         colors={['#29648A', '#F8E9A1', '#F76C6C']} 
         arcWidth={0.3} 
         arcPadding={0}
+        cornerRadius={0}
         percent={value} 
         textColor="#FFF"
         needleColor="#FFF"

@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
  const primaryColor='#25274D';
 
@@ -20,7 +20,7 @@ import { Box } from '@mui/material';
         fontSize: '0.75rem',
         borderRadius: '5px',
         padding: '5px 15px',
-        margin: '10px'
+        margin: '10px',
 
       }}>
         <p>Instance: {props.instance}</p>
@@ -32,3 +32,4 @@ import { Box } from '@mui/material';
  }
 
  export default DeploymentOverview;
+ 
