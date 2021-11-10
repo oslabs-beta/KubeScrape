@@ -33,6 +33,7 @@ const PodOverview = (props) => (
     sx={{
       // display: 'flex', 
       // alignItems: 'center', 
+      wordWrap: 'break-word',
       maxWidth: '350px',
       fontSize: '1rem',   
       ':hover': {

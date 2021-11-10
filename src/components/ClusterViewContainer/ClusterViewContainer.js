@@ -108,8 +108,8 @@ const ClusterViewContainer = () => {
         <Container
           sx={{
             display: 'flex',
-            marginBottom: '40px',
             justifyContent: 'center',
+            flexWrap: 'wrap'
           }}
         >
           {deploymentComponents}

@@ -17,11 +17,14 @@ const DeploymentOverview = props => {
     <Box
       sx={{
         backgroundColor: primaryColor,
-        maxWidth: '15%',
+        // resize: 'both',
+        // minWidth: '15%',
+        maxWidth: '20%',
         fontSize: '0.75rem',
         borderRadius: '5px',
         padding: '5px 15px',
         margin: '10px',
+        wordWrap: 'break-word',
       }}
     >
       <p>Deployment: {props.deployment}</p>
