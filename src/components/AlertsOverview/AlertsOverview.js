@@ -29,23 +29,25 @@ function consolidateAlerts(dataArray) {
 
       // add alert query "active at", and "state" into the alertDetails Obj
       const formattedDate = new Date(el.activeAt);
-      alertDetailsObj['Active At'] = `${formattedDate.toLocaleString('en-US', {
-        timeZone: 'America/New_York',
-      })} EST`;
+      // alertDetailsObj['Active At'] = `${formattedDate.toLocaleString('en-US', {
+      //   timeZone: 'America/New_York',
+      // })} EST`;
+      alertDetailsObj['Active At'] = formattedDate.toLocaleString();
 
       alertDetailsObj.State = el.state;
 
-      // add each of the alert query annotations key/value pairsinto the alertDetails Obj
+      // add each property in the alert query "annotations" section into the alertDetails Obj
       for (const [key, value] of Object.entries(el.annotations)) {
+        // replace dashes and underscores in the key with a space
         let keyUpdate = key.replace(/[_-]/g, ' ');
-        // ^\w{1} macthes the first letter of the word, | means or, \s+ matches the amt of whitespaces between words
-        // uppercase keys, keys will be leveraged to render to the client
+        // captialize each first character of the word in the key
+        //^\w{1} macthes the first letter of the word, | means or, \s+ matches the amt of whitespaces between words
         keyUpdate = keyUpdate.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
 
         alertDetailsObj[keyUpdate] = value;
       }
 
-      //add each of the alert query labels key/value pair into the alertDetails Obj. Except for value and alertname
+      // add each property in the alert query "labels" section except for 'alertname' properties as this will be leveraged as the title for each alert container
       for (const [key, value] of Object.entries(el.labels)) {
         let keyUpdate = key.replace(/[_-]/g, ' ');
         keyUpdate = keyUpdate.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());

@@ -63,12 +63,11 @@ const ClusterViewContainer = () => {
     deploymentComponents.push(
       <DeploymentOverview
         key={depl.metric.instance + i}
+        deployment={depl.metric.deployment}
         instance={depl.metric.instance}
         job={depl.metric.job}
         namespace={depl.metric.namespace}
-        createdOnDate={`${new Date(depl.value[1] * 1000).toLocaleString('en-US', {
-          timeZone: 'America/New_York',
-        })} EST`}
+        createdOnDate={new Date(depl.value[1] * 1000).toLocaleString()}
       />
     );
   });
