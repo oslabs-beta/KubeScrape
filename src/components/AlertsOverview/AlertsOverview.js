@@ -65,9 +65,10 @@ function consolidateAlerts(dataArray) {
   return resultObj;
 }
 
-// helper function #2
+// helper function #2: Creates a box component for each alert and adds alert details into the Box
 function createAlertDetails(el, alertName, i, boxColor) {
-  const objCopy = el;
+  // create a deep clone of the el object passed in
+  const objCopy = JSON.parse(JSON.stringify(el));
 
   // initialize an array to hold all of the detail paragraphs
   const alertDetails = [];
@@ -82,10 +83,10 @@ function createAlertDetails(el, alertName, i, boxColor) {
 
   if (Object.keys(objCopy).length !== 0) {
     // iterate through the rest of the key/value pairs within the element
-    for (const key in objCopy) {
+    for (const [key, value] of Object.entries(objCopy)) {
       alertDetails.push(
         <p key={key}>
-          {key}: {objCopy[key]}
+          {key}: {value}
         </p>
       );
     }
@@ -100,6 +101,7 @@ function createAlertDetails(el, alertName, i, boxColor) {
 const AlertDetailsBox = props => {
   return (
     <Box
+      key={props.keyProps}
       sx={{
         backgroundColor: props.boxColor,
         maxWidth: '30%',
@@ -109,7 +111,6 @@ const AlertDetailsBox = props => {
         padding: '5px 15px',
         margin: '10px 10px 0px 10px',
       }}
-      key={props.keyProps}
     >
       {props.alertDetails}
     </Box>
@@ -176,10 +177,7 @@ const fetchAlert = async () => {
             }}
           >
             <h3>{alertName}</h3>
-            <Box sx={{ display: 'flex', marginBottom: '40px' }}>
-              {alertDetailsArray}
-              {/* {alertDetailsArray} */}
-            </Box>
+            <Box sx={{ display: 'flex', marginBottom: '40px' }}>{alertDetailsArray}</Box>
           </Container>
         </Paper>
       );
@@ -193,9 +191,25 @@ const fetchAlert = async () => {
 const AlertsOverview = () => {
   const [allAlerts, setAllAlerts] = useState([]);
 
-  useEffect(async () => {
-    const currentAlerts = await fetchAlert();
-    setAllAlerts(currentAlerts);
+  // useEffect(async () => {
+  //   const currentAlerts = await fetchAlert();
+  //   setAllAlerts(currentAlerts);
+  // }, []);
+
+  useEffect(() => {
+    const callAPI = async () => {
+      console.log('in callAPI function');
+      const currentAlerts = await fetchAlert();
+      setAllAlerts(currentAlerts);
+    };
+
+    callAPI();
+
+    const interval = setInterval(() => {
+      callAPI();
+    }, 100000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (

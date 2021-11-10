@@ -17,8 +17,6 @@ const DeploymentOverview = props => {
     <Box
       sx={{
         backgroundColor: primaryColor,
-        // resize: 'both',
-        // minWidth: '15%',
         maxWidth: '20%',
         fontSize: '0.75rem',
         borderRadius: '5px',
