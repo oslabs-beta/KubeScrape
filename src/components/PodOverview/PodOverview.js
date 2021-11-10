@@ -41,11 +41,11 @@ const PodOverview = (props) => (
     }}>
     <Paper elevation={5} sx={{display: 'flex', alignItems: 'center', height: '200px'}}>
       <List>
-        <Detail ><span>pod: {props.podName}</span></Detail>
-        <Detail ><span>namespace: {props.namespace}</span></Detail>
-        <Detail ><span>ip: {props.ip}</span></Detail>
-        <Detail ><span>deployment: {props.deployment}</span></Detail>
-        <Detail ><span>uid: {props.uid}</span></Detail>
+        <Detail ><span>Pod: {props.podName}</span></Detail>
+        <Detail ><span>Namespace: {props.namespace}</span></Detail>
+        <Detail ><span>IP: {props.ip}</span></Detail>
+        <Detail ><span>Deployment: {props.deployment}</span></Detail>
+        <Detail ><span>UID: {props.uid}</span></Detail>
       </List>
     </Paper>
   </Box>

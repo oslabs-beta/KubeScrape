@@ -65,16 +65,11 @@ const ClusterOverview = () => {
       paddingBottom: '10px',
       borderRadius: '5px',
       textAlign: 'center',
-      boxShadow: 10
     },
     [`&.${classes.metricsItem}`] : {
-      // backgroundColor: primaryColor 
-      // paddingBottom: '15px',
       margin: '10px 20px',
       borderRadius: '5px',
       textAlign: 'center',
-      boxShadow: 10
-
     }
   }));
  
@@ -98,7 +93,6 @@ const ClusterOverview = () => {
  
   return(
     <Container sx={{width: '100%'}}>
-      {/* <h2>Cluster Name: {nodeNames}</h2> */}
       <Grid container justifyContent='center'>
                
         <GridItem item xs={12} sm={4} className={`${classes.flex} ${classes.metricsItem}`}>
