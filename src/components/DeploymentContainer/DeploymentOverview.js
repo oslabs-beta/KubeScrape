@@ -18,22 +18,25 @@ const DeploymentOverview = (props) => {
       elevation={5} 
       sx={{
         backgroundColor: primaryColor,
-        maxWidth: '15%',
+        // resize: 'both', //still working on these two comments, will be removed in next PR
+        // minWidth: '15%',
+        maxWidth: '20%',
         fontSize: '0.75rem',
         borderRadius: '5px',
         padding: '5px 15px',
         margin: '10px',
-      }}>
+        wordWrap: 'break-word',
+      }}
+    >
       <Box>
+        <p>Deployment: {props.deployment}</p>
         <p>Instance: {props.instance}</p>
         <p>Job: {props.job}</p>
         <p>Namespace: {props.namespace}</p>
-        <p>Created on: {props.createdOnDate}</p>
+        <p>Created On: {props.createdOnDate}</p>
       </Box>
     </Paper>
-
   );
 };
 
 export default DeploymentOverview;
- 
