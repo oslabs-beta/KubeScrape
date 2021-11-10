@@ -10,7 +10,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import { Box, Container } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
@@ -60,7 +60,7 @@ const K8sContainerViewContainer = (props) => {
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
 
-    <Box sx={{ flexGrow: 1 }}>
+    <Container sx={{ flexGrow: 1, width: '100%' }}>
       <AppBar position='relative' sx={{
         backgroundColor: primaryColor,
         width: '100%',
@@ -92,7 +92,7 @@ const K8sContainerViewContainer = (props) => {
         podInfo={currentPodInfo}
         allContainers={allContainers}
       />  
-    </Box>
+    </Container>
   )
 }
  
