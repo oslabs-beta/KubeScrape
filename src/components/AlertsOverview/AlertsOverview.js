@@ -93,7 +93,7 @@ function createAlertDetails(el, alertName, i, boxColor) {
   }
 
   return (
-    <AlertDetailsBox keyProps={alertName + i} alertDetails={alertDetails} boxColor={boxColor} />
+    <AlertDetailsBox key={alertName + i} alertDetails={alertDetails} boxColor={boxColor} />
   );
 }
 
@@ -101,7 +101,6 @@ function createAlertDetails(el, alertName, i, boxColor) {
 const AlertDetailsBox = props => {
   return (
     <Box
-      key={props.keyProps}
       sx={{
         backgroundColor: props.boxColor,
         maxWidth: '30%',
@@ -110,6 +109,7 @@ const AlertDetailsBox = props => {
         borderRadius: '5px',
         padding: '5px 15px',
         margin: '10px 10px 0px 10px',
+        wordWrap: 'break-word',
       }}
     >
       {props.alertDetails}
@@ -191,14 +191,8 @@ const fetchAlert = async () => {
 const AlertsOverview = () => {
   const [allAlerts, setAllAlerts] = useState([]);
 
-  // useEffect(async () => {
-  //   const currentAlerts = await fetchAlert();
-  //   setAllAlerts(currentAlerts);
-  // }, []);
-
   useEffect(() => {
     const callAPI = async () => {
-      console.log('in callAPI function');
       const currentAlerts = await fetchAlert();
       setAllAlerts(currentAlerts);
     };
