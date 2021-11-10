@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module main.js
- * @author team KuberG8
+ * @author team KubeScrape
  * @date
  * @description Entry Point to Electron App
  *

@@ -73,7 +73,8 @@ const NodeOverview = (props) => {
   };
   const StyledContainer = styled(Container)(({ theme }) => ({
     ':hover': {
-      filter: 'brightness(150%)'
+      filter: 'brightness(150%)',
+      cursor:'pointer'
     }
   }));
   const GridItem = styled(Grid)(({ theme }) => ({

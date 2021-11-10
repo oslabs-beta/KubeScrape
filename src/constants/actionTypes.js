@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module actionTypes.js
- * @author team KuberG8
+ * @author team KubeScrape
  * @date
  * @description Action Type Constants for Redux
  *
