@@ -126,7 +126,7 @@ const NodeOverview = (props) => {
         // borderRadius: '5px',
         // paddingBottom: '10px'
       }}>
-      <Paper elevation={5}>
+      <Paper elevation={3}>
         <Typography 
           variant='h6' 
           component='div' 

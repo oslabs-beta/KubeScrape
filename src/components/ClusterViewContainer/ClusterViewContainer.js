@@ -10,7 +10,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
-  AppBar, Box, Grid, Toolbar,
+  AppBar, Box, Grid, Paper, Toolbar,
   Container, Typography
 } from '@mui/material';
 import NodeOverview from '../NodeOverview/NodeOverview';
@@ -72,7 +72,7 @@ const ClusterViewContainer = () => {
         job={depl.metric.job}
         namespace={depl.metric.namespace}
         createdOnDate={new Date(depl.value[1] * 1000).toLocaleString()}
-        >
+      >
       </DeploymentOverview>
     )
   })
@@ -95,19 +95,23 @@ const ClusterViewContainer = () => {
       </Container>
 
       <Container>
-        <StyledTypography variant='h6' component='div'>
+        <Paper elevation={3}>
+          <StyledTypography variant='h6' component='div'>
             Running Nodes
-        </StyledTypography>
+          </StyledTypography>
+        </Paper>
         
-        <Container sx={{ display: 'flex', marginBottom: '40px' }}> 
+        <Container sx={{ display: 'flex', marginBottom: '40px' }}>
           {nodeComponents}
         </Container>
       </Container>
     
       <Container>
-        <StyledTypography variant='h6' component='div'>
+        <Paper elevation={3}>
+          <StyledTypography variant='h6' component='div'>
           Deployments
-        </StyledTypography>
+          </StyledTypography>
+        </Paper>
 
         <Container sx={{ 
           display: 'flex', 
