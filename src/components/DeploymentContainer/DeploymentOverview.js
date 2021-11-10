@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { Box, Grid, Paper } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 
 const primaryColor='#25274D';
 
@@ -34,7 +34,7 @@ const DeploymentOverview = (props) => {
         <p>Job: {props.job}</p>
         <p>Namespace: {props.namespace}</p>
         <p>Created On: {props.createdOnDate}</p>
-      </Box>
+    </Box>
     </Paper>
   );
 };
