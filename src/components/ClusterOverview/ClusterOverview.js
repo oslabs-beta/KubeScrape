@@ -32,7 +32,6 @@ const ClusterOverview = () => {
     const currentClusterMemoryUsage = await clusterPromql.fetchClusterMemoryUsage();
     const currentTotalDeployments = await clusterPromql.fetchTotalDeployments();
     const currentTotalPods = await clusterPromql.fetchTotalPods();
- 
     setClusterCpuUsage(currentClusterCpuUsage);
     setClusterMemoryUsage(currentClusterMemoryUsage);
     setClusterTotalDeployments(currentTotalDeployments);
@@ -40,9 +39,11 @@ const ClusterOverview = () => {
   };
  
   // fetch data, then fetch again in 30 seconds
-  useEffect(async() => {
+  // when component unmounts, cancel setInterval in a cleanup function
+  useEffect(() => {
     fetchToStore();
-    setInterval(() => fetchToStore(), 30000);
+    const interval = setInterval(() => fetchToStore(), 3000)
+    return () => clearInterval(interval);
   }, []);
  
   const PREFIX = 'ClusterOverview';

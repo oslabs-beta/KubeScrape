@@ -131,11 +131,10 @@ const K8sContainersOverview = (props) => {
       });
     }
     return updatedMemorySaturationValues;
-  }
+  };
 
-  // update metric values with the results of calling the above functions and update state
-  // BUG WITH SET INTERVAL: when you switch to a new pod, the previously selected pods' linecharts are still being rendered every 3 seconds**/
-  useEffect(async () => {
+  // function to fetch prometheus data and update state
+  const fetchToState = async () => {
     for (let i = 0; i < podContainers.length; i += 1) {
       const updatedCpuValues = await updateCpuUsageValues();
       const updatedCpuSaturationValues = await updateCpuSaturationValues();
@@ -150,6 +149,14 @@ const K8sContainersOverview = (props) => {
       setMemorySaturationTimeLabels(updatedMemorySaturationValues.timeLabels);
       setMemorySaturationDatasets(updatedMemorySaturationValues.dataset);
     }
+  };
+
+  // update metric values with the results of calling the above functions and update state
+  // BUG WITH SET INTERVAL: when you switch to a new pod, the previously selected pods' linecharts are still being rendered every 3 seconds**/
+  useEffect(async () => {
+    fetchToState();
+    // const interval = setInterval(() => fetchToState(), 3000);
+    // return () => clearInterval(interval);
 
   }, [podContainers]);
 
