@@ -18,8 +18,6 @@ const DeploymentOverview = (props) => {
       elevation={5} 
       sx={{
         backgroundColor: primaryColor,
-        // resize: 'both', //still working on these two comments, will be removed in next PR
-        // minWidth: '15%',
         maxWidth: '20%',
         fontSize: '0.75rem',
         borderRadius: '5px',
