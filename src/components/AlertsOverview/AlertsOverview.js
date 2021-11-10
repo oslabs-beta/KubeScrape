@@ -199,7 +199,7 @@ const AlertsOverview = () => {
 
     const interval = setInterval(() => {
       callAPI();
-    }, 10000);
+    }, 90000);
 
     return () => clearInterval(interval);
   }, []);
