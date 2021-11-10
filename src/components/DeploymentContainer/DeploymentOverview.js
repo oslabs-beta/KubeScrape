@@ -8,27 +8,32 @@
  */
 
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
- const primaryColor='#25274D';
+const primaryColor = '#25274D';
 
- const DeploymentOverview = (props) => {
-    return(
-      <Box sx={{
+const DeploymentOverview = props => {
+  return (
+    <Box
+      sx={{
         backgroundColor: primaryColor,
-        maxWidth: '15%',
+        // resize: 'both', //still working on these two comments, will be removed in next PR
+        // minWidth: '15%',
+        maxWidth: '20%',
         fontSize: '0.75rem',
         borderRadius: '5px',
         padding: '5px 15px',
-        margin: '10px'
+        margin: '10px',
+        wordWrap: 'break-word',
+      }}
+    >
+      <p>Deployment: {props.deployment}</p>
+      <p>Instance: {props.instance}</p>
+      <p>Job: {props.job}</p>
+      <p>Namespace: {props.namespace}</p>
+      <p>Created On: {props.createdOnDate}</p>
+    </Box>
+  );
+};
 
-      }}>
-        <p>Instance: {props.instance}</p>
-        <p>Job: {props.job}</p>
-        <p>Namespace: {props.namespace}</p>
-        <p>Created on: {props.createdOnDate}</p>
-      </Box>
-    )
- }
-
- export default DeploymentOverview;
+export default DeploymentOverview;

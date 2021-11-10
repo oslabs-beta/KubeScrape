@@ -9,18 +9,28 @@
 
 import React from 'react';
 import Box from '@mui/material/Box';
+import {List, ListItem, Paper } from '@mui/material'
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/system'; 
+
+const Detail = styled(ListItem)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  divider: true
+}));
  
-const K8sContainerHeading = (props) => {
-  return (
-    <Box>
-      <Typography>pod: {props.podInfo.podName}</Typography>
-      <Typography>namespace: {props.podInfo.podNamespace}</Typography>
-      <Typography>ip: {props.podInfo.podIp}</Typography>
-      <Typography>deployment: {props.podInfo.createdByDeployment}</Typography>
-      <Typography>uid: {props.podInfo.uid}</Typography>
-    </Box>
-  )
-}
+const K8sContainerHeading = (props) => (
+  <Box>
+    <Paper elevation={5}>
+      <List>
+        <Detail>pod: {props.podInfo.podName}</Detail>
+        <Detail>namespace: {props.podInfo.podNamespace}</Detail>
+        <Detail>ip: {props.podInfo.podIp}</Detail>
+        <Detail>deployment: {props.podInfo.createdByDeployment}</Detail>
+        <Detail>uid: {props.podInfo.uid}</Detail>
+      </List>
+    </Paper>
+  </Box>
+)
  
 export default K8sContainerHeading;
