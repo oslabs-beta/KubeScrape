@@ -29,7 +29,7 @@ function consolidateAlerts(dataArray) {
 
       // add alert query "active at", and "state" into the alertDetails Obj
       const formattedDate = new Date(el.activeAt);
-      
+
       alertDetailsObj['Active At'] = formattedDate.toLocaleString();
 
       alertDetailsObj.State = el.state;
@@ -90,9 +90,7 @@ function createAlertDetails(el, alertName, i, boxColor) {
     }
   }
 
-  return (
-    <AlertDetailsBox key={alertName + i} alertDetails={alertDetails} boxColor={boxColor} />
-  );
+  return <AlertDetailsBox key={alertName + i} alertDetails={alertDetails} boxColor={boxColor} />;
 }
 
 // styling for each individual box for alerts
@@ -123,7 +121,9 @@ const fetchAlert = async () => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-  }).then(res => res.json());
+  })
+    .then(res => res.json())
+    .catch(error => console.log(`Failed to fetch: ${error.message}`));
 
   // this container will be returned to the useEffect method (it will either send back a message letting the user know there are no alerts or contain an array of elements with the alert details)
   const alertContainer = [];
@@ -199,7 +199,7 @@ const AlertsOverview = () => {
 
     const interval = setInterval(() => {
       callAPI();
-    }, 100000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
