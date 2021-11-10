@@ -57,12 +57,11 @@ const NodeOverview = (props) => {
  
   // fetch data, then fetch again in 30 seconds
   // when component unmounts, cancel setInterval in a cleanup function
-  useEffect(async () => {
+  useEffect(() => {
     fetchDataToStore();
-    const interval = setInterval(() => {
-      fetchDataToStore();
-    }, 3000);
-    return clearInterval(interval);
+    const interval = setInterval(() =>
+      fetchDataToStore(), 30000);
+    return () => clearInterval(interval);
   }, []);
  
   // Styles

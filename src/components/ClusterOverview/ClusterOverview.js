@@ -42,10 +42,11 @@ const ClusterOverview = () => {
   // when component unmounts, cancel setInterval in a cleanup function
   useEffect(() => {
     fetchToStore();
-    const interval = setInterval(() => fetchToStore(), 3000)
+    const interval = setInterval(() => 
+      fetchToStore(), 30000);
     return () => clearInterval(interval);
   }, []);
- 
+
   const PREFIX = 'ClusterOverview';
  
   const classes = {
