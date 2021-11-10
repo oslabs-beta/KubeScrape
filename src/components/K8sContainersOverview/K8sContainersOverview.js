@@ -150,18 +150,6 @@ const K8sContainersOverview = (props) => {
     }
   };
 
-  const options = {
-    animations: {
-      enabled: false,
-      animateGradually: {
-         enabled: false,
-      },
-      dynamicAnimation: {
-         enabled: false,
-      }
-   }
-  };
-
   // update metric values with the results of calling the above functions and update state
   // BUG WITH SET INTERVAL: when you switch to a new pod, the previously selected pods' linecharts are still being rendered every 3 seconds**/
   useEffect(async () => {
