@@ -88,7 +88,6 @@ const K8sContainerViewContainer = (props) => {
       </AppBar>
       <K8sContainerHeading podInfo={currentPodInfo}/>
       <K8sContainersOverview 
-        // podName={currentPod}
         podInfo={currentPodInfo}
         allContainers={allContainers}
       />  

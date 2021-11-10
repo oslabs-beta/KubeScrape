@@ -21,7 +21,7 @@ import LineChart from '../charts/LineChart';
 const K8sContainersOverview = (props) => {
   const [ podContainers, setPodContainers ] = useState([]);
   const [ cpuTimeLabels, setCpuTimeLabels ] = useState([]);
-  const [ cpuDatasets, setCpuDatasets ] = useState([]);
+  const [ cpuDatasets, setCpuDatasets ] = useState([{ label: '', data: [1, 2, 3, 4, 5] }]);
   const [ cpuSaturationTimeLabels, setCpuSaturationTimeLabels ] = useState([]);
   const [ cpuSaturationDatasets, setCpuSaturationDatasets ] = useState([]);
   const [ memoryTimeLabels, setMemoryTimeLabels ] = useState([]);
@@ -46,7 +46,7 @@ const K8sContainersOverview = (props) => {
   const updateCpuUsageValues = async () => {
     const startTime = Math.floor((Date.now() - 300000) / 1000.0);
     const endTime = Math.floor(Date.now() / 1000.0);
-    const updatedCpuValues = { dataset: [] };
+    const updatedCpuValues = { timeLabels: [], dataset: [] };
 
     for (let i = 0; i < podContainers.length; i++) {
       updatedCpuValues.timeLabels = [];
@@ -150,27 +150,40 @@ const K8sContainersOverview = (props) => {
     }
   };
 
+  const options = {
+    animations: {
+      enabled: false,
+      animateGradually: {
+         enabled: false,
+      },
+      dynamicAnimation: {
+         enabled: false,
+      }
+   }
+  };
+
   // update metric values with the results of calling the above functions and update state
   // BUG WITH SET INTERVAL: when you switch to a new pod, the previously selected pods' linecharts are still being rendered every 3 seconds**/
   useEffect(async () => {
     fetchToState();
-    const interval = setInterval(() => fetchToState(), 3000);
-    return () => clearInterval(interval);
+    // const interval = setInterval(() => fetchToState(), 3000);
+    // return () => clearInterval(interval);
 
   }, [podContainers]);
 
   // TODO: apply renderLineChart to component
-  const renderLineChart = (title, xAxis, datasets) => {
-    <Box>
-      <h3>{title}</h3>
-      <LineChart 
-        key={title}
-        metricName={title}
-        xAxis={xAxis}
-        datasets={datasets}
-      />
-    </Box>;
-  };
+  // const renderLineChart = (title, xAxis, datasets) => {
+  //   <Box>
+  //     <h3>{title}</h3>
+  //     <LineChart 
+  //       key={title}
+  //       metricName={title}
+  //       xAxis={xAxis}
+  //       datasets={datasets}
+  //     />
+  //   </Box>;
+  // };
+
 
   const GraphPaper = styled(Paper)(({ theme }) => ({
     padding: '10px',
@@ -185,7 +198,7 @@ const K8sContainersOverview = (props) => {
     <Box sx={{width: '100%'}}>
 
       {/* CPU Usage Line Chart */}
-      <Box key={props.containerName}>
+      <Box key={props.containerName} >
         <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 
