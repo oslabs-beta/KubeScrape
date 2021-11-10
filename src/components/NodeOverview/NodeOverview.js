@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
 import { 
-  Container, Grid, Typography
+  Container, Grid, Paper, Typography
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import * as actions from '../../actions/actions';
@@ -120,43 +120,45 @@ const NodeOverview = (props) => {
     <StyledContainer maxWidth="xs" 
       onClick={() => goToNode(props.nodeName)}
       sx={{
-        backgroundColor: primaryColor,
-        borderRadius: '5px',
-        paddingBottom: '10px'
+        // backgroundColor: primaryColor,
+        // borderRadius: '5px',
+        // paddingBottom: '10px'
       }}>
-      <Typography 
-        variant='h6' 
-        component='div' 
-        align='center'
-        sx={{
-          paddingTop: '20px'
-        }}>
+      <Paper elevation={5}>
+        <Typography 
+          variant='h6' 
+          component='div' 
+          align='center'
+          sx={{
+            paddingTop: '20px'
+          }}>
          Node: {props.nodeName}
-      </Typography>
-      <Grid container justifyContent='center'>
-        <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>
-          <span>{pods.length}</span>            
-          <h6>Active Pods</h6>
-        </GridItem>
-        <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>
-          <span>{nodePodCapacity - pods.length}</span>            
-          <h6>Available Pods</h6>
-        </GridItem>
-        <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>            
-          <span>{nodeNetworkUtilization} kb/s</span> 
-          <h6>Network Utilization</h6>
-        </GridItem>
-        <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>            
-          <span>{nodeNetworkErrors}</span> 
-          <h6>Errors</h6>
-        </GridItem>
-        <GridItem item lg={6} className={`${classes.flex} ${classes.graphItem}`}>
-          {renderGauge('Node CPU Usage', nodeCpuUsage / 100)}
-        </GridItem>
-        <GridItem item lg={6} className={`${classes.flex} ${classes.graphItem}`}>          
-          {renderGauge('Node Memory Usage', nodeMemoryUsage / 100)}
-        </GridItem>
-      </Grid>
+        </Typography>
+        <Grid container justifyContent='center'>
+          <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>
+            <span>{pods.length}</span>            
+            <h6>Active Pods</h6>
+          </GridItem>
+          <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>
+            <span>{nodePodCapacity - pods.length}</span>            
+            <h6>Available Pods</h6>
+          </GridItem>
+          <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>            
+            <span>{nodeNetworkUtilization} kb/s</span> 
+            <h6>Network Utilization</h6>
+          </GridItem>
+          <GridItem item sm={6} lg={3} className={`${classes.flex} ${classes.metricsItem}`}>            
+            <span>{nodeNetworkErrors}</span> 
+            <h6>Errors</h6>
+          </GridItem>
+          <GridItem item lg={6} className={`${classes.flex} ${classes.graphItem}`}>
+            {renderGauge('Node CPU Usage', nodeCpuUsage / 100)}
+          </GridItem>
+          <GridItem item lg={6} className={`${classes.flex} ${classes.graphItem}`}>          
+            {renderGauge('Node Memory Usage', nodeMemoryUsage / 100)}
+          </GridItem>
+        </Grid>
+      </Paper>
     </StyledContainer>
   );
 };
