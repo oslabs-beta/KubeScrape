@@ -8,8 +8,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Box, Container, Grid, Paper } from '@mui/material';
-import K8sContainerHeading from '../K8sContainerHeading/K8sContainerHeading';
+import { Box, Paper } from '@mui/material';
 import { styled } from '@mui/system';
 
 // fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
@@ -34,12 +33,12 @@ const K8sContainersOverview = (props) => {
   useEffect(() => {
     const currentPodContainers = [];
     props.allContainers.forEach(container => {
-      if (container[1] === props.podName){
+      if (container[1] === props.podInfo.podName){
         currentPodContainers.push(container[0]);
       }
-    })
+    });
     setPodContainers(currentPodContainers);
-  }, [props.allContainers, props.podName]);
+  }, [props.allContainers, props.podInfo]);
 
   // there is an 'update' function for each metric: CPU Usage, CPU Saturation, Memory Usage, and Memory Saturation
   // for CPU Usage Values, return data in the following format to be readable by LineChart: 
@@ -155,8 +154,8 @@ const K8sContainersOverview = (props) => {
   // BUG WITH SET INTERVAL: when you switch to a new pod, the previously selected pods' linecharts are still being rendered every 3 seconds**/
   useEffect(async () => {
     fetchToState();
-    // const interval = setInterval(() => fetchToState(), 3000);
-    // return () => clearInterval(interval);
+    const interval = setInterval(() => fetchToState(), 3000);
+    return () => clearInterval(interval);
 
   }, [podContainers]);
 
