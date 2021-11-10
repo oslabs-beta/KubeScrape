@@ -9,7 +9,7 @@
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppBar, Box, Grid, Toolbar, Container, Typography } from '@mui/material';
+import { AppBar, Box, Grid, Paper, Toolbar, Container, Typography } from '@mui/material';
 import NodeOverview from '../NodeOverview/NodeOverview';
 import ClusterOverview from '../ClusterOverview/ClusterOverview';
 import DeploymentOverview from '../DeploymentContainer/DeploymentOverview';
@@ -93,17 +93,23 @@ const ClusterViewContainer = () => {
       </Container>
 
       <Container>
-        <StyledTypography variant="h6" component="div">
-          Running Nodes
-        </StyledTypography>
-
-        <Container sx={{ display: 'flex', marginBottom: '40px' }}>{nodeComponents}</Container>
+        <Paper elevation={3}>
+          <StyledTypography variant='h6' component='div'>
+            Running Nodes
+          </StyledTypography>
+        </Paper>
+        
+        <Container sx={{ display: 'flex', marginBottom: '40px' }}>
+          {nodeComponents}
+        </Container>
       </Container>
 
       <Container>
-        <StyledTypography variant="h6" component="div">
+        <Paper elevation={3}>
+          <StyledTypography variant='h6' component='div'>
           Deployments
-        </StyledTypography>
+          </StyledTypography>
+        </Paper>
 
         <Container
           sx={{

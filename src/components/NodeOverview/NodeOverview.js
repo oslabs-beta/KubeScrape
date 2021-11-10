@@ -56,11 +56,12 @@ const NodeOverview = (props) => {
   };
  
   // fetch data, then fetch again in 30 seconds
-  useEffect(async () => {
+  // when component unmounts, cancel setInterval in a cleanup function
+  useEffect(() => {
     fetchDataToStore();
-    setInterval(() => {
-      fetchDataToStore();
-    }, 30000);
+    const interval = setInterval(() =>
+      fetchDataToStore(), 30000);
+    return () => clearInterval(interval);
   }, []);
  
   // Styles
@@ -124,7 +125,7 @@ const NodeOverview = (props) => {
         // borderRadius: '5px',
         // paddingBottom: '10px'
       }}>
-      <Paper elevation={5}>
+      <Paper elevation={3}>
         <Typography 
           variant='h6' 
           component='div' 

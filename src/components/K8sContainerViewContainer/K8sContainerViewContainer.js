@@ -40,6 +40,7 @@ const K8sContainerViewContainer = (props) => {
   const [ currentPodInfo, setCurrentPodInfo ] = useState(podInfo[0] || []);
 
   const dispatch = useDispatch();
+
   //get array of pod names from prometheus server and use the array to update state
   //get all cluster's containers using fetch request and update state
   useEffect(async () => {
@@ -48,12 +49,11 @@ const K8sContainerViewContainer = (props) => {
     dispatch(actions.setPodInfo(podInfoArray));
     setAllContainers(allContainers);
     }, []);
- 
+    console.log(podInfo)
   // get info on the user-selected pod and update state
   const handleChange = async (event) => {
-    const currentPodInfoResult = await podPromql.fetchCurrentPodInfo(event.target.value);
-    setCurrentPodInfo(currentPodInfoResult);
-    setCurrentPod(event.target.value);
+    const currentPodInfo = await podPromql.fetchCurrentPodInfo(event.target.value);
+    setCurrentPodInfo(currentPodInfo);
   }
   
   // Appbar uses display:flex + flex-direction: column
@@ -78,7 +78,7 @@ const K8sContainerViewContainer = (props) => {
             }}>
             <InputLabel sx={{ color: 'white' }}>Current Pod</InputLabel>
 
-            <Select sx={{ color: 'white' }} value={currentPod} onChange={handleChange}>
+            <Select sx={{ color: 'white' }} value={currentPodInfo.podName} onChange={handleChange}>
               {podInfo.map(pod => 
                 <MenuItem key={pod.podName} value={pod.podName}>{pod.podName}</MenuItem>
               )} 
@@ -88,7 +88,6 @@ const K8sContainerViewContainer = (props) => {
       </AppBar>
       <K8sContainerHeading podInfo={currentPodInfo}/>
       <K8sContainersOverview 
-        podName={currentPod}
         podInfo={currentPodInfo}
         allContainers={allContainers}
       />  
