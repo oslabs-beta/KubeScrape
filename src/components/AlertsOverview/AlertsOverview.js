@@ -12,25 +12,6 @@ import { AppBar, Box, Toolbar, Container, Typography, Paper } from '@mui/materia
 
 const primaryColor = '#25274D';
 
-const AlertDetailsBox = props => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: props.boxColor,
-        maxWidth: '30%',
-        color: '#292020',
-        fontSize: '0.75rem',
-        borderRadius: '5px',
-        padding: '5px 15px',
-        margin: '10px 10px 0px 10px',
-      }}
-      key={props.key}
-    >
-      {props.alertDetails}
-    </Box>
-  );
-};
-
 // helper function 1: consolidates all alert details from API fetch request into a 1 layer key/value pair of the alert details and groups them by alertname
 function consolidateAlerts(dataArray) {
   const resultObj = {};
@@ -102,15 +83,37 @@ function createAlertDetails(el, alertName, i, boxColor) {
     // iterate through the rest of the key/value pairs within the element
     for (const key in objCopy) {
       alertDetails.push(
-        <p>
+        <p key={key}>
           {key}: {objCopy[key]}
         </p>
       );
     }
   }
 
-  return <AlertDetailsBox key={i + alertName} alertDetails={alertDetails} boxColor={boxColor} />;
+  return (
+    <AlertDetailsBox keyProps={i + alertName} alertDetails={alertDetails} boxColor={boxColor} />
+  );
 }
+
+// styling for each individual box for alerts
+const AlertDetailsBox = props => {
+  return (
+    <Box
+      sx={{
+        backgroundColor: props.boxColor,
+        maxWidth: '30%',
+        color: '#292020',
+        fontSize: '0.75rem',
+        borderRadius: '5px',
+        padding: '5px 15px',
+        margin: '10px 10px 0px 10px',
+      }}
+      key={props.keyProps}
+    >
+      {props.alertDetails}
+    </Box>
+  );
+};
 
 // return all alerts with "firing" status
 const fetchAlert = async () => {
@@ -160,24 +163,24 @@ const fetchAlert = async () => {
       });
 
       alertContainer.push(
-        <Container
-          key={alertName}
-          sx={{
-            maxWidth: '98%',
-            backgroundColor: primaryColor,
-            display: 'box-sizing',
-            borderRadius: '5px',
-            padding: '10px 25px',
-            margin: '10px',
-          }}
-        >
-
-          <h3>{alertName}</h3>
-          <Box sx={{ display: 'flex', marginBottom: '40px' }}>
-            {/* <Paper>{alertDetailsArray}</Paper> */}
-            {alertDetailsArray}
-          </Box>
-        </Container>
+        <Paper elevation={5} key={alertName}>
+          <Container
+            sx={{
+              maxWidth: '98%',
+              backgroundColor: primaryColor,
+              display: 'box-sizing',
+              borderRadius: '5px',
+              padding: '10px 25px',
+              margin: '15px',
+            }}
+          >
+            <h3>{alertName}</h3>
+            <Box sx={{ display: 'flex', marginBottom: '40px' }}>
+              {alertDetailsArray}
+              {/* {alertDetailsArray} */}
+            </Box>
+          </Container>
+        </Paper>
       );
     }
   }
