@@ -8,8 +8,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Box, Container, Grid, Paper } from '@mui/material';
-import K8sContainerHeading from '../K8sContainerHeading/K8sContainerHeading';
+import { Box, Paper } from '@mui/material';
 import { styled } from '@mui/system';
 
 // fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
@@ -22,7 +21,7 @@ import LineChart from '../charts/LineChart';
 const K8sContainersOverview = (props) => {
   const [ podContainers, setPodContainers ] = useState([]);
   const [ cpuTimeLabels, setCpuTimeLabels ] = useState([]);
-  const [ cpuDatasets, setCpuDatasets ] = useState([]);
+  const [ cpuDatasets, setCpuDatasets ] = useState([{ label: '', data: [1, 2, 3, 4, 5] }]);
   const [ cpuSaturationTimeLabels, setCpuSaturationTimeLabels ] = useState([]);
   const [ cpuSaturationDatasets, setCpuSaturationDatasets ] = useState([]);
   const [ memoryTimeLabels, setMemoryTimeLabels ] = useState([]);
@@ -34,12 +33,12 @@ const K8sContainersOverview = (props) => {
   useEffect(() => {
     const currentPodContainers = [];
     props.allContainers.forEach(container => {
-      if (container[1] === props.podName){
+      if (container[1] === props.podInfo.podName){
         currentPodContainers.push(container[0]);
       }
-    })
+    });
     setPodContainers(currentPodContainers);
-  }, [props.allContainers, props.podName]);
+  }, [props.allContainers, props.podInfo]);
 
   // there is an 'update' function for each metric: CPU Usage, CPU Saturation, Memory Usage, and Memory Saturation
   // for CPU Usage Values, return data in the following format to be readable by LineChart: 
@@ -47,7 +46,7 @@ const K8sContainersOverview = (props) => {
   const updateCpuUsageValues = async () => {
     const startTime = Math.floor((Date.now() - 300000) / 1000.0);
     const endTime = Math.floor(Date.now() / 1000.0);
-    const updatedCpuValues = { dataset: [] };
+    const updatedCpuValues = { timeLabels: [], dataset: [] };
 
     for (let i = 0; i < podContainers.length; i++) {
       updatedCpuValues.timeLabels = [];
@@ -131,11 +130,10 @@ const K8sContainersOverview = (props) => {
       });
     }
     return updatedMemorySaturationValues;
-  }
+  };
 
-  // update metric values with the results of calling the above functions and update state
-  // BUG WITH SET INTERVAL: when you switch to a new pod, the previously selected pods' linecharts are still being rendered every 3 seconds**/
-  useEffect(async () => {
+  // function to fetch prometheus data and update state
+  const fetchToState = async () => {
     for (let i = 0; i < podContainers.length; i += 1) {
       const updatedCpuValues = await updateCpuUsageValues();
       const updatedCpuSaturationValues = await updateCpuSaturationValues();
@@ -150,21 +148,30 @@ const K8sContainersOverview = (props) => {
       setMemorySaturationTimeLabels(updatedMemorySaturationValues.timeLabels);
       setMemorySaturationDatasets(updatedMemorySaturationValues.dataset);
     }
+  };
+
+  // update metric values with the results of calling the above functions and update state
+  // BUG WITH SET INTERVAL: when you switch to a new pod, the previously selected pods' linecharts are still being rendered every 3 seconds**/
+  useEffect(async () => {
+    fetchToState();
+    // const interval = setInterval(() => fetchToState(), 3000);
+    // return () => clearInterval(interval);
 
   }, [podContainers]);
 
   // TODO: apply renderLineChart to component
-  const renderLineChart = (title, xAxis, datasets) => {
-    <Box>
-      <h3>{title}</h3>
-      <LineChart 
-        key={title}
-        metricName={title}
-        xAxis={xAxis}
-        datasets={datasets}
-      />
-    </Box>;
-  };
+  // const renderLineChart = (title, xAxis, datasets) => {
+  //   <Box>
+  //     <h3>{title}</h3>
+  //     <LineChart 
+  //       key={title}
+  //       metricName={title}
+  //       xAxis={xAxis}
+  //       datasets={datasets}
+  //     />
+  //   </Box>;
+  // };
+
 
   const GraphPaper = styled(Paper)(({ theme }) => ({
     padding: '10px',
@@ -179,7 +186,7 @@ const K8sContainersOverview = (props) => {
     <Box sx={{width: '100%'}}>
 
       {/* CPU Usage Line Chart */}
-      <Box key={props.containerName}>
+      <Box key={props.containerName} >
         <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 

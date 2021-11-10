@@ -8,13 +8,14 @@
  */
 
 import React from 'react';
-import { Box, Grid } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 
-const primaryColor = '#25274D';
+const primaryColor='#25274D';
 
-const DeploymentOverview = props => {
-  return (
-    <Box
+const DeploymentOverview = (props) => {
+  return(
+    <Paper 
+      elevation={5} 
       sx={{
         backgroundColor: primaryColor,
         maxWidth: '20%',
@@ -25,12 +26,14 @@ const DeploymentOverview = props => {
         wordWrap: 'break-word',
       }}
     >
-      <p>Deployment: {props.deployment}</p>
-      <p>Instance: {props.instance}</p>
-      <p>Job: {props.job}</p>
-      <p>Namespace: {props.namespace}</p>
-      <p>Created On: {props.createdOnDate}</p>
+      <Box>
+        <p>Deployment: {props.deployment}</p>
+        <p>Instance: {props.instance}</p>
+        <p>Job: {props.job}</p>
+        <p>Namespace: {props.namespace}</p>
+        <p>Created On: {props.createdOnDate}</p>
     </Box>
+    </Paper>
   );
 };
 
