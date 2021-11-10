@@ -7,7 +7,7 @@
  * ************************************
  */
 
-//return a pod names as an array of strings
+// return a pod names as an array of strings
 export const fetchPodNamesList = async (nodeName) => {
   const data = await fetch(`http://localhost:30000/api/v1/query?query=kube_pod_info{node="${nodeName}"}`, {
     method: 'GET',
@@ -23,7 +23,7 @@ export const fetchPodNamesList = async (nodeName) => {
   return podNamesList;  
 };
 
-//return a pod info as an array of objects with {name, node, namespace, ip, deployment}
+// return a pod info as an array of objects with {name, node, namespace, ip, deployment}
 export const fetchPodInfoList = async (nodeName) => {
   const data = await fetch(`http://localhost:30000/api/v1/query?query=kube_pod_info{node="${nodeName}"}`, {
     method: 'GET',
