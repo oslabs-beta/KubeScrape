@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module store.js
- * @author team KuberG8
+ * @author team KubeScrape
  * @date
  * @description Redux Store - "Single Source of Truth" 
  *

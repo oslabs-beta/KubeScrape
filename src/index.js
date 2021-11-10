@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module  index.js
- * @author team KuberG8
+ * @author team KubeScrape
  * @date
  * @description React App Entry Point
  *

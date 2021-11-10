@@ -64,7 +64,7 @@ const PodDetailsContainer = (props) => {
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
     <Container>
-      <Typography variant='h4' align='center' gutterBottom>Click on a pod for more information</Typography>
+      {/* <Typography variant='h4' align='center' gutterBottom>Click on a pod for more information</Typography> */}
       <Grid container justifyContent='center' alignItems='center' spacing={2}>
         {podEls}
       </Grid>

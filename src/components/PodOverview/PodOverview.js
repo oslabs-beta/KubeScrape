@@ -37,7 +37,8 @@ const PodOverview = (props) => (
       maxWidth: '350px',
       fontSize: '1rem',   
       ':hover': {
-        filter: 'brightness(150%)'
+        filter: 'brightness(150%)',
+        cursor:'pointer'
       }
     }}>
     <Paper elevation={5} sx={{display: 'flex', alignItems: 'center', height: '200px'}}>

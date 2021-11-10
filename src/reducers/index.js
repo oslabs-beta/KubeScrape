@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module  index.js
- * @author team KuberG8
+ * @author team KubeScrape
  * @date
  * @description A place to combine reducers
  *
