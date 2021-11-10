@@ -8,10 +8,10 @@
  */
 
 import React, { useEffect } from 'react';
-import Sidebar from './components/sidebar/Sidebar';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import regeneratorRuntime from 'regenerator-runtime';
 import { ThemeProvider } from '@mui/material/styles';
+import Sidebar from './components/sidebar/Sidebar';
 
 import theme from './theme';
 import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewContainer';

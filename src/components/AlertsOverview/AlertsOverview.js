@@ -29,10 +29,9 @@ function consolidateAlerts(dataArray) {
 
       // add alert query "active at", and "state" into the alertDetails Obj
       const formattedDate = new Date(el.activeAt);
-      alertDetailsObj['Active At'] =
-        formattedDate.toLocaleString('en-US', {
-          timeZone: 'America/New_York',
-        }) + ' EST';
+      alertDetailsObj['Active At'] = `${formattedDate.toLocaleString('en-US', {
+        timeZone: 'America/New_York',
+      })} EST`;
 
       alertDetailsObj.State = el.state;
 
@@ -91,7 +90,7 @@ function createAlertDetails(el, alertName, i, boxColor) {
   }
 
   return (
-    <AlertDetailsBox keyProps={i + alertName} alertDetails={alertDetails} boxColor={boxColor} />
+    <AlertDetailsBox keyProps={alertName + i} alertDetails={alertDetails} boxColor={boxColor} />
   );
 }
 

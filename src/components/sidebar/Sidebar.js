@@ -9,7 +9,6 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { SidebarItems } from './SidebarItems';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -21,6 +20,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { SidebarItems } from './SidebarItems';
 
 const drawerWidth = 180;
 
@@ -105,7 +105,7 @@ const Sidebar = () => {
         <ListItemText primary={item.title} />
       </ListItem>
     </Link>
-  ));
+  );
 
   return (
     <Box>
