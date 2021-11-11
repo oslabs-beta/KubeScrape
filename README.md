@@ -67,7 +67,7 @@ Supplementary Repo: [KubeScrape_PrometheusManifests](https://github.com/annechan
 &nbsp;&nbsp;&nbsp;&nbsp; The Visualizer presents a relational diagram of your kubernetes cluster objects, organized by namespace. 
 
 <img src="https://media.giphy.com/media/a5qWAkxWPySbq9D8AU/giphy.gif" alt="Visualizer" width="800" height="500">
-[![](https://www.youtube.com/watch?v=s8rX4T8n_Bo)]
+[![](https://www.youtube.com/watch?v=s8rX4T8n_Bo)](https://www.youtube.com/watch?v=s8rX4T8n_Bo)
 
 ## Future Enhancements
   - Implementing additional metrics and visualizations for nodes, pods, and containers (suggestions welcomed)
