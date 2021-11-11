@@ -26,21 +26,27 @@
 
 <a name="setUp"/>
 ## KubeScrape Prerequisite and Set Up
-  ### Prerequisite
-  KubeScrape relies on Prometheus, Kube-State_Metrics, and Node-Export instances deployed in their cluster to scrape metrics from your cluster. The alerts tab requires Prometheus alert.rules to be implemented within your Prometheus instance. 
+  ###### Prerequisite
+  KubeScrape relies on the following instances to deployed in your kubernetes cluster to scrape metrics and information from:
+  - Prometheus 
+  - Node Exporter
+  - Kube-state-metrics
+  In addition, KubeScrape's alerts tab will only showcase alert details if Prometheus alert.rules are configured within your Prometheus instance. *If no rules are configured, the application will still provide data regarding your cluster*
+
+  Please note that KubeScrape makes API calls to `port 30000` and configure Prometheus to 
   
-  If you do not have these set up please go to the below repo and follow the steps in the ReadMe to set up Prometheus on your cluster: 
+  If you do not have the above requirements set up please go to the following repo which includes manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the easy 4 step process in its ReadMe to deploy Prometheus. 
    [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)
   
-  ### Application Set Up
+  ###### Application Set Up
 
 <a name="feature"/>
 ## Features
-  ### Home/Cluster View 
-  ### Node View 
-  ### Pod View 
-  ### Alerts 
-  ### K8 Map
+  ###### Home/Cluster View 
+  ###### Node View 
+  ###### Pod View 
+  ###### Alerts 
+  ###### K8 Map
 
 <a name="team"/>
 ## KubeScrape Engineering Team 
