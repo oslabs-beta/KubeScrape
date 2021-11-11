@@ -16,7 +16,7 @@ import Sidebar from './react/sidebar/Sidebar';
 import theme from './theme';
 import HomeContainer from './react/home-view/HomeContainer';
 import NodeContainer from './react/node-view/NodeContainer';
-import Visualizer from './components/ClusterOverview/Visualizer';
+import Visualizer from './react/visualizer/VisualizerContainer';
 import K8sContainerViewContainer from './components/K8sContainerViewContainer/K8sContainerViewContainer';
 import AlertsOverview from './react/alerts-view/AlertsOverview';
 

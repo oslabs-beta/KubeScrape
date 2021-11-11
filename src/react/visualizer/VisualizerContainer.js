@@ -9,10 +9,7 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { 
-  Box, AppBar, Toolbar,
-  Typography
-} from '@mui/material';
+import { Box, AppBar, Toolbar,Typography } from '@mui/material';
 import Graph from 'react-graph-vis';
 import cpIcon from '../../icons/control-plane-icon.svg';
 import nsIcon from '../../icons/namespace-icon.svg';
