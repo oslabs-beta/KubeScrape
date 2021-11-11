@@ -2,7 +2,7 @@
  <img src="https://i.imgur.com/763iZTq.jpg" width="300" height="240"></p>
 <h1 align="center"><strong>KubeScrape</strong></h1>
 
-<p align="center">An open source dev tool that provides an intuitive way to view the health, structure, and live-metrics of your Kubernetes cluster </p>
+<p align="center">An open source dev tool that provides an intuitive way to view the health, structure, and live metrics of your Kubernetes cluster </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"/>
@@ -21,6 +21,7 @@
 - [License](#license)
 
 ## What is KubeScrape 
+KubeScape is an open source monitoring tool designed and developed to help Kubernetes users track the health, view live metrics, and view structure of the Kubernetes cluster. The application currently has 5 easy to navigate and intutive pages (see features section for an overview of each page). 
 
 ## Installation and Prerequisites
 ### Application Installation
@@ -35,7 +36,7 @@
 2. (Required) If you have your own instance of prometheus installed, please expose it to `port 30000` as KubeScrape currently makes API calls to this port. *As an enhancement, we are looking to allow users to input the port which you are running Prometheus on.*
 3. (Optional) KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your kubernetes cluster even if alert rules are not implemented.
   
-#### I need help installing Prometheus, node exporter, or kube-state-metrics
+#### [I need help installing Prometheus, node exporter, or kube-state-metrics](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 &nbsp;&nbsp;&nbsp;&nbsp; If you do not have the above requirements set up please go to the following repo which includes sample manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the 4-step process in the ReadMe to deploy Prometheus with ease. 
 
 Supplementary Repo: [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
