@@ -2,7 +2,7 @@
  <img src="https://i.imgur.com/763iZTq.jpg" width="300" height="240"></p>
 <h1 align="center"><strong>KubeScrape</strong></h1>
 
-<p align="center">An open source real-time visualizer with easy to read metrics, graphs, and diagrams for your Kubernetes Cluster</p>
+<p align="center">An open source real-time Kubernetes visualizer with easy to read metrics, graphs, and diagrams </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"/>
@@ -38,7 +38,7 @@ Vist our github [releases](URL) page to download KubeScrape's desktop applicatio
 *As a feature enhance, we are looking to allow users to input the port which you are running Prometheus on*
 
 ###### Optional
-KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your k8 cluster even if alert rules are not implemented.
+KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your kubernetes cluster even if alert rules are not implemented.
   
 ###### I need help installing Prometheus, node exporter, or kube-state-metrics
 If you do not have the above requirements set up please go to the following repo which includes sample manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the 4-step process in the ReadMe to deploy Prometheus with ease. 
@@ -46,15 +46,17 @@ If you do not have the above requirements set up please go to the following repo
 
 <a name="feature"/>
 # Features
-##Cluster(Home) View
-Dashboard that displays an overview of your cluster including details about total number of objects within your cluster and overall health. 
+##Cluster View / Home Page
+Dashboard that displays an overview of the cluster including over health and details about the created k8 objects. Users can hover and click into the running nodes component to automatically route to the Node Details page for more information regarding running pods. 
 
 <gif>
 
-##Node Details View
+##Node Details
+Provides details regarding created pods within the node. Users can hover and click into a pod to route to the Pod Details for pod metrics.
  
+##Pod Details
+
  
-##Pod View 
 ##Alerts 
 ##K8 Map
 
