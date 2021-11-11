@@ -1,14 +1,13 @@
-const webpack = require('webpack')
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { spawn } = require('child_process')
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { spawn } = require('child_process');
 
 // Any directories you will be adding code/files into, need to be added to this array so webpack will pick them up
-const defaultInclude = path.resolve(__dirname, 'src')
+const defaultInclude = path.resolve(__dirname, 'src');
 
 module.exports = {
   module: {
-
     // specifies rules to transpile frontend code
     rules: [
       {
@@ -17,40 +16,42 @@ module.exports = {
         // loaders to use
         use: ['style-loader', 'css-loader', 'sass-loader'],
         // An array of path or directories that have the files to be transformed by the loader
-        include: defaultInclude
+        include: defaultInclude,
       },
       {
         test: /\.jsx?$/,
-        use: [{ 
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+            },
           },
-        }],
-        include: defaultInclude
+        ],
+        include: defaultInclude,
       },
       {
         test: /\.(jpe?g|png|gif)$/,
         use: [{ loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]' }],
-        include: defaultInclude
+        include: defaultInclude,
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
-        include: defaultInclude
-      }
-    ]
+        include: defaultInclude,
+      },
+    ],
   },
-  // Webpack can compile for multiple environments aka targets. 
+  // Webpack can compile for multiple environments aka targets.
   // 'electron-renderer' instructs webpack to compile for Electron for renderer process
-  target: 'electron-renderer', 
+  target: 'electron-renderer',
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
   ],
 
   // chooses a style of source mapping to enhance the debugging process
@@ -63,17 +64,13 @@ module.exports = {
     stats: {
       colors: true,
       chunks: false,
-      children: false
+      children: false,
     },
     // the before hook runs before the devServer starts and can be used to run node js code
     before() {
-      spawn(
-        'electron',
-        ['.'],
-        { shell: true, env: process.env, stdio: 'inherit' }
-      )
-      .on('close', code => process.exit(0))
-      .on('error', spawnError => console.error(spawnError))
-    }
-  }
-}
+      spawn('electron', ['.'], { shell: true, env: process.env, stdio: 'inherit' })
+        .on('close', code => process.exit(0))
+        .on('error', spawnError => console.error(spawnError));
+    },
+  },
+};

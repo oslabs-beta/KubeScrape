@@ -2,12 +2,12 @@
  * ************************************
  *
  * @module  index.js
- * @author team KuberG8
+ * @author team KubeScrape
  * @date
  * @description A place to combine reducers
  *
  * ************************************
-*/
+ */
 
 import { combineReducers } from 'redux';
 
@@ -20,7 +20,7 @@ import podReducer from './podReducer';
 const reducers = combineReducers({
   node: nodeReducer,
   pod: podReducer,
-  cluster: clusterReducer
+  cluster: clusterReducer,
 });
 
 export default reducers;

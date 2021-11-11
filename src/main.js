@@ -2,19 +2,19 @@
  * ************************************
  *
  * @module main.js
- * @author team KuberG8
+ * @author team KubeScrape
  * @date
  * @description Entry Point to Electron App
  *
  * ************************************
  */
 
-'use strict'
+'use strict';
 
 // Import parts of electron to use
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const url = require('url');
+// const url = require('url');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -25,7 +25,7 @@ let dev = false;
 
 if (process.env.NODE_ENV !== undefined && process.env.NODE_ENV === 'development') {
   dev = true;
-};
+}
 
 // Temporary fix broken high-dpi scale factor on Windows (125% scaling)
 // info: https://github.com/electron/electron/issues/9560
@@ -42,9 +42,9 @@ function createWindow() {
     show: false,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
-    }
-  })
+      contextIsolation: false,
+    },
+  });
 
   let indexPath;
 
@@ -54,9 +54,9 @@ function createWindow() {
   } else {
     indexPath = new URL('file:' + path.join(__dirname, '../dist/index.html'));
   }
-  
+
   mainWindow.loadURL(indexPath.href);
-    // mainWindow.loadFile(indexPath);
+  // mainWindow.loadFile(indexPath);
 
   // Don't show until we are ready and loaded
   mainWindow.once('ready-to-show', () => {
@@ -64,21 +64,25 @@ function createWindow() {
 
     // Open the DevTools automatically if developing
     if (dev) {
-      const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
+      const {
+        default: installExtension,
+        REACT_DEVELOPER_TOOLS,
+      } = require('electron-devtools-installer');
 
-      installExtension(REACT_DEVELOPER_TOOLS)
-        .catch(err => console.log('Error loading React DevTools: ', err));
+      installExtension(REACT_DEVELOPER_TOOLS).catch(err =>
+        console.log('Error loading React DevTools: ', err)
+      );
       mainWindow.webContents.openDevTools();
     }
-  })
+  });
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', function() {
+  mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
-  })
+  });
 }
 
 // This method will be called when Electron has finished
@@ -93,7 +97,7 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
-})
+});
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
@@ -101,4 +105,4 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
-})
+});
