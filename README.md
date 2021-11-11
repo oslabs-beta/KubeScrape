@@ -24,8 +24,7 @@
 
 ## KubeScrape Prerequisite and Installation
 ### Application Installation
-Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system. 
-  (*Note: You may need to configure privacy or security settings to allow the application to open without being verified.)
+Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system.  *Note: You may need to configure privacy or security settings to allow the application to open without being verified.*
 
 ### Prerequisites
 #### Required
@@ -33,8 +32,7 @@ Vist our [github releases page](URL) to download KubeScrape's desktop applicatio
    - Prometheus 
    - Node Exporter
    - Kube-state-metrics
-2. If you have your own instance of prometheus installed, please expose it to `port 30000` as KubeScrape currently makes API calls to this port.
-*As a feature enhance, we are looking to allow users to input the port which you are running Prometheus on*
+2. If you have your own instance of prometheus installed, please expose it to `port 30000` as KubeScrape currently makes API calls to this port.  *As a feature enhance, we are looking to allow users to input the port which you are running Prometheus on.*
 
 #### Optional
 KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your kubernetes cluster even if alert rules are not implemented.
