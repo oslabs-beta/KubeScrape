@@ -21,9 +21,7 @@
 * [License](#license)
 
 # What is KubeScrape 
-<a name="KubeScrape"/>
 
-<a name="setUp"/>
 # KubeScrape Prerequisite and Installation
 ##Application Installation
 Vist our github [releases](URL) page to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system. (*Note: You may need to configure privacy or security settings to allow the application to open without being verified.)
