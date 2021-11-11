@@ -116,13 +116,6 @@ const NodeOverview = props => {
     <StyledContainer
       maxWidth="xs"
       onClick={() => goToNode(props.nodeName)}
-      sx={
-        {
-          // backgroundColor: primaryColor,
-          // borderRadius: '5px',
-          // paddingBottom: '10px'
-        }
-      }
     >
       <Paper elevation={3}>
         <Typography
