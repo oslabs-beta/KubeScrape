@@ -35,10 +35,10 @@ Vist our github [releases](URL) page to download KubeScrape's desktop applicatio
 2. If you have your own instance of prometheus installed, please expose it to `port 30000` as KubeScrape currently makes API calls to this port.
 *As a feature enhance, we are looking to allow users to input the port which you are running Prometheus on*
 
-###### Optional
+### Optional
 KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your kubernetes cluster even if alert rules are not implemented.
   
-###### I need help installing Prometheus, node exporter, or kube-state-metrics
+### I need help installing Prometheus, node exporter, or kube-state-metrics
 If you do not have the above requirements set up please go to the following repo which includes sample manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the 4-step process in the ReadMe to deploy Prometheus with ease. 
    [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 
@@ -51,7 +51,7 @@ Dashboard that displays an overview of the cluster including over health and det
 ## Node Details
 Provides details regarding created pods within the node. Users can hover and click into a pod to route to the Pod Details for pod metrics.
  
-##Pod Details
+## Pod Details
 
  
 ## Alerts 
