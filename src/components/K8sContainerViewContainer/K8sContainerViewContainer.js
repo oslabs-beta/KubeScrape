@@ -60,7 +60,7 @@ const K8sContainerViewContainer = (props) => {
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
 
-    <Container sx={{ flexGrow: 1, width: '100%' }}>
+    <Box sx={{ flexGrow: 1, width: '90%' }}>
       <AppBar position='relative' sx={{
         backgroundColor: primaryColor,
         width: '100%',
@@ -91,7 +91,7 @@ const K8sContainerViewContainer = (props) => {
         podInfo={currentPodInfo}
         allContainers={allContainers}
       />  
-    </Container>
+    </Box>
   )
 }
  
