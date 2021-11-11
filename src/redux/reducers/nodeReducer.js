@@ -7,7 +7,7 @@
  * ************************************
  */
 
-import * as types from '../redux/constants/actionTypes';
+import * as types from '../../redux/constants/actionTypes';
 
 const initialState = {
   nodeCpuUsage: 0,

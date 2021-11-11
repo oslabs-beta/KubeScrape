@@ -7,7 +7,7 @@
  * ************************************
  */
 
-import * as types from '../redux/constants/actionTypes';
+import * as types from '../constants/actionTypes';
 
 const initialState = {
   namespaces: [],
