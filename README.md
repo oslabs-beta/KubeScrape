@@ -26,7 +26,7 @@
 ##Application Installation
 Vist our github [releases](URL) page to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system. (*Note: You may need to configure privacy or security settings to allow the application to open without being verified.)
 
-##Prerequisites
+## Prerequisites
 ###### Required
 1. The following must be deployed in your kubernetes cluster for KubeScrape to gather metrics and information from:
    - Prometheus 
@@ -43,19 +43,19 @@ If you do not have the above requirements set up please go to the following repo
    [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 
 # Features
-##Cluster View / Home Page
+## Cluster View / Home Page
 Dashboard that displays an overview of the cluster including over health and details about the created k8 objects. Users can hover and click into the running nodes component to automatically route to the Node Details page for more information regarding running pods. 
 
 <gif>
 
-##Node Details
+## Node Details
 Provides details regarding created pods within the node. Users can hover and click into a pod to route to the Pod Details for pod metrics.
  
 ##Pod Details
 
  
-##Alerts 
-##K8 Map
+## Alerts 
+## K8 Map
 
 # KubeScrape Engineering Team 
 [Anne Chan](https://github.com/annechanchan) | [Jackie Whitman](https://github.com/jackiewhitworth) | [Jacob Davis](https://github.com/JacobDDavis) | [Vince Nguyen](https://github.com/ntgv93)
