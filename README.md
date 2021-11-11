@@ -17,7 +17,7 @@
 - [Installation and Prerequisites](#installation)
 - [Features](https://github.com/oslabs-beta/KubeScrape/tree/annechanchan-patch-2#features)
 - [Future Enhancements](#future-enhancements)
-- [Engineering Team](#engineering)
+- [Engineering Team](https://github.com/oslabs-beta/KubeScrape/tree/annechanchan-patch-2#kubescrape-engineering-team)
 - [License](#license)
 
 ## What is KubeScrape 
