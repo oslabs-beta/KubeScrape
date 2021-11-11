@@ -40,14 +40,14 @@ const NodeDetailsContainer = () => {
 
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
-  return (
-    <Container sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="relative"
+  return(
+    <Box sx={{flexGrow: 1, width: '90%'}}>
+      <AppBar 
+        position='relative' 
         sx={{
           backgroundColor: primaryColor,
           width: '100%',
-          marginBottom: '20px',
+          marginBottom: '20px'
         }}
       >
         <Toolbar>
@@ -70,8 +70,8 @@ const NodeDetailsContainer = () => {
           </FormControl>
         </Toolbar>
       </AppBar>
-      <PodDetailsContainer node={currentNode} />
-    </Container>
+      <PodDetailsContainer node={currentNode}/>
+    </Box>
   );
 };
 

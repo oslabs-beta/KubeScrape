@@ -56,16 +56,14 @@ const K8sContainerViewContainer = props => {
 
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
-  return (
-    <Container sx={{ flexGrow: 1, width: '100%' }}>
-      <AppBar
-        position="relative"
-        sx={{
-          backgroundColor: primaryColor,
-          width: '100%',
-          marginBottom: '20px',
-        }}
-      >
+  return(
+
+    <Box sx={{ flexGrow: 1, width: '90%' }}>
+      <AppBar position='relative' sx={{
+        backgroundColor: primaryColor,
+        width: '100%',
+        marginBottom: '20px'
+      }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Pod Details
@@ -86,10 +84,13 @@ const K8sContainerViewContainer = props => {
           </FormControl>
         </Toolbar>
       </AppBar>
-      <K8sContainerHeading podInfo={currentPodInfo} />
-      <K8sContainersOverview podInfo={currentPodInfo} allContainers={allContainers} />
-    </Container>
-  );
-};
-
-export default K8sContainerViewContainer;
+      <K8sContainerHeading podInfo={currentPodInfo}/>
+      <K8sContainersOverview 
+        podInfo={currentPodInfo}
+        allContainers={allContainers}
+      />  
+    </Box>
+  )
+}
+ 
+ export default K8sContainerViewContainer;
