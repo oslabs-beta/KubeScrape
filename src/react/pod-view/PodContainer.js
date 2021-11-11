@@ -20,13 +20,13 @@ import InputLabel from '@mui/material/InputLabel';
 
 import * as containerPromql from '../../utils/container-promql-util';
 import * as podPromql from '../../utils/pod-promql-util';
-import K8sContainersOverview from '../K8sContainersOverview/K8sContainersOverview';
-import K8sContainerHeading from '../K8sContainerHeading/K8sContainerHeading';
+import ContainersGraphContainer from './components/ContainersGraphContainer';
+import PodHeader from './components/PodHeader';
 import * as actions from '../../actions/actions';
 
 const primaryColor = '#25274D';
 
-const K8sContainerViewContainer = props => {
+const PodContainer = props => {
   //access podInfo state from store, and set allContainers state
   const { podInfo } = useSelector(state => state.pod);
   const { nodes } = useSelector(state => state.cluster);
@@ -86,10 +86,12 @@ const K8sContainerViewContainer = props => {
           </FormControl>
         </Toolbar>
       </AppBar>
-      <K8sContainerHeading podInfo={currentPodInfo} />
-      <K8sContainersOverview podInfo={currentPodInfo} allContainers={allContainers} />
+
+      <PodHeader podInfo={currentPodInfo} />
+
+      <ContainersGraphContainer podInfo={currentPodInfo} allContainers={allContainers} />
     </Container>
   );
 };
 
-export default K8sContainerViewContainer;
+export default PodContainer;

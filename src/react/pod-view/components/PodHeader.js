@@ -1,7 +1,7 @@
 /**
  * ************************************
  *
- * @module K8sContainerHeading.js
+ * @module PodHeader.js
  * @description Presentational component to render details of each individual K8s Pod at the top of the view that focuses on container-level metrics
  * 
  * ************************************
@@ -9,9 +9,8 @@
 
 import React from 'react';
 import Box from '@mui/material/Box';
-import {List, ListItem, Paper } from '@mui/material'
-import Typography from '@mui/material/Typography';
-import { styled } from '@mui/system'; 
+import {List, ListItem, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles'; 
 
 const Detail = styled(ListItem)(({ theme }) => ({
   display: 'flex',
@@ -19,7 +18,7 @@ const Detail = styled(ListItem)(({ theme }) => ({
   divider: true
 }));
  
-const K8sContainerHeading = (props) => (
+const PodHeader = (props) => (
   <Box>
     <Paper elevation={5}>
       <List>
@@ -33,4 +32,4 @@ const K8sContainerHeading = (props) => (
   </Box>
 )
  
-export default K8sContainerHeading;
+export default PodHeader;

@@ -7,9 +7,9 @@
  * ************************************
  */
 
-import React from "react";
+import React from 'react';
 import Box from '@mui/material/Box';
-import { Line } from "react-chartjs-2";
+import { Line } from 'react-chartjs-2';
 
 const LineChart = (props) => {
   const data = {

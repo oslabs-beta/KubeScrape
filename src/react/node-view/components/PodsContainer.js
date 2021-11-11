@@ -1,8 +1,8 @@
 /**
  * ************************************
  *
- * @module PodDetailsContainer.js
- * @description Component to render details of each individual K8s Pod
+ * @module PodsContainer.js
+ * @description Container component which renders K8s pods
  *
  * ************************************
  */
@@ -15,7 +15,7 @@ import PodOverview from './PodOverview';
 import * as actions from '../../../actions/actions';
 import * as podPromql from '../../../utils/pod-promql-util';
 
-const PodDetailsContainer = props => {
+const PodsContainer = props => {
   // useSelector allows you to extract data from the Redux store state, using a selector function
   // this function accesses the state from the nodeReducer by subscribing to the store through sseSelector
   const { podInfo } = useSelector(state => state.pod);
@@ -73,4 +73,4 @@ const PodDetailsContainer = props => {
   );
 };
 
-export default PodDetailsContainer;
+export default PodsContainer;

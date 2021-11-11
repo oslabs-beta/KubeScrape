@@ -18,8 +18,6 @@ import * as actions from '../../../actions/actions';
 // fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
 import * as nodePromql from '../../../utils/node-promql-util';
 
-const primaryColor = '#25274D';
-
 // create a functional component
 const NodeOverview = props => {
   // useSelector allows you to extract data from the Redux store state, using a selector function

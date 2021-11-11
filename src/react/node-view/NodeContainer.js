@@ -10,16 +10,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import { Box, Container } from '@mui/material';
-import Grid from '@mui/material/Grid';
+import { AppBar, Container } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
-import PodDetailsContainer from './components/PodsOverviewContainer';
+import PodDetailsContainer from './components/PodsContainer';
 
 const primaryColor = '#25274D';
 

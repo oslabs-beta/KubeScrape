@@ -1,24 +1,24 @@
 /**
  * ************************************
  *
- * @module  K8sContainerOverview.js
- * @description component that renders basic information about an individual container within a pod
+ * @module  ContainersGraphContainer.js
+ * @description container component which renders line charts for k8s containers wihtin a pod
  *
  * ************************************
  */
 
 import React, { useState, useEffect } from 'react';
 import { Box, Paper } from '@mui/material';
-import { styled } from '@mui/system';
+import { styled } from '@mui/material/styles';
 
 // fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
-import * as containerPromql from '../../utils/container-promql-util';
-import LineChart from '../charts/LineChart';
+import * as containerPromql from '../../../utils/container-promql-util';
+import LineChart from './LineChart';
 
 // Define the following in this component's state to pass to linecharts as props:
 // CpuUtilization (seconds), MemoryUtilization (bytes), CpuSaturation (throttled seconds), Memory Saturation (percentage of limit)
 // timeLabels for x-axes as an array, datasets for y-axes as an array of objects (one object per container)
-const K8sContainersOverview = (props) => {
+const ContainersGraphContainer = (props) => {
   const [ podContainers, setPodContainers ] = useState([]);
   const [ cpuTimeLabels, setCpuTimeLabels ] = useState([]);
   const [ cpuDatasets, setCpuDatasets ] = useState([{ label: '', data: [1, 2, 3, 4, 5] }]);
@@ -55,12 +55,12 @@ const K8sContainersOverview = (props) => {
       containerCpuValues.forEach(value => {
         updatedCpuValues.timeLabels.push(new Date(value[0] * 1000).toLocaleString());
         updatedCpuValues.dataset[i].data.push(value[1]);
-        updatedCpuValues.dataset[i].backgroundColor = '#2E9CCA',
-        updatedCpuValues.dataset[i].borderColor = '#2E9CCA'
+        updatedCpuValues.dataset[i].backgroundColor = '#2E9CCA';
+        updatedCpuValues.dataset[i].borderColor = '#2E9CCA';
       });
     }
     return updatedCpuValues;
-  }
+  };
 
   // for CPU Saturation Values, return data in the following format to be readable by LineChart: 
   // [{ timeLabels:[timestamps],label: containerName, data: [values] }] 
@@ -74,18 +74,18 @@ const K8sContainersOverview = (props) => {
       updatedCpuSaturationValues.dataset[i] = { label: podContainers[i], data: [] };
       const containerCpuSaturationValues = await containerPromql.fetchRangeContainerCpuSaturation(podContainers[i], startTime, endTime);
       if (containerCpuSaturationValues === 0) {
-        updatedCpuSaturationValues.dataset[i].label = `${podContainers[i]}: No CPU Seconds Throttled`
+        updatedCpuSaturationValues.dataset[i].label = `${podContainers[i]}: No CPU Seconds Throttled`;
         return updatedCpuSaturationValues;
       }
       containerCpuSaturationValues.forEach(value => {
         updatedCpuSaturationValues.timeLabels.push(new Date(value[0] * 1000).toLocaleString());
         updatedCpuSaturationValues.dataset[i].data.push(value[1]);
-        updatedCpuSaturationValues.dataset[i].backgroundColor = '#2E9CCA',
-        updatedCpuSaturationValues.dataset[i].borderColor = '#2E9CCA'
+        updatedCpuSaturationValues.dataset[i].backgroundColor = '#2E9CCA';
+        updatedCpuSaturationValues.dataset[i].borderColor = '#2E9CCA';
       });
     }
     return updatedCpuSaturationValues;
-  }
+  };
 
   // for Memory Usage Values, return data in the following format to be readable by LineChart: 
   // [{ timeLabels:[timestamps],label: containerName, data: [values] }] 
@@ -101,12 +101,12 @@ const K8sContainersOverview = (props) => {
       containerMemoryValues.forEach(value => {
         updatedMemoryValues.timeLabels.push(new Date(value[0] * 1000).toLocaleString());
         updatedMemoryValues.dataset[i].data.push(value[1] / 1024);
-        updatedMemoryValues.dataset[i].backgroundColor = '#2E9CCA',
-        updatedMemoryValues.dataset[i].borderColor = '#2E9CCA'
+        updatedMemoryValues.dataset[i].backgroundColor = '#2E9CCA';
+        updatedMemoryValues.dataset[i].borderColor = '#2E9CCA';
       });
     }
     return updatedMemoryValues;
-  }
+  };
   
   // for Memory Saturation Values, return data in the following format to be readable by LineChart: 
   // [{ timeLabels:[timestamps],label: containerName, data: [values] }] 
@@ -119,14 +119,14 @@ const K8sContainersOverview = (props) => {
       updatedMemorySaturationValues.dataset[i] = { label: podContainers[i], data: [] };
       const containerMemorySaturationValues = await containerPromql.fetchRangeContainerMemorySaturation(podContainers[i], startTime, endTime);
       if (containerMemorySaturationValues === 0) {
-        updatedMemorySaturationValues.dataset[i].label = `${podContainers[i]}: No Memory Limit Set`
+        updatedMemorySaturationValues.dataset[i].label = `${podContainers[i]}: No Memory Limit Set`;
         return updatedMemorySaturationValues;
       }
       containerMemorySaturationValues.forEach(value => {
         updatedMemorySaturationValues.timeLabels.push(new Date(value[0] * 1000).toLocaleString());
         updatedMemorySaturationValues.dataset[i].data.push(value[1] * 100);
-        updatedMemorySaturationValues.dataset[i].backgroundColor = '#2E9CCA',
-        updatedMemorySaturationValues.dataset[i].borderColor = '#2E9CCA'
+        updatedMemorySaturationValues.dataset[i].backgroundColor = '#2E9CCA';
+        updatedMemorySaturationValues.dataset[i].borderColor = '#2E9CCA';
       });
     }
     return updatedMemorySaturationValues;
@@ -172,13 +172,11 @@ const K8sContainersOverview = (props) => {
   //   </Box>;
   // };
 
-
   const GraphPaper = styled(Paper)(({ theme }) => ({
     padding: '10px',
     margin: '20px 0',
     fontSize: '16px'
   }));
-
 
   // render each line chart for the current pod with data from state (each container has its own line on each chart)
   // TODO: Return the LineChart element as part of a function call to stay DRY, since it's used multiple times
@@ -190,7 +188,7 @@ const K8sContainersOverview = (props) => {
         <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 
-            key={props.podName + 'cpuUsage'}
+            key={`${props.podName  }cpuUsage`}
             metricName="CPU Usage Seconds"
             xAxis={cpuTimeLabels}
             datasets={cpuDatasets}
@@ -203,7 +201,7 @@ const K8sContainersOverview = (props) => {
         <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 
-            key={props.podName + 'cpuSaturation'}
+            key={`${props.podName  }cpuSaturation`}
             metricName="CPU Saturation (Seconds Throttled)"
             xAxis={cpuSaturationTimeLabels}
             datasets={cpuSaturationDatasets}
@@ -216,7 +214,7 @@ const K8sContainersOverview = (props) => {
         <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 
-            key={props.podName + 'memoryUsage'}
+            key={`${props.podName  }memoryUsage`}
             metricName="Memory Usage (kilobytes)"
             xAxis={memoryTimeLabels}
             datasets={memoryDatasets}
@@ -229,7 +227,7 @@ const K8sContainersOverview = (props) => {
         <GraphPaper elevation={5}>
           <h2> {props.podName} </h2>
           <LineChart 
-            key={props.podName + 'memorySaturation'}
+            key={`${props.podName  }memorySaturation`}
             metricName="Memory Saturation (percentage)"
             xAxis={memorySaturationTimeLabels}
             datasets={memorySaturationDatasets}
@@ -238,6 +236,6 @@ const K8sContainersOverview = (props) => {
       </Box>
     </Box>
   );
-}
+};
 
-export default K8sContainersOverview;
+export default ContainersGraphContainer;

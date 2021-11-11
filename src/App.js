@@ -17,7 +17,7 @@ import theme from './theme';
 import HomeContainer from './react/home-view/HomeContainer';
 import NodeContainer from './react/node-view/NodeContainer';
 import Visualizer from './react/visualizer/VisualizerContainer';
-import K8sContainerViewContainer from './components/K8sContainerViewContainer/K8sContainerViewContainer';
+import PodContainer from './react/pod-view/PodContainer';
 import AlertsOverview from './react/alerts-view/AlertsOverview';
 
 const App = () => {
@@ -43,7 +43,7 @@ const App = () => {
           </Route>
 
           <Route path="/pod" exact>
-            <K8sContainerViewContainer />
+            <PodContainer />
           </Route>
 
           <Route path="/alerts" exact>

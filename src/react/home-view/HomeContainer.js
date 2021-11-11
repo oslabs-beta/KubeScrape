@@ -9,13 +9,13 @@
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppBar, Box, Grid, Paper, Toolbar, Container, Typography } from '@mui/material';
+import { AppBar, Box, Paper, Toolbar, Container, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import NodeOverview from './components/NodeOverview';
 import ClusterOverview from './components/ClusterOverview';
-import DeploymentOverview from '../../components/DeploymentContainer/DeploymentOverview';
+import DeploymentOverview from './components/DeploymentOverview';
 import * as clusterPromql from '../../utils/cluster-promql-util';
 import * as actions from '../../actions/actions';
-import { styled } from '@mui/system';
 
 const primaryColor = '#25274D';
 
