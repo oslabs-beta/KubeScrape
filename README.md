@@ -29,24 +29,19 @@
 *Note: You may need to configure privacy or security settings to allow the application to open without being verified.*
 
 ### Prerequisites
-#### Required
-1. The following must be deployed in your kubernetes cluster for KubeScrape to gather metrics and information from:
+1. (Required) The following must be deployed in your kubernetes cluster for KubeScrape to gather metrics and information from:
    - Prometheus 
    - Node Exporter
    - Kube-state-metrics
-2. If you have your own instance of prometheus installed, please expose it to `port 30000` as KubeScrape currently makes API calls to this port.
-
-*As an enhancement, we are looking to allow users to input the port which you are running Prometheus on.*
-
-#### Optional
-&nbsp;&nbsp;&nbsp;&nbsp; KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your kubernetes cluster even if alert rules are not implemented.
+2. (Required) If you have your own instance of prometheus installed, please expose it to `port 30000` as KubeScrape currently makes API calls to this port. *As an enhancement, we are looking to allow users to input the port which you are running Prometheus on.*
+3. (Optional) KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your kubernetes cluster even if alert rules are not implemented.
   
 #### I need help installing Prometheus, node exporter, or kube-state-metrics
 &nbsp;&nbsp;&nbsp;&nbsp; If you do not have the above requirements set up please go to the following repo which includes sample manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the 4-step process in the ReadMe to deploy Prometheus with ease. 
    [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 
 ## Features
-&nbsp;&nbsp; ### Cluster View / Home Page
+### Cluster View / Home Page
 &nbsp;&nbsp; Dashboard that displays an overview of the cluster including over health and details about the created k8 objects. Hover and click into the running nodes component to automatically route to the Node Details page for more information regarding running pods. 
 
 <gif>
