@@ -16,9 +16,9 @@
 * [What is KubeScrape](#what-is-kubescrape)<br>
 * [KubeScrape Prerequisite and Set Up](#prerequisite-and-set-up)<br>
 * [Features](#features)<br>
-* [Engineering Team](#engineering-team)<br>
-* [Future Enhancements](#future-enhancements)<br>
-* [License](#license)<br>
+* [Engineering Team](#engineering-team)
+* [Future Enhancements](#future-enhancements)
+* [License](#license)
 
 ## What is KubeScrape 
 
