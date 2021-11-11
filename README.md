@@ -13,9 +13,9 @@
 </p>
 
 ## Table of Contents 
-* [What is KubeScrape](#what-is-kubescrape)<br>
-* [KubeScrape Prerequisite and Set Up](#prerequisite-and-set-up)<br>
-* [Features](#features)<br>
+* [What is KubeScrape](#what-is-kubescrape)
+* [KubeScrape Prerequisite and Set Up](#prerequisite-and-set-up)
+* [Features](#features)
 * [Engineering Team](#engineering-team)
 * [Future Enhancements](#future-enhancements)
 * [License](#license)
@@ -26,7 +26,7 @@
 ### Application Installation
 &nbsp;&nbsp;&nbsp;&nbsp; Installing our app is just a few clicks away! Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system.
 
-*Note: You may need to configure privacy or security settings to allow the application to open without being verified.*
+Note: You may need to configure privacy or security settings to allow the application to open without being verified.
 
 ### Prerequisites
 
