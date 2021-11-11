@@ -8,7 +8,7 @@
     "start": "cross-env NODE_ENV=development webpack serve --hot --host 0.0.0.0 --config webpack.dev.config.js --mode development",
     "build": "cross-env NODE_ENV=production webpack --config webpack.build.config.js --mode production",
     "package": "npm run build",
-    "postpackage": "electron-packager ./ --out=./builds"
+    "postpackage": "electron-packager ./ --all --asar --icon=KUBESCRAPE.icns --out=./builds"
   },
   "repository": {
     "type": "git",
@@ -52,11 +52,11 @@
     "css-loader": "^6.2.0",
     "electron": "^13.1.9",
     "electron-devtools-installer": "^3.2.0",
-    "electron-packager": "^15.3.0",
+    "electron-packager": "^15.4.0",
     "eslint": "^8.0.1",
-    "eslint-import-resolver-webpack": "^0.13.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-webpack": "^0.13.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
