@@ -24,7 +24,7 @@
 
 ## KubeScrape Prerequisite and Installation
 ### Application Installation
-Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system.
+Installing our app is just a few clicks away! Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system.
 
 *Note: You may need to configure privacy or security settings to allow the application to open without being verified.*
 
@@ -34,7 +34,9 @@ Vist our [github releases page](URL) to download KubeScrape's desktop applicatio
    - Prometheus 
    - Node Exporter
    - Kube-state-metrics
-2. If you have your own instance of prometheus installed, please expose it to `port 30000` as KubeScrape currently makes API calls to this port.  *As a feature enhance, we are looking to allow users to input the port which you are running Prometheus on.*
+2. If you have your own instance of prometheus installed, please expose it to `port 30000` as KubeScrape currently makes API calls to this port.
+
+*As a feature enhance, we are looking to allow users to input the port which you are running Prometheus on.*
 
 #### Optional
 KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your kubernetes cluster even if alert rules are not implemented.
@@ -44,19 +46,22 @@ If you do not have the above requirements set up please go to the following repo
    [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 
 ## Features
-## Cluster View / Home Page
-Dashboard that displays an overview of the cluster including over health and details about the created k8 objects. Users can hover and click into the running nodes component to automatically route to the Node Details page for more information regarding running pods. 
+### Cluster View / Home Page
+Dashboard that displays an overview of the cluster including over health and details about the created k8 objects. Hover and click into the running nodes component to automatically route to the Node Details page for more information regarding running pods. 
 
 <gif>
 
 ### Node Details
-Provides details regarding created pods within the node. Users can hover and click into a pod to route to the Pod Details for pod metrics.
+Provides details regarding created pods within the node. Hover and click into a pod to route to the Pod Details for pod metrics.
  
 ### Pod Details
-
+Displays metrics regarding each pod. Click the drop down menu on the top right to switch between pods.
  
 ### Alerts 
-### K8 Map
+Displays alerts tracked by Prometheus that are in "firing state". The alert components are grouped by alert name and changes color depending on severity level. 
+ 
+### K8 Visualizer 
+Presents a relational diagram of your kubernetes cluster. 
 
 ## KubeScrape Engineering Team 
 [Anne Chan](https://github.com/annechanchan) | [Jackie Whitman](https://github.com/jackiewhitworth) | [Jacob Davis](https://github.com/JacobDDavis) | [Vince Nguyen](https://github.com/ntgv93)
