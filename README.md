@@ -13,14 +13,14 @@
 </p>
 
 ## Table of Contents 
-- [What is KubeScrape](#what-is-kubescrape)
+- [What is KubeScrape?](#what-is-kubescrape)
 - [Installation and Prerequisites](#installation-and-prerequisites)
 - [Features](#features)
 - [Future Enhancements](#future-enhancements)
 - [Engineering Team](#kubescrape-engineering-team)
 - [License](#license)
 
-## What is KubeScrape 
+## What is KubeScrape?
 KubeScape is an open source monitoring tool designed and developed to help Kubernetes users track the health, view live metrics, and view structure of the Kubernetes cluster. The application currently has 5 easy to navigate and intutive pages (see features section for an overview of each page). 
 
 ## Installation and Prerequisites
