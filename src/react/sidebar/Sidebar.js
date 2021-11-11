@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module Sidebar.js
- * @description React Component to display Sidebar nav items
+ * @description Component to display Sidebar nav items
  *
  * ************************************
  */

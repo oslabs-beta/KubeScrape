@@ -10,6 +10,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box, AppBar, Toolbar,Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import Graph from 'react-graph-vis';
 import cpIcon from '../../icons/control-plane-icon.svg';
 import nsIcon from '../../icons/namespace-icon.svg';
@@ -18,9 +19,10 @@ import deplIcon from '../../icons/deployment-icon.svg';
 import svcIcon from '../../icons/service-icon.svg';
 import podIcon from '../../icons/pod-icon.svg';
 
-const primaryColor = '#25274D';
-
 const Visualizer = () => {
+
+  // get custom theme object
+  const theme = useTheme();
 
   const { namespaces, nodes, deployments, services } = useSelector(state => state.cluster);
   const { pods } = useSelector(state => state.node);
@@ -189,8 +191,6 @@ const Visualizer = () => {
       flexGrow: 1,
       height: '90vh' }}> 
       <AppBar position='relative' sx={{
-        backgroundColor: primaryColor,
-        marginBottom: '20px'
       }}>
         <Toolbar>
           <Typography variant='h5' component='div' sx={{ flexGrow: 1 }}>
