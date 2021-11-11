@@ -61,7 +61,7 @@ Supplementary Repo: [KubeScrape_PrometheusManifests](https://github.com/annechan
 ### Alerts 
 &nbsp;&nbsp;&nbsp;&nbsp; The Alerts page displays alerts tracked by Prometheus that are in "firing state". The alert components are grouped by alert name and changes color depending on the set severity level. 
 
-<img src="https://imgur.com/fo54Xib" alt="Alerts" width="800" height="500">
+<img src="https://media.giphy.com/media/7CRUrsWFVAm362DqSc/giphy.gif" alt="Alerts">
   
 ### Visualizer 
 &nbsp;&nbsp;&nbsp;&nbsp; The Visualizer presents a relational diagram of your kubernetes cluster objects, organized by namespace. 
