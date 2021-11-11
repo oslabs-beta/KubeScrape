@@ -24,7 +24,7 @@
 
 ## KubeScrape Prerequisite and Installation
 ### Application Installation
- Installing our app is just a few clicks away! Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system.
+&nbsp;&nbsp; Installing our app is just a few clicks away! Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system.
 
 *Note: You may need to configure privacy or security settings to allow the application to open without being verified.*
 
