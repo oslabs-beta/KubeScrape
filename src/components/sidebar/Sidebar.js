@@ -32,7 +32,7 @@ const openedMixin = theme => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  overflowX:'hidden'
+  overflowX: 'hidden',
 });
 
 const closedMixin = theme => ({
@@ -41,7 +41,7 @@ const closedMixin = theme => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  overflowX:'hidden'
+  overflowX: 'hidden',
 });
 
 // styled() takes in a component to be wrapped and outputs a component that wraps it which has specified styles
@@ -96,16 +96,14 @@ const Sidebar = () => {
     setOpen(false);
   };
 
-  const menuItems = SidebarItems.map((item) => 
-    <Link key={item.title} to={item.path} style={{ color: 'white', textDecoration: 'none'}}>
-      <ListItem button >
-        <ListItemIcon style={{ color: 'white' }}>
-          {item.icon}
-        </ListItemIcon>
+  const menuItems = SidebarItems.map(item => (
+    <Link key={item.title} to={item.path} style={{ color: 'white', textDecoration: 'none' }}>
+      <ListItem button>
+        <ListItemIcon style={{ color: 'white' }}>{item.icon}</ListItemIcon>
         <ListItemText primary={item.title} />
       </ListItem>
     </Link>
-  );
+  ));
 
   return (
     <Box>

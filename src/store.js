@@ -4,14 +4,14 @@
  * @module store.js
  * @author team KubeScrape
  * @date
- * @description Redux Store - "Single Source of Truth" 
+ * @description Redux Store - "Single Source of Truth"
  *
  * ************************************
  */
 
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import reducers  from './reducers/index';
+import reducers from './reducers/index';
 import thunk from 'redux-thunk'; //help redux deal with async requests
 
 const store = createStore(
