@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { 
-  AppBar, Container, Toolbar,
+  AppBar, Box, Toolbar,
   Typography, FormControl, Select,
   MenuItem, InputLabel
 } from '@mui/material';
@@ -38,7 +38,7 @@ const NodeContainer = () => {
   };
 
   return (
-    <Container sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="relative"
         sx={{
@@ -70,7 +70,7 @@ const NodeContainer = () => {
 
       <PodDetailsContainer node={currentNode} />
 
-    </Container>
+    </Box>
   );
 };
 

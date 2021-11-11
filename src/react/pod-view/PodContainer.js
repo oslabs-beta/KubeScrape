@@ -10,7 +10,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
-  AppBar, Container, Toolbar, 
+  AppBar, Box, Toolbar, 
   Typography, FormControl, Select,
   MenuItem, InputLabel 
 } from '@mui/material';
@@ -53,7 +53,7 @@ const PodContainer = props => {
   };
 
   return (
-    <Container sx={{ flexGrow: 1, width: '100%' }}>
+    <Box sx={{ flexGrow: 1, width: '100%' }}>
       <AppBar
         position="relative"
         sx={{
@@ -86,7 +86,7 @@ const PodContainer = props => {
       <PodHeader podInfo={currentPodInfo} />
 
       <ContainersGraphContainer podInfo={currentPodInfo} allContainers={allContainers} />
-    </Container>
+    </Box>
   );
 };
 
