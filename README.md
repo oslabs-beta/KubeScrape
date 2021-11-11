@@ -2,7 +2,7 @@
  <img src="https://i.imgur.com/763iZTq.jpg" width="300" height="240"></p>
 <h1 align="center"><strong>KubeScrape</strong></h1>
 
-<p align="center">An open source real-time Kubernetes visualizer with easy to read metrics, graphs, and diagrams </p>
+<p align="center">An open source dev tool that provides an intuitive way to view the health, structure, and live-metrics of your Kubernetes cluster </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"/>
@@ -14,12 +14,12 @@
 
 ## Table of Contents 
 
-* [What is KubeScrape](#KubeScrape)
-* [KubeScrape Prerequisite and Set Up](#setUp)
-* [Features](#feature)
-* [KubeScrape Engineering Team ](#team)
-* [Future Enhancements](#enhancements)
-* [License](##license)
+** [What is KubeScrape](#what-is-kubescrape)**<br>
+** [KubeScrape Prerequisite and Set Up](#kubescrape-prerequisite-and-set-up)**<br>
+** [Features](#features)**<br>
+** [Engineering Team ](#engineering-team)**<br>
+** [Future Enhancements](#enhancements)**<br>
+** [License](#license)**<br>
 
 ## What is KubeScrape 
 
@@ -43,22 +43,30 @@
 
 ## Features
 ### Cluster View / Home Page
-&nbsp;&nbsp; Dashboard that displays an overview of the cluster including over health and details about the created k8 objects. Hover and click into the running nodes component to automatically route to the Node Details page for more information regarding running pods. 
+&nbsp;&nbsp; The Cluster View, or Home Page, presents an overview of the cluster's health and important cluster metrics/information. Hover and click on a node to automatically route to the Node Details page for more information regarding running pods. 
 
 <gif>
 
 ### Node Details
-&nbsp;&nbsp;&nbsp;&nbsp; Provides details regarding created pods within the node. Hover and click into a pod to route to the Pod Details for pod metrics.
+&nbsp;&nbsp;&nbsp;&nbsp; The Node Details page displays basic information about running pods within the selected node. Hover and click on a pod to route to the Pod Details for pod metrics.
+ 
+<gif>
  
 ### Pod Details
-&nbsp;&nbsp;&nbsp;&nbsp; Displays metrics regarding each pod. Click the drop down menu on the top right to switch between pods.
+&nbsp;&nbsp;&nbsp;&nbsp; The Pod Details page graphically displays CPU Usage, CPU Saturation, Memory Usage, and Memory Saturation for each container of the selected pod. Click the drop down menu on the top right to switch between pods.
+ 
+ <gif>
  
 ### Alerts 
-&nbsp;&nbsp;&nbsp;&nbsp; Displays alerts tracked by Prometheus that are in "firing state". The alert components are grouped by alert name and changes color depending on severity level. 
+&nbsp;&nbsp;&nbsp;&nbsp; The Alerts page displays alerts tracked by Prometheus that are in "firing state". The alert components are grouped by alert name and changes color depending on the set severity level. 
  
+  <gif>
+  
 ### K8 Visualizer 
-&nbsp;&nbsp;&nbsp;&nbsp; Presents a relational diagram of your kubernetes cluster. 
+&nbsp;&nbsp;&nbsp;&nbsp; The Visualizer presents a relational diagram of your kubernetes cluster objects, organized by namespace. 
 
+   <gif>
+    
 ## KubeScrape Engineering Team 
 We welcome any feedback, contributions, or suggestions to improve KubeScrape to help monitor your cluster better. So please feel free to fork, clone this repo, and
 leave a [![GitHub stars](https://img.shields.io/github/stars/oslabs-beta/KubeScrape?style=social&label=Star&)](https://github.com/oslabs-beta/KubeScrape/) if you would like to support our work!
