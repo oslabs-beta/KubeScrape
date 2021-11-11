@@ -1,8 +1,8 @@
 /**
  * ************************************
  *
- * @module PodsContainer.js
- * @description Container component that renders K8s pods
+ * @module PodOverviewContainer.js
+ * @description Container component that renders overviews of K8s pods
  *
  * ************************************
  */
@@ -15,7 +15,7 @@ import PodOverview from './PodOverview';
 import * as actions from '../../../redux/actions/actions';
 import * as podPromql from '../../../utils/pod-promql-util';
 
-const PodsContainer = props => {
+const PodOverviewContainer = props => {
   // extract state from Redux store
   const { podInfo } = useSelector(state => state.pod);
 
@@ -69,4 +69,4 @@ const PodsContainer = props => {
   );
 };
 
-export default PodsContainer;
+export default PodOverviewContainer;

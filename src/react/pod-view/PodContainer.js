@@ -19,7 +19,7 @@ import * as containerPromql from '../../utils/container-promql-util';
 import * as podPromql from '../../utils/pod-promql-util';
 import ContainersGraphContainer from './components/ContainersGraphContainer';
 import PodHeader from './components/PodHeader';
-import * as actions from '../../actions/actions';
+import * as actions from '../../redux/actions/actions';
 
 const PodContainer = props => {
 

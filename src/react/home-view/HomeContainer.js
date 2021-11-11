@@ -15,7 +15,7 @@ import NodeOverview from './components/NodeOverview';
 import ClusterOverview from './components/ClusterOverview';
 import DeploymentOverview from './components/DeploymentOverview';
 import * as clusterPromql from '../../utils/cluster-promql-util';
-import * as actions from '../../actions/actions';
+import * as actions from '../../redux/actions/actions';
 
 
 const HomeContainer = () => {
