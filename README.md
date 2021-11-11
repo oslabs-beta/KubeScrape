@@ -2,7 +2,7 @@
  <img src="https://i.imgur.com/763iZTq.jpg" width="300" height="240"></p>
 <h1 align="center"><strong>KubeScrape</strong></h1>
 
-<p align="center">An open source dev tool that provides an intuitive way to view the health, structure, and live metrics of your Kubernetes cluster </p>
+<p align="center">An open-source dev tool that provides an intuitive way to view the health, structure, and live metrics of your Kubernetes cluster </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"/>
@@ -21,7 +21,7 @@
 - [License](#license)
 
 ## What is KubeScrape?
-KubeScape is an open source monitoring tool designed and developed to help Kubernetes users track the health, view live metrics, and view structure of the Kubernetes cluster. The application currently has 5 easy to navigate and intutive pages (see features section for an overview of each page). 
+KubeScape is an open-source monitoring tool designed and developed to help Kubernetes users track the health, view live metrics, and view structure of the Kubernetes cluster. The application currently has 5 easy to navigate and intutive pages (see features section for an overview of each page). 
 
 ## Installation and Prerequisites
 ### Application Installation
