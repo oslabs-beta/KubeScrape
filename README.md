@@ -37,7 +37,7 @@
   
 #### I need help installing Prometheus, node exporter, or kube-state-metrics
 &nbsp;&nbsp;&nbsp;&nbsp; If you do not have the above requirements set up please go to the following repo which includes sample manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the 4-step process in the ReadMe to deploy Prometheus with ease. 
-   [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
+Supplementary Repo: [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 
 ## Features
 
