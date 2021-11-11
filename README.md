@@ -15,8 +15,8 @@
 ## Table of Contents 
 - [What is KubeScrape](#what-is-kubescrape)
 - [Installation and Prerequisites](#prerequisite-and-set-up)
- -  [Application Installation](#app-installation)
- -  [Prerequisites](#prereqs)
+  - [Application Installation](#app-installation)
+ - [Prerequisites](#prereqs)
 - [Features](#features)
 - [Engineering Team](#team)
 - [Future Enhancements](#future-enhancements)
