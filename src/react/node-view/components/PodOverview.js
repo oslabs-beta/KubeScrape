@@ -1,23 +1,15 @@
 /**
  * ************************************
  *
- * @module  PodOverview
+ * @module  PodOverview.js
  * @description Presentational component that renders basic information about a pod
  *
  * ************************************
  */
 
 import React from 'react';
-import { Box, Container } from '@mui/material';
-import Card from '@mui/material/Card';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import { styled } from '@mui/system';
-import { DirectionsWalk } from '@mui/icons-material';
+import { Box, List, ListItem, Paper } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const Detail = styled(ListItem)(({ theme }) => ({
   display: 'flex',
@@ -28,8 +20,6 @@ const Detail = styled(ListItem)(({ theme }) => ({
 const PodOverview = props => (
   <Box
     sx={{
-      // display: 'flex',
-      // alignItems: 'center',
       wordWrap: 'break-word',
       maxWidth: '350px',
       fontSize: '1rem',

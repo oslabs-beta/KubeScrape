@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module  ContainersGraphContainer.js
- * @description container component which renders line charts for k8s containers wihtin a pod
+ * @description container component which renders line charts for k8s containers in a pod
  *
  * ************************************
  */
@@ -10,8 +10,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
-// fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
 import * as containerPromql from '../../../utils/container-promql-util';
 import LineChart from './LineChart';
 
@@ -29,7 +27,7 @@ const ContainersGraphContainer = (props) => {
   const [ memorySaturationTimeLabels, setMemorySaturationTimeLabels ] = useState([]);
   const [ memorySaturationDatasets, setMemorySaturationDatasets ] = useState([]);
  
-  // whenever allContainers or podName are updated in K8sContainerViewContainer, get all current pod's containers and update state
+  // whenever allContainers or podName, get all current pod's containers and update state
   useEffect(() => {
     const currentPodContainers = [];
     props.allContainers.forEach(container => {

@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module PodsContainer.js
- * @description Container component which renders K8s pods
+ * @description Container component that renders K8s pods
  *
  * ************************************
  */
@@ -16,12 +16,10 @@ import * as actions from '../../../actions/actions';
 import * as podPromql from '../../../utils/pod-promql-util';
 
 const PodsContainer = props => {
-  // useSelector allows you to extract data from the Redux store state, using a selector function
-  // this function accesses the state from the nodeReducer by subscribing to the store through sseSelector
+  // extract state from Redux store
   const { podInfo } = useSelector(state => state.pod);
 
-  // the useDispatch hook returns a reference to the dispatch function from the Redux store.
-  // dispatch can now be used to dispatch actions as needed
+  // redux hooks
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -44,14 +42,14 @@ const PodsContainer = props => {
     <Grid
       item
       container
-      key={'index: ' + index}
+      key={`grid${index}`}
       xs={12}
       sm={6}
       justifyContent="center"
       onClick={() => goToPod(pod.podName)}
     >
       <PodOverview
-        key={'pod' + index}
+        key={`pod${index}`}
         podName={pod.podName}
         namespace={pod.podNamespace}
         ip={pod.podIp}
@@ -61,8 +59,6 @@ const PodsContainer = props => {
     </Grid>
   ));
 
-  // Appbar uses display:flex + flex-direction: column
-  // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return (
     <Container>
       {/* <Typography variant='h4' align='center' gutterBottom>Click on a pod for more information</Typography> */}

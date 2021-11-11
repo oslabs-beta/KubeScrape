@@ -1,67 +1,63 @@
 /**
  * ************************************
  *
- * @module PodViewContainer.js
- * @description Component to get information about each container in the current pod, and pass that information to graph components render details of a single K8s pod
+ * @module PodContainer.js
+ * @description Container component which renders information about a k8s pod and displays line charts of K8s containers metrics 
  *
  * ************************************
  */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import AppBar from '@mui/material/AppBar';
-import { Box, Container } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-
+import { 
+  AppBar, Container, Toolbar, 
+  Typography, FormControl, Select,
+  MenuItem, InputLabel 
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles'; 
 import * as containerPromql from '../../utils/container-promql-util';
 import * as podPromql from '../../utils/pod-promql-util';
 import ContainersGraphContainer from './components/ContainersGraphContainer';
 import PodHeader from './components/PodHeader';
 import * as actions from '../../actions/actions';
 
-const primaryColor = '#25274D';
-
 const PodContainer = props => {
-  //access podInfo state from store, and set allContainers state
+
+  // get custom theme object
+  const theme = useTheme();
+  
+  // access podInfo state from store, and set allContainers state
   const { podInfo } = useSelector(state => state.pod);
   const { nodes } = useSelector(state => state.cluster);
   const [allContainers, setAllContainers] = useState([]);
 
   // keep track of current pod
   // set first pod in pod names list as default if it's defined
-  const [currentPod, setCurrentPod] = useState(podInfo[0]?.podName || 'no pod selected');
   const [currentPodInfo, setCurrentPodInfo] = useState(podInfo[0] || []);
 
   const dispatch = useDispatch();
 
-  //get array of pod names from prometheus server and use the array to update state
-  //get all cluster's containers using fetch request and update state
+  // get array of pod names from prometheus server and use the array to update state
+  // get all cluster's containers using fetch request and update state
   useEffect(async () => {
     const podInfoArray = await podPromql.fetchPodInfoList(nodes[0]);
     const allContainers = await containerPromql.fetchContainerNames();
     dispatch(actions.setPodInfo(podInfoArray));
     setAllContainers(allContainers);
   }, []);
-  // console.log(podInfo)
+
   // get info on the user-selected pod and update state
   const handleChange = async event => {
     const currentPodInfo = await podPromql.fetchCurrentPodInfo(event.target.value);
     setCurrentPodInfo(currentPodInfo);
   };
 
-  // Appbar uses display:flex + flex-direction: column
-  // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return (
     <Container sx={{ flexGrow: 1, width: '100%' }}>
       <AppBar
         position="relative"
         sx={{
-          backgroundColor: primaryColor,
+          backgroundColor: theme.palette.primary.main,
           width: '100%',
           marginBottom: '20px',
         }}

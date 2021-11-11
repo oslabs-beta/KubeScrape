@@ -1,8 +1,8 @@
 /**
  * ************************************
  *
- * @module NodeDetailsContainer.js
- * @description Component to render details of each individual K8s Node
+ * @module NodeContainer.js
+ * @description Container component that renders K8s nodes
  *
  * ************************************
  */
@@ -10,18 +10,19 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { AppBar, Container } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
+import { 
+  AppBar, Container, Toolbar,
+  Typography, FormControl, Select,
+  MenuItem, InputLabel
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import PodDetailsContainer from './components/PodsContainer';
 
-const primaryColor = '#25274D';
-
 const NodeContainer = () => {
+
+  // get custom theme object
+  const theme = useTheme();
+
   // returns a location object that represents the current URL
   const location = useLocation();
 
@@ -36,14 +37,12 @@ const NodeContainer = () => {
     setCurrentNode(event.target.value);
   };
 
-  // Appbar uses display:flex + flex-direction: column
-  // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return (
     <Container sx={{ flexGrow: 1 }}>
       <AppBar
         position="relative"
         sx={{
-          backgroundColor: primaryColor,
+          backgroundColor: theme.palette.primary.main,
           width: '100%',
           marginBottom: '20px',
         }}

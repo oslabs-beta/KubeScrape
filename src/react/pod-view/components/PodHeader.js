@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module PodHeader.js
- * @description Presentational component to render details of each individual K8s Pod at the top of the view that focuses on container-level metrics
+ * @description Presentational component to render pod-level metrics of each individual K8s Pod in the header
  * 
  * ************************************
  */
