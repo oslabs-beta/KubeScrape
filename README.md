@@ -69,6 +69,7 @@ Supplementary Repo: [KubeScrape_PrometheusManifests](https://github.com/annechan
 
 <img src="https://media.giphy.com/media/a5qWAkxWPySbq9D8AU/giphy.gif" alt="Visualizer">
 
+
 ## Future Enhancements
   - Implementing additional metrics and visualizations for nodes, pods, and containers (suggestions welcomed)
   - Integrate an error logs to allow for more comprehensive cluster debugging
