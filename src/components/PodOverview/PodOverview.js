@@ -35,6 +35,7 @@ const PodOverview = props => (
       fontSize: '1rem',
       ':hover': {
         filter: 'brightness(150%)',
+        cursor: 'pointer',
       },
     }}
   >
