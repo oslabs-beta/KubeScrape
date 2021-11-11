@@ -46,7 +46,7 @@ Supplementary Repo: [KubeScrape_PrometheusManifests](https://github.com/annechan
 ### Cluster View / Home Page
 &nbsp;&nbsp; The Cluster View, or Home Page, presents an overview of the cluster's health and important cluster metrics/information. Hover and click on a node to automatically route to the Node Details page for more information regarding running pods. 
 
-<img src="https://media.giphy.com/media/9Xg8xUJbV2m1KYQ3l4/giphy.gif" alt="Cluster View" width="800" height="500">
+<img src="https://media.giphy.com/media/9Xg8xUJbV2m1KYQ3l4/giphy.gif" alt="Cluster View">
 
 ### Node Details
 &nbsp;&nbsp;&nbsp;&nbsp; The Node Details page displays basic information about running pods within the selected node. Hover and click on a pod to route to the Pod Details for pod metrics.
@@ -66,8 +66,7 @@ Supplementary Repo: [KubeScrape_PrometheusManifests](https://github.com/annechan
 ### Visualizer 
 &nbsp;&nbsp;&nbsp;&nbsp; The Visualizer presents a relational diagram of your kubernetes cluster objects, organized by namespace. 
 
-<img src="https://media.giphy.com/media/a5qWAkxWPySbq9D8AU/giphy.gif" alt="Visualizer" width="800" height="500">
-[![](https://www.youtube.com/watch?v=s8rX4T8n_Bo)](https://www.youtube.com/watch?v=s8rX4T8n_Bo)
+<img src="https://media.giphy.com/media/a5qWAkxWPySbq9D8AU/giphy.gif" alt="Visualizer">
 
 ## Future Enhancements
   - Implementing additional metrics and visualizations for nodes, pods, and containers (suggestions welcomed)
