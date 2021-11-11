@@ -50,18 +50,22 @@ Supplementary Repo: [KubeScrape_PrometheusManifests](https://github.com/annechan
 
 ### Node Details
 &nbsp;&nbsp;&nbsp;&nbsp; The Node Details page displays basic information about running pods within the selected node. Hover and click on a pod to route to the Pod Details for pod metrics.
+
 <img src="https://media.giphy.com/media/qzld2W8fcdSiJEx0ah/giphy.gif" alt="Node View">
  
 ### Pod Details
 &nbsp;&nbsp;&nbsp;&nbsp; The Pod Details page graphically displays CPU Usage, CPU Saturation, Memory Usage, and Memory Saturation for each container of the selected pod. Click the drop down menu on the top right to switch between pods.
+
 <img src="https://media.giphy.com/media/gDyI8XDMak8GOdUOqq/giphy.gif" alt="Pod View">
  
 ### Alerts 
 &nbsp;&nbsp;&nbsp;&nbsp; The Alerts page displays alerts tracked by Prometheus that are in "firing state". The alert components are grouped by alert name and changes color depending on the set severity level. 
-lerts<img src="https://media.giphy.com/media/7CRUrsWFVAm362DqSc/giphy.gif" alt="Node View">
+
+<img src="https://media.giphy.com/media/7CRUrsWFVAm362DqSc/giphy.gif" alt="Node View">
   
 ### Visualizer 
 &nbsp;&nbsp;&nbsp;&nbsp; The Visualizer presents a relational diagram of your kubernetes cluster objects, organized by namespace. 
+
 <img src="https://media.giphy.com/media/a5qWAkxWPySbq9D8AU/giphy.gif" alt="Visualizer">
 
 ## Future Enhancements
