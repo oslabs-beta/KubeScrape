@@ -44,7 +44,7 @@ const NodeContainer = () => {
         sx={{
           backgroundColor: theme.palette.primary.main,
           width: '100%',
-          marginBottom: '20px',
+          marginBottom: '20px'
         }}
       >
         <Toolbar>
