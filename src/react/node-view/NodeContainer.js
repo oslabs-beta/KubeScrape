@@ -19,7 +19,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
-import PodDetailsContainer from '../../components/PodDetailsContainer/PodDetailsContainer';
+import PodDetailsContainer from './components/PodsOverviewContainer';
 
 const primaryColor = '#25274D';
 
@@ -70,7 +70,9 @@ const NodeContainer = () => {
           </FormControl>
         </Toolbar>
       </AppBar>
+
       <PodDetailsContainer node={currentNode} />
+
     </Container>
   );
 };

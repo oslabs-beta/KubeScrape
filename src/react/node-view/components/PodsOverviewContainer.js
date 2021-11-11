@@ -10,13 +10,10 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppBar, Box, Container, Grid, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import PodOverview from '../PodOverview/PodOverview';
-import * as actions from '../../actions/actions';
-import * as podPromql from '../../utils/pod-promql-util';
-
-const primaryColor = '#25274D';
+import { Container, Grid } from '@mui/material';
+import PodOverview from './PodOverview';
+import * as actions from '../../../actions/actions';
+import * as podPromql from '../../../utils/pod-promql-util';
 
 const PodDetailsContainer = props => {
   // useSelector allows you to extract data from the Redux store state, using a selector function
