@@ -29,6 +29,7 @@
 *Note: You may need to configure privacy or security settings to allow the application to open without being verified.*
 
 ### Prerequisites
+
 1. (Required) The following must be deployed in your kubernetes cluster for KubeScrape to gather metrics and information from:
    - Prometheus 
    - Node Exporter
@@ -41,39 +42,35 @@
    [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 
 ## Features
+
 ### Cluster View / Home Page
 &nbsp;&nbsp; The Cluster View, or Home Page, presents an overview of the cluster's health and important cluster metrics/information. Hover and click on a node to automatically route to the Node Details page for more information regarding running pods. 
 
-<gif>
-
 ### Node Details
 &nbsp;&nbsp;&nbsp;&nbsp; The Node Details page displays basic information about running pods within the selected node. Hover and click on a pod to route to the Pod Details for pod metrics.
- 
-<gif>
+
  
 ### Pod Details
 &nbsp;&nbsp;&nbsp;&nbsp; The Pod Details page graphically displays CPU Usage, CPU Saturation, Memory Usage, and Memory Saturation for each container of the selected pod. Click the drop down menu on the top right to switch between pods.
- 
- <gif>
+
  
 ### Alerts 
 &nbsp;&nbsp;&nbsp;&nbsp; The Alerts page displays alerts tracked by Prometheus that are in "firing state". The alert components are grouped by alert name and changes color depending on the set severity level. 
- 
-  <gif>
+
   
 ### K8 Visualizer 
 &nbsp;&nbsp;&nbsp;&nbsp; The Visualizer presents a relational diagram of your kubernetes cluster objects, organized by namespace. 
-
-   <gif>
+    
+## Future Enhancements
+fdf
     
 ## KubeScrape Engineering Team 
+    
 We welcome any feedback, contributions, or suggestions to improve KubeScrape to help monitor your cluster better. So please feel free to fork, clone this repo, and
 leave a [![GitHub stars](https://img.shields.io/github/stars/oslabs-beta/KubeScrape?style=social&label=Star&)](https://github.com/oslabs-beta/KubeScrape/) if you would like to support our work!
  
 [Anne Chan](https://github.com/annechanchan) | [Jackie Whitman](https://github.com/jackiewhitworth) | [Jacob Davis](https://github.com/JacobDDavis) | [Vince Nguyen](https://github.com/ntgv93)
 
-## Future Enhancements
-fdf
  
 ## License
 Released under the MIT License
