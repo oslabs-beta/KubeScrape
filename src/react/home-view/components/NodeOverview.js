@@ -13,10 +13,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
 import { Container, Grid, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import * as actions from '../../actions/actions';
+import * as actions from '../../../actions/actions';
 
 // fetch requests to the Prometheus server are stored as functions in utils/promql-requests.js
-import * as nodePromql from '../../utils/node-promql-util';
+import * as nodePromql from '../../../utils/node-promql-util';
 
 const primaryColor = '#25274D';
 

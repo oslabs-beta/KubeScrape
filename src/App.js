@@ -14,11 +14,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import Sidebar from './components/sidebar/Sidebar';
 
 import theme from './theme';
-import ClusterViewContainer from './components/ClusterViewContainer/ClusterViewContainer';
-import NodeDetailsContainer from './components/NodeDetailsContainer/NodeDetailsContainer';
+import HomeContainer from './react/home-view/HomeContainer';
+import NodeContainer from './react/node-view/NodeContainer';
 import Visualizer from './components/ClusterOverview/Visualizer';
 import K8sContainerViewContainer from './components/K8sContainerViewContainer/K8sContainerViewContainer';
-import AlertsOverview from './components/AlertsOverview/AlertsOverview';
+import AlertsOverview from './react/alerts-view/AlertsOverview';
 
 const App = () => {
   const history = useHistory();
@@ -35,11 +35,11 @@ const App = () => {
 
         <Switch>
           <Route path="/" exact>
-            <ClusterViewContainer />
+            <HomeContainer />
           </Route>
 
           <Route path="/node" exact>
-            <NodeDetailsContainer />
+            <NodeContainer />
           </Route>
 
           <Route path="/visualizer" exact>

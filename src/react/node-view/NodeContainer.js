@@ -19,11 +19,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
-import PodDetailsContainer from '../PodDetailsContainer/PodDetailsContainer';
+import PodDetailsContainer from '../../components/PodDetailsContainer/PodDetailsContainer';
 
 const primaryColor = '#25274D';
 
-const NodeDetailsContainer = () => {
+const NodeContainer = () => {
   // returns a location object that represents the current URL
   const location = useLocation();
 
@@ -75,4 +75,4 @@ const NodeDetailsContainer = () => {
   );
 };
 
-export default NodeDetailsContainer;
+export default NodeContainer;

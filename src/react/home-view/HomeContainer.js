@@ -1,7 +1,7 @@
 /**
  * ************************************
  *
- * @module  ClusterViewContainer.js
+ * @module  HomeContainer.js
  * @description component that renders cluster information on home page
  *
  * ************************************
@@ -10,16 +10,16 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppBar, Box, Grid, Paper, Toolbar, Container, Typography } from '@mui/material';
-import NodeOverview from '../NodeOverview/NodeOverview';
-import ClusterOverview from '../ClusterOverview/ClusterOverview';
-import DeploymentOverview from '../DeploymentContainer/DeploymentOverview';
+import NodeOverview from './components/NodeOverview';
+import ClusterOverview from './components/ClusterOverview';
+import DeploymentOverview from '../../components/DeploymentContainer/DeploymentOverview';
 import * as clusterPromql from '../../utils/cluster-promql-util';
 import * as actions from '../../actions/actions';
 import { styled } from '@mui/system';
 
 const primaryColor = '#25274D';
 
-const ClusterViewContainer = () => {
+const HomeContainer = () => {
   // hooks
   const dispatch = useDispatch();
 
@@ -125,4 +125,4 @@ const ClusterViewContainer = () => {
   );
 };
 
-export default ClusterViewContainer;
+export default HomeContainer;

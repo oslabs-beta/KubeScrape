@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
 import { Box, Container, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import * as clusterPromql from '../../utils/cluster-promql-util';
+import * as clusterPromql from '../../../utils/cluster-promql-util';
  
 const primaryColor = '#25274D';
  
