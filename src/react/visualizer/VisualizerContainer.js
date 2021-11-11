@@ -12,12 +12,12 @@ import { useSelector } from 'react-redux';
 import { Box, AppBar, Toolbar,Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Graph from 'react-graph-vis';
-import cpIcon from '../../icons/control-plane-icon.svg';
-import nsIcon from '../../icons/namespace-icon.svg';
-import nodeIcon from '../../icons/node-icon.svg';
-import deplIcon from '../../icons/deployment-icon.svg';
-import svcIcon from '../../icons/service-icon.svg';
-import podIcon from '../../icons/pod-icon.svg';
+import cpIcon from './icons/control-plane-icon.svg';
+import nsIcon from './icons/namespace-icon.svg';
+import nodeIcon from './icons/node-icon.svg';
+import deplIcon from './icons/deployment-icon.svg';
+import svcIcon from './icons/service-icon.svg';
+import podIcon from './icons/pod-icon.svg';
 
 const Visualizer = () => {
 
