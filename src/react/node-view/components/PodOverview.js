@@ -21,7 +21,7 @@ const PodOverview = props => (
   <Box
     sx={{
       wordWrap: 'break-word',
-      maxWidth: '350px',
+      width: '350px',
       fontSize: '1rem',
       ':hover': {
         filter: 'brightness(150%)',

@@ -16,7 +16,7 @@ import {
   MenuItem, InputLabel
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import PodDetailsContainer from './components/PodsContainer';
+import PodsOverviewContainer from './components/PodOverviewContainer';
 
 const NodeContainer = () => {
 
@@ -68,7 +68,7 @@ const NodeContainer = () => {
         </Toolbar>
       </AppBar>
 
-      <PodDetailsContainer node={currentNode} />
+      <PodsOverviewContainer node={currentNode} />
 
     </Box>
   );
