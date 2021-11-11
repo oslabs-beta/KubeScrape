@@ -14,12 +14,12 @@
 
 ## Table of Contents 
 
-** [What is KubeScrape](#what-is-kubescrape)**<br>
-** [KubeScrape Prerequisite and Set Up](#kubescrape-prerequisite-and-set-up)**<br>
-** [Features](#features)**<br>
-** [Engineering Team ](#engineering-team)**<br>
-** [Future Enhancements](#enhancements)**<br>
-** [License](#license)**<br>
+* [What is KubeScrape](#what-is-kubescrape)<br>
+* [KubeScrape Prerequisite and Set Up](#kubescrape-prerequisite-and-set-up)<br>
+* [Features](#features)<br>
+* [Engineering Team ](#engineering-team)<br>
+* [Future Enhancements](#future-enhancements)<br>
+* [License](#license)<br>
 
 ## What is KubeScrape 
 
