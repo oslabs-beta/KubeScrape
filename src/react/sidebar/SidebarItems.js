@@ -18,7 +18,7 @@ import {
 } from 'react-icons/ai';
 import { GoAlert } from 'react-icons/go';
 
-export const SidebarItems = [
+const SidebarItems = [
   {
     title: 'Home',
     path: '/',
@@ -30,11 +30,6 @@ export const SidebarItems = [
     icon: <AiFillCodepenCircle className="sidebarMenuItemIcons" />,
   },
   {
-    title: 'Visualizer',
-    path: '/visualizer',
-    icon: <AiFillEye className="sidebarMenuItemIcons" />,
-  },
-  {
     title: 'Pod',
     path: '/pod',
     icon: <AiFillCodeSandboxSquare className="sidebarMenuItemIcons" />,
@@ -44,4 +39,11 @@ export const SidebarItems = [
     path: '/alerts',
     icon: <GoAlert className="sidebarMenuItemIcons" />,
   },
+  {
+    title: 'Visualizer',
+    path: '/visualizer',
+    icon: <AiFillEye className="sidebarMenuItemIcons" />,
+  },
 ];
+
+export default SidebarItems;

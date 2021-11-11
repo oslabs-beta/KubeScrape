@@ -11,7 +11,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import regeneratorRuntime from 'regenerator-runtime';
 import { ThemeProvider } from '@mui/material/styles';
-import Sidebar from './components/sidebar/Sidebar';
+import Sidebar from './react/sidebar/Sidebar';
 
 import theme from './theme';
 import HomeContainer from './react/home-view/HomeContainer';
@@ -42,16 +42,16 @@ const App = () => {
             <NodeContainer />
           </Route>
 
-          <Route path="/visualizer" exact>
-            <Visualizer />
-          </Route>
-
           <Route path="/pod" exact>
             <K8sContainerViewContainer />
           </Route>
 
           <Route path="/alerts" exact>
             <AlertsOverview />
+          </Route>
+
+          <Route path="/visualizer" exact>
+            <Visualizer />
           </Route>
         </Switch>
       </ThemeProvider>
