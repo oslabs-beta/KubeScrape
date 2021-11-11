@@ -18,7 +18,7 @@
 * [Features](#features)<br>
 * [Engineering Team](#engineering-team)<br>
 * [Future Enhancements](#future-enhancements)<br>
-* [License](#license)*<br>
+* [License](#license)<br>
 
 ## What is KubeScrape 
 
