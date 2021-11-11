@@ -3,25 +3,22 @@
  *
  * @module PodDetailsContainer.js
  * @description Component to render details of each individual K8s Pod
- * 
+ *
  * ************************************
  */
 
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  AppBar, Box, Container, Grid, Typography
-} from '@mui/material';
+import { AppBar, Box, Container, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import PodOverview from '../PodOverview/PodOverview';
 import * as actions from '../../actions/actions';
 import * as podPromql from '../../utils/pod-promql-util';
- 
+
 const primaryColor = '#25274D';
- 
-const PodDetailsContainer = (props) => {
-   
+
+const PodDetailsContainer = props => {
   // useSelector allows you to extract data from the Redux store state, using a selector function
   // this function accesses the state from the nodeReducer by subscribing to the store through sseSelector
   const { podInfo } = useSelector(state => state.pod);
@@ -39,18 +36,25 @@ const PodDetailsContainer = (props) => {
   }, []);
 
   // TODO: Fix goToPod so it redirects to the correct pod and top of the page in K8sContainerOverview when a PodOverview is clicked
-  const goToPod = (podName) => {
+  const goToPod = podName => {
     history.push({
-      pathname:'/pod',
-      podName
+      pathname: '/pod',
+      podName,
     });
   };
 
   const podEls = podInfo.map((pod, index) => (
-    <Grid item container key={'index: ' + index} xs={12} sm={6} justifyContent='center' onClick={() => goToPod(pod.podName)}
+    <Grid
+      item
+      container
+      key={'index: ' + index}
+      xs={12}
+      sm={6}
+      justifyContent="center"
+      onClick={() => goToPod(pod.podName)}
     >
       <PodOverview
-        key={'pod' + index} 
+        key={'pod' + index}
         podName={pod.podName}
         namespace={pod.podNamespace}
         ip={pod.podIp}
@@ -62,14 +66,14 @@ const PodDetailsContainer = (props) => {
 
   // Appbar uses display:flex + flex-direction: column
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
-  return(
+  return (
     <Container>
       {/* <Typography variant='h4' align='center' gutterBottom>Click on a pod for more information</Typography> */}
-      <Grid container justifyContent='center' alignItems='center' spacing={2}>
+      <Grid container justifyContent="center" alignItems="center" spacing={2}>
         {podEls}
       </Grid>
     </Container>
   );
 };
- 
+
 export default PodDetailsContainer;

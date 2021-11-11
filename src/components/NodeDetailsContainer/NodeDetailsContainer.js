@@ -3,7 +3,7 @@
  *
  * @module NodeDetailsContainer.js
  * @description Component to render details of each individual K8s Node
- * 
+ *
  * ************************************
  */
 
@@ -31,10 +31,10 @@ const NodeDetailsContainer = () => {
   const { nodes } = useSelector(state => state.cluster);
 
   // keep track of current node
-  // if nodeName url param is not provided, set default node to first node in the list 
-  const [ currentNode, setCurrentNode ] = useState(location.nodeName || nodes[0]);
+  // if nodeName url param is not provided, set default node to first node in the list
+  const [currentNode, setCurrentNode] = useState(location.nodeName || nodes[0]);
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setCurrentNode(event.target.value);
   };
 
@@ -42,27 +42,30 @@ const NodeDetailsContainer = () => {
   // while Toolbar uses display:flex with default flex-direction: row to display items inline
   return(
     <Box sx={{flexGrow: 1, width: '90%'}}>
-      <AppBar position='relative' sx={{
-        backgroundColor: primaryColor,
-        width: '100%',
-        marginBottom: '20px'
-      }}>
+      <AppBar 
+        position='relative' 
+        sx={{
+          backgroundColor: primaryColor,
+          width: '100%',
+          marginBottom: '20px'
+        }}
+      >
         <Toolbar>
-          <Typography variant='h5' component='div' sx={{ flexGrow: 1 }}>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             Node Details
           </Typography>
 
-          <FormControl variant='filled' 
-            sx={{ minWidth: 200, 
-              padding: 0,
-              border: '1px solid white',
-              borderRadius: '5px',
-            }}>
+          <FormControl
+            variant="filled"
+            sx={{ minWidth: 200, padding: 0, border: '1px solid white', borderRadius: '5px' }}
+          >
             <InputLabel sx={{ color: 'white' }}>View Node</InputLabel>
             <Select sx={{ color: 'white' }} value={currentNode} onChange={handleChange}>
-              {nodes.map(node => 
-                <MenuItem key={node} value={node}>{node}</MenuItem>
-              )}
+              {nodes.map(node => (
+                <MenuItem key={node} value={node}>
+                  {node}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Toolbar>

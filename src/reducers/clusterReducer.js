@@ -13,40 +13,36 @@ const initialState = {
   namespaces: [],
   deployments: [],
   services: [],
-  nodes: []
+  nodes: [],
 };
 
-const clusterReducer = (
-  state = initialState,
-  action
-) => {
+const clusterReducer = (state = initialState, action) => {
   const deepStateClone = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
     case types.SET_CLUSTER_NAMESPACES:
       return {
         ...deepStateClone,
-        namespaces: action.payload
-      }
+        namespaces: action.payload,
+      };
     case types.SET_CLUSTER_DEPLOYMENTS:
       return {
         ...deepStateClone,
-        deployments: action.payload
-      }
+        deployments: action.payload,
+      };
     case types.SET_CLUSTER_SERVICES:
       return {
         ...deepStateClone,
-        services: action.payload
-      }
+        services: action.payload,
+      };
     case types.SET_CLUSTER_NODES:
       return {
         ...deepStateClone,
-        nodes: action.payload
-      }
+        nodes: action.payload,
+      };
     default:
-        return state;
+      return state;
   }
-}
+};
 
 export default clusterReducer;
-
