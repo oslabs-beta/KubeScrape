@@ -42,7 +42,6 @@ KubeScrape's alerts tab will only showcase alert details if Prometheus alert rul
 If you do not have the above requirements set up please go to the following repo which includes sample manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the 4-step process in the ReadMe to deploy Prometheus with ease. 
    [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 
-<a name="feature"/>
 # Features
 ##Cluster View / Home Page
 Dashboard that displays an overview of the cluster including over health and details about the created k8 objects. Users can hover and click into the running nodes component to automatically route to the Node Details page for more information regarding running pods. 
@@ -58,13 +57,11 @@ Provides details regarding created pods within the node. Users can hover and cli
 ##Alerts 
 ##K8 Map
 
-<a name="team"/>
 # KubeScrape Engineering Team 
 [Anne Chan](https://github.com/annechanchan) | [Jackie Whitman](https://github.com/jackiewhitworth) | [Jacob Davis](https://github.com/JacobDDavis) | [Vince Nguyen](https://github.com/ntgv93)
 
 We welcome any feedback, contributions, or suggestions to improve KubeScrape to help monitor your cluster better. So please feel free to fork, clone this repo, and
 leave a [![GitHub stars](https://img.shields.io/github/stars/oslabs-beta/KubeScrape?style=social&label=Star&)](https://github.com/oslabs-beta/KubeScrape/) if you would like to support our work!
 
-<a name="license"/>
 # License
 Released under the MIT License
