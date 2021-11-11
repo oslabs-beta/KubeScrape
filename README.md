@@ -24,7 +24,7 @@
 
 ## KubeScrape Prerequisite and Installation
 ### Application Installation
-&nbsp;&nbsp; Installing our app is just a few clicks away! Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system.
+&nbsp;&nbsp;&nbsp;&nbsp; Installing our app is just a few clicks away! Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system.
 
 *Note: You may need to configure privacy or security settings to allow the application to open without being verified.*
 
@@ -39,29 +39,29 @@
 *As an enhancement, we are looking to allow users to input the port which you are running Prometheus on.*
 
 #### Optional
-&nbsp;&nbsp; KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your kubernetes cluster even if alert rules are not implemented.
+&nbsp;&nbsp;&nbsp;&nbsp; KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your kubernetes cluster even if alert rules are not implemented.
   
 #### I need help installing Prometheus, node exporter, or kube-state-metrics
-&nbsp;&nbsp; If you do not have the above requirements set up please go to the following repo which includes sample manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the 4-step process in the ReadMe to deploy Prometheus with ease. 
+&nbsp;&nbsp;&nbsp;&nbsp; If you do not have the above requirements set up please go to the following repo which includes sample manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the 4-step process in the ReadMe to deploy Prometheus with ease. 
    [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 
 ## Features
-### Cluster View / Home Page
+&nbsp;&nbsp; ### Cluster View / Home Page
 &nbsp;&nbsp; Dashboard that displays an overview of the cluster including over health and details about the created k8 objects. Hover and click into the running nodes component to automatically route to the Node Details page for more information regarding running pods. 
 
 <gif>
 
 ### Node Details
-&nbsp;&nbsp; Provides details regarding created pods within the node. Hover and click into a pod to route to the Pod Details for pod metrics.
+&nbsp;&nbsp;&nbsp;&nbsp; Provides details regarding created pods within the node. Hover and click into a pod to route to the Pod Details for pod metrics.
  
 ### Pod Details
-&nbsp;&nbsp; Displays metrics regarding each pod. Click the drop down menu on the top right to switch between pods.
+&nbsp;&nbsp;&nbsp;&nbsp; Displays metrics regarding each pod. Click the drop down menu on the top right to switch between pods.
  
 ### Alerts 
-&nbsp;&nbsp; Displays alerts tracked by Prometheus that are in "firing state". The alert components are grouped by alert name and changes color depending on severity level. 
+&nbsp;&nbsp;&nbsp;&nbsp; Displays alerts tracked by Prometheus that are in "firing state". The alert components are grouped by alert name and changes color depending on severity level. 
  
 ### K8 Visualizer 
-&nbsp;&nbsp; Presents a relational diagram of your kubernetes cluster. 
+&nbsp;&nbsp;&nbsp;&nbsp; Presents a relational diagram of your kubernetes cluster. 
 
 ## KubeScrape Engineering Team 
 We welcome any feedback, contributions, or suggestions to improve KubeScrape to help monitor your cluster better. So please feel free to fork, clone this repo, and
@@ -70,7 +70,7 @@ leave a [![GitHub stars](https://img.shields.io/github/stars/oslabs-beta/KubeScr
 [Anne Chan](https://github.com/annechanchan) | [Jackie Whitman](https://github.com/jackiewhitworth) | [Jacob Davis](https://github.com/JacobDDavis) | [Vince Nguyen](https://github.com/ntgv93)
 
 ## Future Enhancements
-
 fdf
+ 
 ## License
 Released under the MIT License
