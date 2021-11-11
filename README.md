@@ -47,7 +47,7 @@ Supplementary Repo: [KubeScrape_PrometheusManifests](https://github.com/annechan
 &nbsp;&nbsp; The Cluster View, or Home Page, presents an overview of the cluster's health and important cluster metrics/information. Hover and click on a node to automatically route to the Node Details page for more information regarding running pods. 
 
 <img src="https://media.giphy.com/media/9Xg8xUJbV2m1KYQ3l4/giphy.gif" alt="Cluster View">
-[![ ](https://img.youtube.com/vi/4TcZrd2oho0/0.jpg)](https://www.youtube.com/watch?v=4TcZrd2oho0)
+[![test](https://img.youtube.com/vi/4TcZrd2oho0/0.jpg)](https://www.youtube.com/watch?v=4TcZrd2oho0)
 
 ### Node Details
 &nbsp;&nbsp;&nbsp;&nbsp; The Node Details page displays basic information about running pods within the selected node. Hover and click on a pod to route to the Pod Details for pod metrics.
