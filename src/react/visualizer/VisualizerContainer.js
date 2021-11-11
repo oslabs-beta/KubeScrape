@@ -102,11 +102,11 @@ const Visualizer = () => {
             width: 2
           };
           graph.edges.push(nsEdge);
-
+          
           // point each deployment to the pods that it manage
           const deplEdge = {
             // extract deployment name
-            from: pod.metric.created_by_name.replace(/-[^-]+$/i, ''),
+            from: `${pod.metric.created_by_name.replace(/-[^-]+$/i, '')}-depl`,
             to: podNode.id,
             width: 2, 
             color: '#ffffff',
