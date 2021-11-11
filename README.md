@@ -60,7 +60,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp; The Visualizer presents a relational diagram of your kubernetes cluster objects, organized by namespace. 
     
 ## Future Enhancements
-fdf
+  - Implementing additional metrics and visualizations for nodes, pods, and containers (suggestions welcomed)
+  - Integrate an error logs to allow for more comprehensive cluster debugging
+  - Support start, stop, and remove objects
+  - Ability to filter pods and deployments by namespace
     
 ## KubeScrape Engineering Team 
     
