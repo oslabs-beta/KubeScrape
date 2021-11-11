@@ -1,9 +1,8 @@
-<!--need to add a static folder if we would like to upload an image to our readme--> Add photo of Logo, will need to add a folder and upload images to this repo though
-<!-- <p align="center">
- <img src="./static/KubeScrape.png" width="800" height="400"></p>
-<h1 align="center"><strong>KubeScrape</strong></h1> -->
+<p align="center">
+ <img src="https://i.imgur.com/ZWUFSkc.jpg" width="300" height="240"></p>
+<h1 align="center"><strong>KubeScrape</strong></h1>
 
-<p align="center">An open source visualizer with easy to read metrics, graphs, and diagrams for your Kubernetes Cluster</p>
+<p align="center">An open source real-time visualizer with easy to read metrics, graphs, and diagrams for your Kubernetes Cluster</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"/>
@@ -13,7 +12,7 @@
   <img alt="Repo stars" src="https://img.shields.io/github/stars/oslabs-beta/KubeScrape?logoColor=%2334495e&style=social"> 
 </p>
 
-## Table of Contents 
+# Table of Contents 
 
 * [What is KubeScrape](#KubeScrape)
 * [KubeScrape Prerequisite and Set Up](#setUp)
@@ -22,39 +21,50 @@
 * [License](#license)
 
 <a name="KubeScrape"/>
-## What is KubeScrape 
+# What is KubeScrape 
 
 <a name="setUp"/>
-## KubeScrape Prerequisite and Set Up
-  ###### Prerequisite
-  KubeScrape relies on the following instances to deployed in your kubernetes cluster to scrape metrics and information from:
-  - Prometheus 
-  - Node Exporter
-  - Kube-state-metrics
-  In addition, KubeScrape's alerts tab will only showcase alert details if Prometheus alert.rules are configured within your Prometheus instance. *If no rules are configured, the application will still provide data regarding your cluster*
+# KubeScrape Prerequisite and Installation
+##Application Installation
+Vist our github [releases](URL) page to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system. (*Note: You may need to configure privacy or security settings to allow the application to open without being verified.)
 
-  Please note that KubeScrape makes API calls to `port 30000` and configure Prometheus to 
+##Prerequisites
+###### Required
+1. The following must be deployed in your kubernetes cluster for KubeScrape to gather metrics and information from:
+   - Prometheus 
+   - Node Exporter
+   - Kube-state-metrics
+2. If you have your own instance of prometheus installed, please expose it to `port 30000` as KubeScrape currently makes API calls to this port.
+*As a feature enhance, we are looking to allow users to input the port which you are running Prometheus on*
+
+###### Optional
+KubeScrape's alerts tab will only showcase alert details if Prometheus alert rules are configured. However, the application will still display other details regarding your k8 cluster even if alert rules are not implemented.
   
-  If you do not have the above requirements set up please go to the following repo which includes manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the easy 4 step process in its ReadMe to deploy Prometheus. 
-   [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)
-  
-  ###### Application Set Up
+###### I need help installing Prometheus, node exporter, or kube-state-metrics
+If you do not have the above requirements set up please go to the following repo which includes sample manifest files for Prometheus (including alert rules), node exporter, and kube-state-metrics. Follow the 4-step process in the ReadMe to deploy Prometheus with ease. 
+   [KubeScrape_PrometheusManifests](https://github.com/annechanchan/KubeScrape_PrometheusManifests#kubescrape_prometheusmanifests-overview)  
 
 <a name="feature"/>
-## Features
-  ###### Home/Cluster View 
-  ###### Node View 
-  ###### Pod View 
-  ###### Alerts 
-  ###### K8 Map
+# Features
+##Cluster(Home) View
+Dashboard that displays an overview of your cluster including details about total number of objects within your cluster and overall health. 
+
+<gif>
+
+##Node Details View
+ 
+ 
+##Pod View 
+##Alerts 
+##K8 Map
 
 <a name="team"/>
-## KubeScrape Engineering Team 
+# KubeScrape Engineering Team 
 [Anne Chan](https://github.com/annechanchan) | [Jackie Whitman](https://github.com/jackiewhitworth) | [Jacob Davis](https://github.com/JacobDDavis) | [Vince Nguyen](https://github.com/ntgv93)
 
-We appreciate any feedback, contributions, or suggestions to improve KubeScrape to help monitor your cluster better. Please feel free to fork and clone this repo.
-Remember to leave a [![GitHub stars](https://img.shields.io/github/stars/oslabs-beta/KubeScrape?style=social&label=Star&)](https://github.com/oslabs-beta/KubeScrape/).
+We welcome any feedback, contributions, or suggestions to improve KubeScrape to help monitor your cluster better. So please feel free to fork, clone this repo, and
+leave a [![GitHub stars](https://img.shields.io/github/stars/oslabs-beta/KubeScrape?style=social&label=Star&)](https://github.com/oslabs-beta/KubeScrape/) if you would like to support our work!
 
 <a name="license"/>
-## License
+# License
 Released under the MIT License
