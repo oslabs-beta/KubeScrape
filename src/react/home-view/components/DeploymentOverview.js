@@ -13,8 +13,9 @@ import { useTheme } from '@mui/material/styles';
 
 
 const DeploymentOverview = props => {
-  const theme = useTheme();
 
+  const theme = useTheme();
+  
   return(
     <Paper
       elevation={5}

@@ -2,7 +2,7 @@
  * ************************************
  *
  * @module  NodeOverview.js
- * @description component that renders basic information about a node
+ * @description component that renders information about a node
  *
  * ************************************
  */

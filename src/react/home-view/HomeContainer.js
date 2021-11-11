@@ -10,19 +10,19 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppBar, Box, Paper, Toolbar, Container, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import NodeOverview from './components/NodeOverview';
 import ClusterOverview from './components/ClusterOverview';
 import DeploymentOverview from './components/DeploymentOverview';
 import * as clusterPromql from '../../utils/cluster-promql-util';
 import * as actions from '../../actions/actions';
 
-const primaryColor = '#25274D';
 
 const HomeContainer = () => {
   // hooks
   const dispatch = useDispatch();
-
+  const theme = useTheme();
+  
   // extract data from Redux store state
   const { deployments, nodes } = useSelector(state => state.cluster);
 
@@ -44,7 +44,7 @@ const HomeContainer = () => {
   }, []);
 
   const StyledTypography = styled(Typography)(({ theme }) => ({
-    backgroundColor: primaryColor,
+    backgroundColor: theme.palette.primary.main,
     display: 'box-sizing',
     padding: '10px 25px',
     borderRadius: '5px',

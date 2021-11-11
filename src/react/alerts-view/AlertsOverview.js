@@ -1,8 +1,8 @@
 /**
  * ************************************
  *
- * @module  AlertsOverview
- * @description component that renders basic information about the user's cluster
+ * @module  AlertsOverview.js
+ * @description component that renders alerts from the prometheus server
  *
  * ************************************
  */
@@ -39,7 +39,7 @@ function consolidateAlerts(dataArray) {
         // replace dashes and underscores in the key with a space
         let keyUpdate = key.replace(/[_-]/g, ' ');
         // captialize each first character of the word in the key
-        //^\w{1} macthes the first letter of the word, | means or, \s+ matches the amt of whitespaces between words
+        // ^\w{1} macthes the first letter of the word, | means or, \s+ matches the amt of whitespaces between words
         keyUpdate = keyUpdate.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
 
         alertDetailsObj[keyUpdate] = value;
@@ -94,24 +94,22 @@ function createAlertDetails(el, alertName, i, boxColor) {
 }
 
 // styling for each individual box for alerts
-const AlertDetailsBox = props => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: props.boxColor,
-        maxWidth: '30%',
-        color: '#292020',
-        fontSize: '0.75rem',
-        borderRadius: '5px',
-        padding: '5px 15px',
-        margin: '10px 10px 0px 10px',
-        wordWrap: 'break-word',
-      }}
-    >
-      {props.alertDetails}
-    </Box>
-  );
-};
+const AlertDetailsBox = props => (
+  <Box
+    sx={{
+      backgroundColor: props.boxColor,
+      maxWidth: '30%',
+      color: '#292020',
+      fontSize: '0.75rem',
+      borderRadius: '5px',
+      padding: '5px 15px',
+      margin: '10px 10px 0px 10px',
+      wordWrap: 'break-word',
+    }}
+  >
+    {props.alertDetails}
+  </Box>
+);
 
 // return all alerts with "firing" status
 const fetchAlert = async () => {

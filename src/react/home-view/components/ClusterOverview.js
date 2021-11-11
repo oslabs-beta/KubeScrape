@@ -10,14 +10,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import GaugeChart from 'react-gauge-chart';
-import { Box, Container, Grid, Paper } from '@mui/material';
+import { Container, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import * as clusterPromql from '../../../utils/cluster-promql-util';
  
-const primaryColor = '#25274D';
- 
 const ClusterOverview = () => {
- 
   // initialize state that is rendered only in this component
   const [clusterCpuUsage, setClusterCpuUsage] = useState(0);
   const [clusterMemoryUsage, setClusterMemoryUsage] = useState(0);
@@ -91,7 +88,6 @@ const ClusterOverview = () => {
       />
     </Grid>
   );
-
  
   return(
     <Container sx={{width: '100%'}}>
