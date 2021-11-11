@@ -27,7 +27,7 @@
 Vist our github [releases](URL) page to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system. (*Note: You may need to configure privacy or security settings to allow the application to open without being verified.)
 
 ## Prerequisites
-###### Required
+### Required
 1. The following must be deployed in your kubernetes cluster for KubeScrape to gather metrics and information from:
    - Prometheus 
    - Node Exporter
