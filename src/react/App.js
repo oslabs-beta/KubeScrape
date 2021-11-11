@@ -11,14 +11,13 @@ import React, { useEffect } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import regeneratorRuntime from 'regenerator-runtime';
 import { ThemeProvider } from '@mui/material/styles';
-import Sidebar from './react/sidebar/Sidebar';
-
-import theme from './theme';
-import HomeContainer from './react/home-view/HomeContainer';
-import NodeContainer from './react/node-view/NodeContainer';
-import Visualizer from './react/visualizer/VisualizerContainer';
-import PodContainer from './react/pod-view/PodContainer';
-import AlertsOverview from './react/alerts-view/AlertsOverview';
+import Sidebar from './sidebar/Sidebar';
+import theme from './styles/theme';
+import HomeContainer from './home-view/HomeContainer';
+import NodeContainer from './node-view/NodeContainer';
+import Visualizer from './visualizer/VisualizerContainer';
+import PodContainer from './pod-view/PodContainer';
+import AlertsOverview from './alerts-view/AlertsOverview';
 
 const App = () => {
   const history = useHistory();
