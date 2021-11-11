@@ -14,7 +14,7 @@
 
 ## Table of Contents 
 - [What is KubeScrape](#what-is-kubescrape)
-- [Installation and Prerequisites](#installation)
+- [Installation and Prerequisites](https://github.com/oslabs-beta/KubeScrape/blob/annechanchan-patch-2/README.md#installation-and-prerequisites)
 - [Features](#features)
 - [Future Enhancements](#future-enhancements)
 - [Engineering Team](#kubescrape-engineering-team)
