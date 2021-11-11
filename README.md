@@ -14,11 +14,11 @@
 
 ## Table of Contents 
 
-* [What is KubeScrape](#KubeScrape)
+* [What is KubeScrape](##WhatisKubeScrape)
 * [KubeScrape Prerequisite and Set Up](#setUp)
 * [Features](#feature)
 * [KubeScrape Engineering Team ](#team)
-* [License](#license)
+* [License](##license)
 
 ## What is KubeScrape 
 
