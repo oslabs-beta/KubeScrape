@@ -25,7 +25,7 @@ KubeScape is an open-source monitoring tool designed and developed to help Kuber
 
 ## Installation and Prerequisites
 ### Application Installation
-&nbsp;&nbsp;&nbsp;&nbsp; Installing our app is just a few clicks away! Vist our [github releases page](URL) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system. *Note: You may need to configure privacy or security settings to allow the application to open without being verified.*
+&nbsp;&nbsp;&nbsp;&nbsp; Installing our app is just a few clicks away! Vist our [github releases page](https://github.com/oslabs-beta/KubeScrape/releases) to download KubeScrape's desktop application. Please be sure to select the required executable that is compatiable with your operating system. *Note: You may need to configure privacy or security settings to allow the application to open without being verified.*
 
 ### Prerequisites
 #### I have Prometheus installed
